@@ -1,0 +1,330 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="stats-divider.html">
+
+<dom-module id="stat-block">
+
+  <template>
+    <!-- TODO refactor to external stylesheet -->
+    <style>
+      .bar {
+        height: 5px;
+        border: 1px solid #000;
+        position: relative;
+        z-index: 1;
+        background: var(--stat-block-bar-background);
+      }
+
+      :host {
+        display: inline-block;
+      }
+
+      ::content {
+        font-family: sans-serif;
+        width: 350px;
+        font-size: 10pt;
+      }
+
+      ::content .content-wrapper {
+        border-left: 1px var(--stat-block-border-color) solid;
+        border-right: 1px var(--stat-block-border-color) solid;
+        padding: 0.5em;
+      }
+
+      ::content header h1:first-child {
+        font-family: serif;
+        margin: 0px;
+        font-size: 2em;
+        font-variant: small-caps;
+        color: var(--stat-block-header-color, black);
+      }
+
+      ::content header *:nth-child(2) {
+        font-weight: normal;
+        font-style: italic;
+        font-size: 1em;
+        margin: 0;
+      }
+
+      ::content h2, h3, h4, h5, h6 {
+        border-bottom: 1px solid;
+        font-variant: small-caps;
+        color: var(--stat-block-header-color, black);
+        break-inside: avoid-column;
+        break-after: avoid-column;
+        font-size: 1.5em;
+        margin-top: 0.6em;
+        margin-bottom: 0.4em;
+      }
+
+      ::content .main-stats {
+        color: var(--stat-block-header-color, black);
+      }
+
+      ::content combat-stats {
+        margin: 1em 0 1em 0;
+      }
+
+      ::content .stat-name {
+        font-weight: bold;
+      }
+
+      ::content .main-stats p {
+        margin: 0;
+        padding-left: 1em;
+        text-indent: -1em;
+      }
+
+      ::content ability-scores table {
+        width: 100.4
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      ::content ability-scores table * {
+        padding: 0;
+      }
+
+      ::content ability-scores th, td {
+        text-align: center;
+        width: 50px;
+      }
+
+      ::content ability-scores td {
+      }
+
+      ::content .traits-and-actions .stat-name {
+        font-style: italic;
+      }
+
+      ::content .traits-and-actions ol {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      ::content special-traits p:first-of-type {
+        margin-top: 0.5em;
+      }
+
+      ::content actions p:first-of-type {
+        margin-top: 0;
+      }
+
+      ::content reactions p:first-of-type {
+        margin-top: 0;
+      }
+
+      ::content legendary-actions p:first-of-type {
+        margin-top: 0;
+      }
+
+      ::content special-traits p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      ::content actions p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      ::content reactions p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      ::content legendary-actions p:last-of-type {
+        margin-bottom: 0;
+      }
+
+    </style>
+
+    <div class="bar"></div>
+
+    <div class="content-wrapper">
+
+      <content select="header"></content>
+
+      <stats-divider></stats-divider>
+
+      <div class="main-stats">
+        <div>
+          <content select="combat-stats"></content>
+        </div>
+
+      <stats-divider></stats-divider>
+
+        <table class="ability-scores">
+          <tr>
+            <th>STR</th>
+            <th>DEX</th>
+            <th>CON</th>
+            <th>INT</th>
+            <th>WIS</th>
+            <th>CHA</th>
+          </tr>
+          <tr>
+            <td>{{strength}}</td>
+            <td>{{dexterity}}</td>
+            <td>{{constitution}}</td>
+            <td>{{intelligence}}</td>
+            <td>{{wisdom}}</td>
+            <td>{{charisma}}</td>
+          </tr>
+        </table>
+
+      <stats-divider></stats-divider>
+
+        <div>
+          <content select="stats"></content>
+        </div>
+      </div>
+
+      <stats-divider></stats-divider>
+
+      <div class="traits-and-actions">
+
+        <div>
+          <content select="special-traits"></content>
+        </div>
+
+        <div>
+          <content select="actions"></content>
+        </div>
+
+        <div>
+          <content select="reactions"></content>
+        </div>
+
+        <div>
+          <content select="legendary-actions"></content>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="bar"></div>
+
+  </template>
+
+  <script>
+
+    HTMLImports.whenReady(function () {
+      Polymer({
+        is: 'stat-block',
+
+        properties: {
+          strength: {
+            type: String,
+            computed: 'computeAbilityScore(str)'
+          },
+          dexterity: {
+            type: String,
+            computed: 'computeAbilityScore(dex)'
+          },
+          constitution: {
+            type: String,
+            computed: 'computeAbilityScore(con)'
+          },
+          intelligence: {
+            type: String,
+            computed: 'computeAbilityScore(int)'
+          },
+          wisdom: {
+            type: String,
+            computed: 'computeAbilityScore(wis)'
+          },
+          charisma: {
+            type: String,
+            computed: 'computeAbilityScore(cha)'
+          }
+        },
+
+        computeAbilityScore: function(score) {
+          var bonus = Math.round((score / 2.1) - 5);
+          if (bonus >=0) bonus = "+" + bonus;
+          return score + " (" + bonus + ")";
+        },
+
+        ready: function() {
+
+          // TODO refactor utility functions into separate module
+          function toArray(nodelist) {
+            return Array.prototype.slice.call(nodelist);
+          }
+
+          function flatten(arrays) {
+            return [].concat.apply([], arrays);
+          }
+
+          function descriptionsToParagraphs(dl) {
+
+            function toDescriptions(dts, dds) {
+              return dts.map( function(dt, i) {
+                var description = {};
+                description.title = dt.innerHTML;
+                description.description = dds[i].innerHTML;
+                return description;
+              });
+            }
+
+            function toParagraphs(description) {
+              var p = document.createElement('p');
+              var statNameSpan = document.createElement('span');
+              statNameSpan.setAttribute("class", "stat-name");
+              statNameSpan.innerHTML = description.title;
+              p.appendChild(statNameSpan);
+              if(description.description) {
+                var statDescriptionSpan = document.createElement('span');
+                statDescriptionSpan.setAttribute("class", "stat-description");
+                statDescriptionSpan.innerHTML = " " + description.description;
+                p.appendChild(statDescriptionSpan);
+              }
+              return p;
+            }
+
+            var dts = toArray(dl.getElementsByTagName('dt'));
+            var dds = toArray(dl.getElementsByTagName('dd'));
+            var descriptions = toDescriptions(dts, dds);
+            return descriptions.map(toParagraphs);
+          }
+
+          function insertAfter(newNode, referenceNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode);
+          }
+
+          function replaceChildren(parent, newNodes, oldNode) {;
+            var lastNewNode = newNodes[newNodes.length - 1]
+            parent.replaceChild(lastNewNode, oldNode);
+
+            newNodes.pop();
+
+            newNodes.forEach(function(child) {
+              parent.insertBefore(child, lastNewNode);
+            });
+          }
+
+          function convertStats(statsElement, template) {
+            var stats = template.queryEffectiveChildren(statsElement);
+            if(stats) {
+              var dls = toArray(stats.getElementsByTagName('dl'));
+              var ps = dls.map(descriptionsToParagraphs);
+
+              dls.forEach(function(dl, i) {
+                replaceChildren(stats, ps[i], dl);
+              })
+            }
+          }
+
+          convertStats('combat-stats', this);
+          convertStats('stats', this);
+          convertStats('special-traits', this);
+          convertStats('actions', this);
+          convertStats('reactions', this);
+          convertStats('legendary-actions', this);
+        }
+
+      });
+
+    });
+
+  </script>
+
+</dom-module>
