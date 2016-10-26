@@ -15,7 +15,6 @@
     "postinstall": "bower install"
   },
   "devDependencies": {
-    "Polymer": "^1.6.1--",
     "bower": "^1.7.9"
   }
 }
