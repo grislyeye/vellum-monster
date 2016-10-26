@@ -1,10 +1,10 @@
 # 5e-stat-block
 
-Web component stat block for D&D 5E Monsters. Provides an easy way to publish 5th edition Dungeons & Dragons monter stat blocks.
-Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following additional features:
+Web component for displaying 5th Edition *Dunegons & Dragons* monster stat blocks. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
   * Cross-browser support using Polymer and the Web Components polyfill
-  * Simpler usability (one simple import)
+  * Simpler (just one import vs 5)
+  * Theme-able
 
 To install:
 
