@@ -124,7 +124,7 @@ Custom CSS properties for this component include:
 | ` --stat-block-bar-background` | Describes the background property for top and bottom stat block bars, as per the [CSS `background` property](https://developer.mozilla.org/en/docs/Web/CSS/background).
 | `--stat-block-border-color`    | The [colour](https://developer.mozilla.org/en-US/docs/Web/CSS/color) for the stat block borders on the right and left.
 | `--stat-block-header-color`    | The [colour](https://developer.mozilla.org/en-US/docs/Web/CSS/color) of the section headings and stat block header text.
-| `--stats-block-divider-color`  | The [colour](https://developer.mozilla.org/en-US/docs/Web/CSS/color) of the divider between sections of the stat block.
+| `--stat-block-divider-color`  | The [colour](https://developer.mozilla.org/en-US/docs/Web/CSS/color) of the divider between sections of the stat block.
 
 ## Hacking
 
