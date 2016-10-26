@@ -1,4 +1,4 @@
-# 5e-stat-block
+# dnd-stat-block
 
 Web component for displaying 5th Edition *Dunegons & Dragons* monster stat blocks. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
@@ -9,20 +9,20 @@ Web component for displaying 5th Edition *Dunegons & Dragons* monster stat block
 To install:
 
 ```sh
-bower install --save-dev 5e-stat-block
+bower install --save-dev dnd-stat-block
 ```
 
-Add the following files to your HTML `head` element:
+Add the following lines to your HTML `head` element:
 
 ```html
 <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-<link rel="import" href="stat-block.html">
+<link rel="import" href="dnd-stat-block.html">
 ```
 
 A statblock is written as follows:
 
 ```html
-      <stat-block id="goblin" str="8" dex="14" con="10" int="10" wis="8" cha="8">
+      <dnd-stat-block id="goblin" str="8" dex="14" con="10" int="10" wis="8" cha="8">
         <header>
           <h1>Goblin</h1>
           <p>Small humanoid (goblinoid), neutral evil</p>
@@ -82,7 +82,7 @@ A statblock is written as follows:
             <dd>When a creature the goblin can see targets it with an attack the goblin chooses another goblin withit 5 feet of it. The two goblins swap places, and the chosen goblin becomes the target instead.</dd>
           </dl>
         </reactions>
-      </stat-block>
+      </dnd-stat-block>
 ```
 
 This module also includes a theme to give your stat blocks a Monster Manual look. Simply add the following lines to your HTML file `head` element:

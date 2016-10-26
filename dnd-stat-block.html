@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="stats-divider.html">
+<link rel="import" href="dnd-stat-block-divider.html">
 
-<dom-module id="stat-block">
+<dom-module id="dnd-stat-block">
 
   <template>
     <!-- TODO refactor to external stylesheet -->
@@ -141,14 +141,14 @@
 
       <content select="header"></content>
 
-      <stats-divider></stats-divider>
+      <dnd-stat-block-divider></dnd-stat-block-divider>
 
       <div class="main-stats">
         <div>
           <content select="combat-stats"></content>
         </div>
 
-      <stats-divider></stats-divider>
+      <dnd-stat-block-divider></dnd-stat-block-divider>
 
         <table class="ability-scores">
           <tr>
@@ -169,14 +169,14 @@
           </tr>
         </table>
 
-      <stats-divider></stats-divider>
+      <dnd-stat-block-divider></dnd-stat-block-divider>
 
         <div>
           <content select="stats"></content>
         </div>
       </div>
 
-      <stats-divider></stats-divider>
+      <dnd-stat-block-divider></dnd-stat-block-divider>
 
       <div class="traits-and-actions">
 
@@ -208,7 +208,7 @@
 
     HTMLImports.whenReady(function () {
       Polymer({
-        is: 'stat-block',
+        is: 'dnd-stat-block',
 
         properties: {
           strength: {

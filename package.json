@@ -1,6 +1,6 @@
 {
-  "name": "5e-stat-block-component",
-  "version": "0.1.0",
+  "name": "dnd-stat-block",
+  "version": "0.2.0",
   "description": "Web component for displaying 5th Edition D&D monster stat blocks",
   "keywords": [
     "polymer",
