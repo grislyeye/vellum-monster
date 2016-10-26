@@ -1,0 +1,29 @@
+{
+  "name": "5e-stat-block-component",
+  "description": "Web component stat block for 5th Edition D&D Monsters",
+  "main": "stat-block.html",
+  "version": "0.1.0",
+  "authors": [
+    "Val Markovic <val@markovic.io> (http://val.markovic.io)",
+    "Ricardo Gladwell <ricardo@gladwell.me> (https://gladwell.me)"
+  ],
+  "license": "Apache 2.0",
+  "keywords": [
+    "polymer",
+    "web-component",
+    "web-components",
+    "component",
+    "rpg"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "demo",
+    "index.html",
+    "style-example.html"
+  ],
+  "dependencies": {
+    "polymer": "Polymer#^1.7.0"
+  }
+}

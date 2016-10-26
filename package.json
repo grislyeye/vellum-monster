@@ -1,0 +1,21 @@
+{
+  "name": "5e-stat-block-component",
+  "version": "0.1.0",
+  "description": "Web component stat block for D&D 5E Monsters",
+  "keywords": [
+    "polymer",
+    "webcomponent"
+  ],
+  "author": "Ricardo Gladwell <ricardo@gladwell.me> (https://gladwell.me)",
+  "contributors": [
+    "Val Markovic <val@markovic.io> (http://val.markovic.io)"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "devDependencies": {
+    "Polymer": "^1.6.1--",
+    "bower": "^1.7.9"
+  }
+}

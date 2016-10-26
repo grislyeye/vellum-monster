@@ -1,0 +1,32 @@
+<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:700' rel='stylesheet'>
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet'>
+
+<dom-module id="monster-manual-theme">
+
+  <template>
+    <style>
+      :root stat-block {
+        font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+        font-size: 9pt;
+        background: #FDF1DC;
+        --stat-block-bar-background: #E69A28;
+        --stat-block-border-color: #DDD;
+        --stat-block-header-color: #472016;
+        --stats-block-divider-color: #922610;
+      }
+
+      :root stat-block h1, h2, h3, h4, h5, h6 {
+        font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+      }
+    </style>
+  </template>
+
+  <script>
+    HTMLImports.whenReady(function () {
+      Polymer({
+        is: 'monster-manual-theme'
+      });
+    });
+  </script>
+
+</dom-module>
