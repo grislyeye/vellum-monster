@@ -22,6 +22,22 @@
   padding: 0.5em;
 }
 
+:host.two-column {
+  width: var(--stat-block-two-column-width, 840px);
+}
+
+:host.two-column .content-wrapper {
+
+   -webkit-columns: var(--stat-block-two-column-column-width, 390px) 2;
+      -moz-columns: var(--stat-block-two-column-column-width, 390px) 2;
+           columns: var(--stat-block-two-column-column-width, 390px) 2;
+
+   -webkit-column-gap: 40px;
+      -moz-column-gap: 40px;
+           column-gap: 40px;
+
+}
+
 ::content header h1:first-child {
   font-family: serif;
   margin: 0px;
