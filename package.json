@@ -10,7 +10,7 @@
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
   ],
-  "license": "MIT",
+  "license": "Apache 2.0",
   "scripts": {
     "postinstall": "bower install"
   },
