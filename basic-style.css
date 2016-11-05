@@ -1,13 +1,16 @@
+:host {
+  display: block;
+  overflow: hidden;
+  break-inside: avoid-column;
+  -webkit-column-break-inside: avoid;
+}
+
 .bar {
   height: 5px;
   border: 1px solid #000;
   position: relative;
   z-index: 1;
   background: var(--stat-block-bar-background);
-}
-
-:host {
-  display: inline-block;
 }
 
 ::content {
