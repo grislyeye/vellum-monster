@@ -85,22 +85,15 @@
   text-indent: -1em;
 }
 
-::content ability-scores table {
-  width: 100.4
+::content table.ability-scores  {
+  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-::content ability-scores table * {
-  padding: 0;
-}
-
-::content ability-scores th, td {
+::content table.ability-scores th, ::content table.ability-scores td {
   text-align: center;
   width: 50px;
-}
-
-::content ability-scores td {
 }
 
 ::content .traits-and-actions .stat-name {
