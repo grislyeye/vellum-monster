@@ -2,7 +2,7 @@
   "name": "dnd-stat-block",
   "description": "Web component for displaying 5th Edition D&D monster stat blocks",
   "main": "stat-block.html",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "authors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)",
     "Ricardo Gladwell <ricardo@gladwell.me> (https://gladwell.me)"
