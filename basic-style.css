@@ -105,34 +105,9 @@
   padding-left: 0;
 }
 
-::content special-traits p:first-of-type {
-  margin-top: 0.5em;
-}
-
-::content actions p:first-of-type {
-  margin-top: 0;
-}
-
-::content reactions p:first-of-type {
-  margin-top: 0;
-}
-
-::content legendary-actions p:first-of-type {
-  margin-top: 0;
-}
-
-::content special-traits p:last-of-type {
-  margin-bottom: 0;
-}
-
-::content actions p:last-of-type {
-  margin-bottom: 0;
-}
-
-::content reactions p:last-of-type {
-  margin-bottom: 0;
-}
-
+::content special-traits p:last-of-type,
+::content actions p:last-of-type,
+::content reactions p:last-of-type,
 ::content legendary-actions p:last-of-type {
   margin-bottom: 0;
 }
