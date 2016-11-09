@@ -111,3 +111,12 @@
 ::content legendary-actions p:last-of-type {
   margin-bottom: 0;
 }
+
+::content legendary-actions ol {
+  margin-bottom: 0;
+}
+
+::content legendary-actions ol li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
