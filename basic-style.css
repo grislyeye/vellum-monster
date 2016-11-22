@@ -89,11 +89,16 @@
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
+  border-spacing: 0;
+  margin: 0.2em;
 }
 
 ::content table.ability-scores th, ::content table.ability-scores td {
   text-align: center;
   width: 50px;
+  min-width: 50px;
+  padding: 0;
+  vertical-align: middle;
 }
 
 ::content .traits-and-actions .stat-name {
