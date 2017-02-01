@@ -7,7 +7,7 @@
 
 .bar {
   height: 5px;
-  border: 1px solid #000;
+  border: var(--stat-block-bar-border, 1px solid #000);
   position: relative;
   z-index: 1;
   background: var(--stat-block-bar-background);
