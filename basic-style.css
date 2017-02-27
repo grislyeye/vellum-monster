@@ -104,12 +104,6 @@
 ::content .traits-and-actions .stat-name {
   font-style: italic;
 }
-
-::content .traits-and-actions ol {
-  list-style-type: none;
-  padding-left: 0;
-}
-
 ::content special-traits p:last-of-type,
 ::content actions p:last-of-type,
 ::content reactions p:last-of-type,
@@ -117,11 +111,19 @@
   margin-bottom: 0;
 }
 
-::content legendary-actions ol {
+::content ol, ::content ul {
+  margin-top: 1em;
+  padding-left: 0;
   margin-bottom: 0;
+  line-spacing: 0;
 }
 
-::content legendary-actions ol li {
+::content ul {
+  list-style-type: none;
+}
+
+::content ul li {
+  margin: 0;
   padding-left: 1em;
   text-indent: -1em;
 }
