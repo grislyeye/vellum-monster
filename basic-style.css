@@ -3,6 +3,9 @@
   overflow: hidden;
   break-inside: avoid-column;
   -webkit-column-break-inside: avoid;
+  font-family: sans-serif;
+  width: 350px;
+  font-size: 10pt;
 }
 
 .bar {
@@ -13,15 +16,9 @@
   background: var(--stat-block-bar-background);
 }
 
-::content {
-  font-family: sans-serif;
-  width: 350px;
-  font-size: 10pt;
-}
-
-::content .content-wrapper {
-  border-left: 1px var(--stat-block-border-color) solid;
-  border-right: 1px var(--stat-block-border-color) solid;
+:host .content-wrapper {
+  border-left: 1px var(--stat-block-border-color, black) solid;
+  border-right: 1px var(--stat-block-border-color, black) solid;
   padding: 0.5em;
 }
 
@@ -41,7 +38,7 @@
 
 }
 
-::content header h1:first-child {
+:host header h1:first-child {
   font-family: serif;
   margin: 0px;
   font-size: 2em;
@@ -49,14 +46,14 @@
   color: var(--stat-block-header-color, black);
 }
 
-::content header *:nth-child(2) {
+:host header *:nth-child(2) {
   font-weight: normal;
   font-style: italic;
   font-size: 1em;
   margin: 0;
 }
 
-::content h2, h3, h4, h5, h6 {
+:host h2, h3, h4, h5, h6 {
   border-bottom: 1px solid;
   font-variant: small-caps;
   color: var(--stat-block-header-color, black);
@@ -67,25 +64,11 @@
   margin-bottom: 0.4em;
 }
 
-::content .main-stats {
+:host .main-stats {
   color: var(--stat-block-header-color, black);
 }
 
-::content combat-stats {
-  margin: 1em 0 1em 0;
-}
-
-::content .stat-name {
-  font-weight: bold;
-}
-
-::content .main-stats p {
-  margin: 0;
-  padding-left: 1em;
-  text-indent: -1em;
-}
-
-::content table.ability-scores  {
+:host table.ability-scores  {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
@@ -93,7 +76,7 @@
   margin: 0.2em;
 }
 
-::content table.ability-scores th, ::content table.ability-scores td {
+:host table.ability-scores th, :host table.ability-scores td {
   text-align: center;
   width: 50px;
   min-width: 50px;
@@ -101,28 +84,18 @@
   vertical-align: middle;
 }
 
-::content .traits-and-actions .stat-name {
-  font-style: italic;
-}
-::content special-traits p:last-of-type,
-::content actions p:last-of-type,
-::content reactions p:last-of-type,
-::content legendary-actions p:last-of-type {
-  margin-bottom: 0;
-}
-
-::content ol, ::content ul {
+:host ol, :host ul {
   margin-top: 1em;
   padding-left: 0;
   margin-bottom: 0;
   line-spacing: 0;
 }
 
-::content ul {
+:host ul {
   list-style-type: none;
 }
 
-::content ul li {
+:host .legendary-actions ul li {
   margin: 0;
   padding-left: 1em;
   text-indent: -1em;

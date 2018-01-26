@@ -1,4 +1,4 @@
-# dnd-stat-block
+# &lt;dnd-stat-block&gt;
 
 Web component for displaying 5th Edition *Dunegons & Dragons* monster stat blocks. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
@@ -19,70 +19,46 @@ Add the following lines to your HTML `head` element:
 <link rel="import" href="dnd-stat-block.html">
 ```
 
-A statblock is written as follows:
+A stat block is written as follows:
 
 ```html
-      <dnd-stat-block id="goblin" str="8" dex="14" con="10" int="10" wis="8" cha="8">
-        <header>
-          <h1>Goblin</h1>
-          <p>Small humanoid (goblinoid), neutral evil</p>
-        </header>
+<dnd-stat-block id="warhorse" itemscope itemtype="http://rgladwell.github.io/dnd-schemas/monster.html">
 
-        <combat-stats>
-          <dl>
-            <dt>Armor Class</dt><dd>17 (leather armor, shield)</dd>
-            <dt>Hit Points</dt><dd>7 (2d6)</dd>
-            <dt>Speed</dt><dd>30 ft.</dd>
-          </dl>
-        </combat-stats>
+  <dl>
+    <dt>Name</dt><dd itemprop="name">Warhorse</dd>
+    <dt>Size</dt><dd itemprop="size">Large</dd>
+    <dt>Type</dt><dd itemprop="type">beast</dd>
+    <dt>Alignment</dt><dd itemprop="alignment">unaligned</dd>
 
-        <attributes>
-          <dl>
-            <dt>STR</dt><dd>8 (-1)</dd>
-            <dt>DEC</dt><dd>14 (+2)</dd>
-            <dt>CON</dt><dd>10 (+0)</dd>
-            <dt>INT</dt><dd>10 (+0)</dd>
-            <dt>WIS</dt><dd>8 (-1)</dd>
-            <dt>CHA</dt><dd>8 (-1)</dd>
-          </dl>
-        </attributes>
+    <dt>Armor Class</dt><dd itemprop="ac">11</dd>
+    <dt>Hit Points</dt><dd><span itemprop="hp">19</span> (<span itemprop="hitDie">3d10 + 3</span>)</dd>
+    <dt>Speed</dt><dd itemprop="speeds">60 ft.</dd>
 
-        <stats>
-          <dl>
-            <dt>Skills</dt><dd>Stealth +6</dd>
-            <dt>Senses</dt><dd>dark vision 60 ft., passive Perception 9</dd>
-            <dt>Languages</dt><dd>Common, Goblin</dd>
-            <dt>Challenge</dt><dd>&frac14; (50 XP)</dd>
-          </dl>
-        </stats>
+    <dt>Strength</dt><dd itemprop="str">18</dd>
+    <dt>Dexterity</dt><dd itemprop="dex">12</dd>
+    <dt>Constitution</dt><dd itemprop="con">13</dd>
+    <dt>Intelligence</dt><dd itemprop="int">2</dd>
+    <dt>Wisdom</dt><dd itemprop="wis">12</dd>
+    <dt>Charisma</dt><dd itemprop="cha">7</dd>
 
-        <special-traits>
-          <dl>
-            <dt>Nimble Escape</dt>
-            <dd>The goblin can take the Disengage or Hide action as a bonus action on each of its turns.</dd>
-          </dl>
-        </special-traits>
+    <dt>Senses</dt><dd itemprop="senses">passive Perception 11</dd>
+    <dt>Challenge</dt><dd itemprop="challenge">1/2</dd>
+  </dl>
 
-        <actions>
-          <h2>Actions</h2>
-          <dl>
-            <dt>Scimitar.</dt>
-            <dd>Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage..</dd>
-          </dl>
-          <dl>
-            <dt>Shortbow.</dt>
-            <dd>Ranged Weapon Attack: +4 to hit, reach 80/320 ft., one target. Hit: 5 (1d6 + 2) piercing damage..</dd>
-          </dl>
-        </actions>
+  <ol>
+    <li itemprop="specialTraits" itemscope>
+      <span itemprop="name">Trampling Charge</span>
+      <span itemprop="description">If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on
+  the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action.</span>
+    </li>
 
-        <reactions>
-          <h2>Reactions</h2>
-          <dl>
-            <dt>Redirect Attack.</dt>
-            <dd>When a creature the goblin can see targets it with an attack the goblin chooses another goblin withit 5 feet of it. The two goblins swap places, and the chosen goblin becomes the target instead.</dd>
-          </dl>
-        </reactions>
-      </dnd-stat-block>
+      <li itemprop="actions" itemscope>
+        <span itemprop="name">Hooves</span>
+        <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+4</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">11 (2d6 + 4)</span> <span itemprop="damageType">bludgeoning</span> damage.</span>
+      </li>
+  </ol>
+
+</dnd-stat-block>
 ```
 
 This module also includes a theme to give your stat blocks a Monster Manual look. Simply add the following lines to your HTML file `head` element:
@@ -97,29 +73,32 @@ This module also includes a theme to give your stat blocks a Monster Manual look
 To create a custom theme for your own stat blocks create a file with the following content:
 
 ```html
+<link rel="import" href="../../../polymer/polymer-element.html">
+
 <dom-module id="my-stat-block-theme">
 
   <template>
     <style>
+      html dnd-stat-block.my-stat-block {
+        // CSS styles here
+      }
     </style>
   </template>
 
   <script>
-    HTMLImports.whenReady(function () {
-      Polymer({
-        is: 'my-stat-block-theme'
-      });
-    });
+    class MyTheme extends Polymer.Element {
+      static get is() { return 'my-stat-block-theme'; }
+    }
   </script>
 
 </dom-module>
 ```
 
-You can then add custom styles in the `style` element above as described the Polymer documentation for [Styling local DOM](https://www.polymer-project.org/1.0/docs/devguide/styling).
+You can then add custom styles in the `style` element above as described the Polymer documentation for [Styling an element's shadow DOM](https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom#custom-style).
 
 Custom CSS properties for this component include:
 
-| Property                               | Description 
+| Property                               | Description
 | -------------------------------------- | ---
 | `--stat-block-bar-border`              | Describes the border property for top and bottom stat block bars, as per the [CSS `border` property](https://developer.mozilla.org/en/docs/Web/CSS/border).
 | ` --stat-block-bar-background`         | Describes the background property for top and bottom stat block bars, as per the [CSS `background` property](https://developer.mozilla.org/en/docs/Web/CSS/background).

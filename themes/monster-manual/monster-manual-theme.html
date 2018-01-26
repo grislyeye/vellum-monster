@@ -1,3 +1,5 @@
+<link rel="import" href="../../../polymer/polymer-element.html">
+
 <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:700' rel='stylesheet'>
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet'>
 
@@ -5,7 +7,7 @@
 
   <template>
     <style>
-      :root dnd-stat-block.monster-manual {
+      html dnd-stat-block.monster-manual {
         font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
         font-size: 9pt;
         background: #FDF1DC;
@@ -15,18 +17,16 @@
         --stat-block-divider-color: #922610;
       }
 
-      :root dnd-stat-block.monster-manual h1, :root dnd-stat-block.monster-manual h2, :root dnd-stat-block.monster-manual h3, :root dnd-stat-block.monster-manual h4, :root dnd-stat-block.monster-manual h5, :root dnd-stat-block.monster-manual h6 {
+      html dnd-stat-block.monster-manual h1, html dnd-stat-block.monster-manual h2, html dnd-stat-block.monster-manual h3, html dnd-stat-block.monster-manual h4, html dnd-stat-block.monster-manual h5, html dnd-stat-block.monster-manual h6 {
         font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
       }
     </style>
   </template>
 
   <script>
-    HTMLImports.whenReady(function () {
-      Polymer({
-        is: 'monster-manual-theme'
-      });
-    });
+    class MonsterManualTheme extends Polymer.Element {
+      static get is() { return 'monster-manual-theme'; }
+    }
   </script>
 
 </dom-module>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>dnd-spell-level test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="test-util.js"></script>
+
+    <link rel="import" href="../dnd-spell-level.html">
+  </head>
+  <body>
+
+    <test-fixture id="cantrips">
+      <template>
+        <dnd-spell-level level='Cantrips' spells='["mage hand", "minor illusion"]'></dnd-spell-level>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="1st-level-spells">
+      <template>
+        <dnd-spell-level level='1st' slots='3' spells='["charm person", "sleep"]'></dnd-spell-level>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="5th-level-spells">
+      <template>
+        <dnd-spell-level level='1st' slots='1' spells='legend lore'></dnd-spell-level>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('<dnd-spell-level>', () => {
+
+        test('displays spell level', (done) => {
+          const element = fixture('1st-level-spells');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), '1st level');
+            done();
+          });
+        });
+
+        test('displays spell slots', (done) => {
+          const element = fixture('1st-level-spells');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), '(3 slots)');
+            done();
+          });
+        });
+
+        test('displays spell slot', (done) => {
+          const element = fixture('5th-level-spells');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), '(1 slot)');
+            done();
+          });
+        });
+
+        test('displays spells', (done) => {
+          const element = fixture('1st-level-spells');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'charm person, sleep');
+            done();
+          });
+        });
+
+        test('displays single spell for level', (done) => {
+          const element = fixture('5th-level-spells');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'legend lore');
+            done();
+          });
+        });
+
+        test('displays cantrips', (done) => {
+          const element = fixture('cantrips');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'Cantrips');
+            assert.notInclude(trimAll(element.shadowRoot.textContent), 'Level');
+            done();
+          });
+        });
+
+        test('displays "at will" as slows', (done) => {
+          const element = fixture('cantrips');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'at will');
+            done();
+          });
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

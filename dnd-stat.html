@@ -1,0 +1,69 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
+<dom-module id="dnd-stat">
+
+  <template>
+
+    <style>
+      :host p {
+        margin-top: 1pt;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 1em;
+        text-indent: -1em;
+      }
+
+      :host .stat-name {
+        font-weight: bold;
+      }
+    </style>
+
+    <dom-if if="{{values}}">
+      <template>
+        <p>
+          <span class="stat-name">{{name}}</span>
+          <span class="stat-description">{{displayText}}</span>
+        </p>
+      </template>
+    </dom-if>
+
+  </template>
+
+  <script>
+    class DndStat extends Polymer.Element {
+
+      static get is() { return 'dnd-stat'; }
+
+      static get properties() {
+        return {
+          name: String,
+          values: {
+            type: Object
+          },
+          displayText: {
+            type: String,
+            computed: '_computeDisplayText(values)'
+          }
+        }
+      }
+
+      _computeDisplayText(values) {
+        function isString(string) {
+          return (typeof string === 'string' || string instanceof String)
+        }
+
+        if(Array.isArray(values)) {
+          return values.join(', ');
+        } else if(isString(values)) {
+          return values;
+        }
+      }
+
+    }
+
+    customElements.define(DndStat.is, DndStat);
+  </script>
+
+</dom-module>

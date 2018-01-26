@@ -1,3 +1,5 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
 <dom-module id="dnd-stat-block-divider">
 
   <template>
@@ -17,13 +19,11 @@
   </template>
 
   <script>
+    class DndStatBlockDivider extends Polymer.Element {
+      static get is() { return 'dnd-stat-block-divider'}
+    }
 
-    HTMLImports.whenReady(function () {
-      Polymer({
-        is: 'dnd-stat-block-divider'
-      });
-    });
-
+    customElements.define(DndStatBlockDivider.is, DndStatBlockDivider);
   </script>
 
 </dom-module>
