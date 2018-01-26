@@ -1,0 +1,44 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
+<dom-module id="dnd-legendary-action">
+
+  <template>
+
+    <style>
+      :host .action-name {
+        font-weight: bold;
+      }
+    </style>
+
+    <dom-if if={{action}}>
+      <template>
+        <span class="action-name">{{action.name}}<dom-if if="{{costsMulipleActions()}}"><template> (Costs {{action.actions}} Actions)</template></dom-if>.</span>
+        {{action.description}}
+      </template>
+    </dom-if>
+  </template>
+
+  <script>
+    class DndLegendaryAction extends Polymer.Element {
+
+      static get is() { return 'dnd-legendary-action'; }
+
+      static get properties() {
+        return {
+          // TODO replace object with attributess
+          action: {
+            type: Object
+          }
+        };
+      }
+
+      costsMulipleActions() {
+        return (this.action.actions > 1);
+      }
+    }
+
+    customElements.define(DndLegendaryAction.is, DndLegendaryAction);
+  </script>
+
+</dom-module>

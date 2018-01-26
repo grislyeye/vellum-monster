@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
+<dom-module id="dnd-action">
+
+  <template>
+
+    <style>
+      :host .action-name {
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      :host .attack-type {
+        font-style: italic;
+      }
+
+      :host p {
+        margin-top: 0;
+      }
+    </style>
+
+    <dom-if if={{action}}>
+      <template>
+        <dom-if if="{{isAttack()}}">
+          <template>
+            <p class="attack">
+              <span class="action-name">{{action.name}}.</span>
+              <span class="action-description">
+                <span class="attack-type">{{attackType()}}:</span>
+                {{action.bonus}} to hit,
+                reach {{action.reach}},
+                {{action.target}}.
+                Hit: {{action.damage}} {{action.damageType}} damage{{action.notes}}
+              </span>
+            </p>
+          </template>
+        </dom-if>
+
+        <dom-if if="{{!isAttack()}}">
+          <template>
+            <p class="action">
+              <span class="action-name">{{action.name}}.</span>
+              <span class="action-description">{{action.description}}</span>
+            </p>
+          </template>
+        </dom-if>
+      </template>
+    </dom-if>
+
+  </template>
+
+  <script>
+    class DndAction extends Polymer.Element {
+
+      static get is() { return 'dnd-action'; }
+
+      static get properties() {
+        return {
+          // TODO replace object with attributess
+          action: {
+            type: Object
+          }
+        };
+      }
+
+      isAttack() {
+        return (this.action.type != undefined);
+      }
+
+      attackType() {
+        if(this.action) {
+          switch(this.action.type) {
+            case 'melee-attack':
+              return 'Melee Weapon Attack';
+          }
+        }
+      }
+
+    }
+
+    customElements.define(DndAction.is, DndAction);
+  </script>
+
+</dom-module>

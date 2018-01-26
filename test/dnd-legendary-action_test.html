@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>dnd-legendary-action test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../dnd-legendary-action.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+  </head>
+  <body>
+
+    <dom-bind id="one-action-legendary-action-test-fixture">
+      <template>
+        <dnd-legendary-action id="one-action" action=[[action]]></dnd-legendary-action>
+      </template>
+    </dom-bind>
+
+    <dom-bind id="three-action-legendary-action-test-fixture">
+      <template>
+        <dnd-legendary-action id="three-action" action=[[action]]></dnd-legendary-action>
+      </template>
+    </dom-bind>
+
+    <script>
+      suite('<dnd-legendary-action>', () => {
+
+        const oneAction = { name: 'Claw Attack', actions: 1, description: 'The sphinx makes one claw attack.'};
+
+        // TODO: uses workaround for fixture() issue - remove
+        // https://github.com/PolymerElements/test-fixture/issues/47
+        function oneActionTestFixture() {
+          const bind = document.querySelector('#one-action-legendary-action-test-fixture');
+          bind.set('action', oneAction);
+          return document.querySelector('#one-action');
+        }
+
+        test('displays legendary action name', (done) => {
+          const element = oneActionTestFixture();
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'Claw Attack.');
+            done();
+          });
+        });
+
+        test('displays action description for multiattack', (done) => {
+          const element = oneActionTestFixture();
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'The sphinx makes one claw attack.');
+            done();
+          });
+        });
+
+        test('does not display action cost for one action cost', (done) => {
+          const element = oneActionTestFixture();
+
+          flush(() => {
+            assert.notInclude(element.shadowRoot.textContent.trim(), '(Costs 1 Actions)');
+            done();
+          });
+        });
+
+        const threeAction = { name: 'Claw Attack', actions: 3, description: 'The sphinx makes one claw attack.'};
+
+        function threeActionTestFixture() {
+          const bind = document.querySelector('#three-action-legendary-action-test-fixture');
+          bind.set('action', threeAction);
+          return document.querySelector('#three-action');
+        }
+
+        test('does display action cost for three action cost', (done) => {
+          const element = threeActionTestFixture();
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), '(Costs 3 Actions).');
+            done();
+          });
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

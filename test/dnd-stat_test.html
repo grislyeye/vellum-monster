@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>dnd-stat test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../dnd-stat.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+  </head>
+  <body>
+
+    <test-fixture id="empty-stat">
+      <template>
+        <dnd-stat name="Empty Stat Name"></dnd-stat>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="single-value-stat">
+      <template>
+        <dnd-stat name="Armor Class" values="17 (natural armor)"></dnd-stat>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="multiple-values-stat">
+      <template>
+        <dnd-stat id="speeds" name="Speed" values='["40 ft.", "60 ft. fly"]'></dnd-stat>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('<dnd-stat>', () => {
+
+        test('does not display stat name for empty values', (done) => {
+          const element = fixture('empty-stat');
+
+          flush(() => {
+            assert.notInclude(element.shadowRoot.textContent.trim(), 'Empty Stat Name');
+            done();
+          });
+        });
+
+        test('displays stat name for single value', (done) => {
+          const element = fixture('single-value-stat');
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'Armor Class');
+            done();
+          });
+        });
+
+        test('displays stat for single value', (done) => {
+          const element = fixture('single-value-stat');
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), '17 (natural armor)');
+            done();
+          });
+        });
+
+        // FIX: uses workaround for fixture() issue - remove
+        // https://github.com/PolymerElements/test-fixture/issues/47
+        test('displays stat name for multiple values', (done) => {
+          const element = fixture('multiple-values-stat');
+
+          flush(() => {
+            const statName = element.shadowRoot.querySelector('.stat-name');
+            assert.equal(statName.textContent.trim(), 'Speed');
+            done();
+          });
+        });
+
+        test('displays stat for multiple values', (done) => {
+          const element = fixture('multiple-values-stat');
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), '40 ft., 60 ft. fly');
+            done();
+          });
+        });
+
+        test('updates display when values change to single value', (done) => {
+          const element = fixture('multiple-values-stat');
+          element.values = '16 (natural armor)';
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), '16 (natural armor)');
+            done();
+          });
+        });
+
+        test('updates display when values change to multuple values', (done) => {
+          const element = fixture('single-value-stat');
+          element.values = ['a', 'b']
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'a, b');
+            done();
+          });
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,7 +1,15 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="dnd-stat-block-divider.html">
+<link rel="import" href="dnd-stat.html">
+<link rel="import" href="dnd-spell-level.html">
+<link rel="import" href="dnd-action.html">
+<link rel="import" href="dnd-legendary-action.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="../polymer-microdata/polymer-microdata.html">
 
 <dom-module id="dnd-stat-block">
+
   <link rel="import" type="css" href="basic-style.css">
 
   <template>
@@ -10,16 +18,22 @@
 
     <div class="content-wrapper">
 
-      <content select="header"></content>
+      <header>
+        <h1>{{name}}</h1>
+        <p>{{size}} {{type}}, {{alignment}}</p>
+      </header>
 
       <dnd-stat-block-divider></dnd-stat-block-divider>
 
       <div class="main-stats">
-        <div>
-          <content select="combat-stats"></content>
+
+        <div class="combat-stats">
+          <dnd-stat id="ac" name="Armor Class" values$="{{ac}}"></dnd-stat>
+          <dnd-stat id="hit-points" name="Hit Points"  values$="{{hp}} ({{hitDie}})"></dnd-stat>
+          <dnd-stat id="speed" name="Speed" values$="{{speeds}}"></dnd-stat>
         </div>
 
-      <dnd-stat-block-divider></dnd-stat-block-divider>
+        <dnd-stat-block-divider></dnd-stat-block-divider>
 
         <table class="ability-scores">
           <tr>
@@ -31,34 +45,91 @@
             <th>CHA</th>
           </tr>
           <tr>
-            <td>{{strength}}</td>
-            <td>{{dexterity}}</td>
-            <td>{{constitution}}</td>
-            <td>{{intelligence}}</td>
-            <td>{{wisdom}}</td>
-            <td>{{charisma}}</td>
+            <td>{{displayStrength}}</td>
+            <td>{{displayDexterity}}</td>
+            <td>{{displayConstitution}}</td>
+            <td>{{displayIntelligence}}</td>
+            <td>{{displayWisdom}}</td>
+            <td>{{displayCharisma}}</td>
           </tr>
         </table>
 
-      <dnd-stat-block-divider></dnd-stat-block-divider>
+        <dnd-stat-block-divider></dnd-stat-block-divider>
 
         <div>
-          <content select="stats"></content>
+
+          <dnd-stat id="skills" name="Skills" values="{{skills}}"></dnd-stat>
+          <dnd-stat id="damage-resistances" name="Damage Resistances" values="{{damageResistances}}"></dnd-stat>
+          <dnd-stat id="damage-immunities" name="Damage Immunities" values="{{damageImmunities}}"></dnd-stat>
+          <dnd-stat id="condition-immunities" name="Condition Immunities" values="{{conditionImmunities}}"></dnd-stat>
+          <dnd-stat id="senses" name="Senses" values="{{senses}}"></dnd-stat>
+          <dnd-stat id="languages" name="Languages" values="{{languages}}"></dnd-stat>
+          <dnd-stat id="cr" name="Challenge" values="{{cr}} ({{xp}} XP)"></dnd-stat>
+
         </div>
+
       </div>
 
       <dnd-stat-block-divider></dnd-stat-block-divider>
 
       <div class="traits-and-actions">
+        <dom-repeat items="{{specialTraits}}">
+          <template>
+            <dnd-action id$="special-trait-{{index}}" action="{{item}}"></dnd-actions>
+          </template>
+        </dom-repeat>
 
-        <content select="special-traits"></content>
+        <dom-if if="{{spellcasting}}">
+          <template>
+            <dnd-action id="spellcasting" action="{{spellcastingAction}}"></dnd-action>
+            <ul>
+              <dom-repeat items={{spellcasting.levels}}>
+                <template>
+                  <li><dnd-spell-level id$="spell-level-{{index}}" level="{{item.level}}" slots="{{item.slots}}" spells={{item.spells}}></dnd-spell-level></li>
+                </template>
+              </dom-repeat>
+            </ul>
+          </template>
+        </dom-if>
 
-        <content select="actions"></content>
+        <h2>Actions</h2>
 
-        <content select="reactions"></content>
+        <dom-repeat items="{{actions}}">
+          <template>
+            <dnd-action id$="action-{{index}}" action="{{item}}"></dnd-stat>
+          </template>
+        </dom-repeat>
 
-        <content select="legendary-actions"></content>
+        <dom-if if="{{reactions}}">
+          <template>
+            <h2>Reactions</h2>
 
+            <dom-repeat items="{{reactions}}">
+              <template>
+                <dnd-action id$="reaction-{{index}}" action="{{item}}"></dnd-stat>
+              </template>
+            </dom-repeat>
+          </template>
+        </dom-if>
+
+        <dom-if if="{{legendaryActions}}">
+          <template>
+            <section class="legendary-actions">
+              <h2>Legendary Actions</h2>
+
+              <p>The {{lowerCaseName}} can take {{legendaryActions.number}} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
+
+              <ul>
+                <dom-repeat items={{legendaryActions.actions}}>
+                  <template>
+                    <li><dnd-legendary-action id$="legendary-action-{{index}}" action="{{item}}"></dnd-legendary-action></li>
+                  </template>
+                </dom-repeat>
+              </ul>
+            </section>
+
+          </template>
+        </dom-if>
       </div>
 
     </div>
@@ -68,126 +139,98 @@
   </template>
 
   <script>
+    class DndStatBlock extends Microdata.Mixin(Polymer.Element) {
 
-    HTMLImports.whenReady(function () {
-      Polymer({
-        is: 'dnd-stat-block',
+      static get is() { return 'dnd-stat-block'; }
 
-        properties: {
-          strength: {
+      static get properties() {
+        return {
+          name: String,
+          lowerCaseName: {
             type: String,
-            computed: 'computeAbilityScore(str)'
+            computed: '_computerLowerCaseName(name)'
           },
-          dexterity: {
+          size: String,
+          type: String,
+          alignment: String,
+          ac: String,
+          hp: String,
+          hitDie: String,
+          speeds: Array,
+          str: Number,
+          dex: Number,
+          con: Number,
+          int: Number,
+          wis: Number,
+          cha: Number,
+          displayStrength: {
             type: String,
-            computed: 'computeAbilityScore(dex)'
+            computed: '_displayAbility(str)'
           },
-          constitution: {
+          displayDexterity: {
             type: String,
-            computed: 'computeAbilityScore(con)'
+            computed: '_displayAbility(dex)'
           },
-          intelligence: {
+          displayConstitution: {
             type: String,
-            computed: 'computeAbilityScore(int)'
+            computed: '_displayAbility(con)'
           },
-          wisdom: {
+          displayIntelligence: {
             type: String,
-            computed: 'computeAbilityScore(wis)'
+            computed: '_displayAbility(int)'
           },
-          charisma: {
+          displayWisdom: {
             type: String,
-            computed: 'computeAbilityScore(cha)'
-          }
-        },
-
-        computeAbilityScore: function(score) {
-          var bonus = Math.round((score / 2.1) - 5);
-          if (bonus >=0) bonus = "+" + bonus;
-          return score + " (" + bonus + ")";
-        },
-
-        ready: function() {
-
-          // TODO refactor utility functions into separate module
-          function toArray(nodelist) {
-            return Array.prototype.slice.call(nodelist);
-          }
-
-          function flatten(arrays) {
-            return [].concat.apply([], arrays);
-          }
-
-          function descriptionsToParagraphs(dl) {
-
-            function toDescriptions(dts, dds) {
-              return dts.map( function(dt, i) {
-                var description = {};
-                description.title = dt.innerHTML;
-                description.description = dds[i].innerHTML;
-                return description;
-              });
-            }
-
-            function toParagraphs(description) {
-              var p = document.createElement('p');
-              var statNameSpan = document.createElement('span');
-              statNameSpan.setAttribute("class", "stat-name");
-              statNameSpan.innerHTML = description.title;
-              p.appendChild(statNameSpan);
-              if(description.description) {
-                var statDescriptionSpan = document.createElement('span');
-                statDescriptionSpan.setAttribute("class", "stat-description");
-                statDescriptionSpan.innerHTML = " " + description.description;
-                p.appendChild(statDescriptionSpan);
-              }
-              return p;
-            }
-
-            var dts = toArray(dl.getElementsByTagName('dt'));
-            var dds = toArray(dl.getElementsByTagName('dd'));
-            var descriptions = toDescriptions(dts, dds);
-            return descriptions.map(toParagraphs);
-          }
-
-          function insertAfter(newNode, referenceNode) {
-            referenceNode.parentNode.insertBefore(newNode, referenceNode);
-          }
-
-          function replaceChildren(parent, newNodes, oldNode) {;
-            var lastNewNode = newNodes[newNodes.length - 1]
-            parent.replaceChild(lastNewNode, oldNode);
-
-            newNodes.pop();
-
-            newNodes.forEach(function(child) {
-              parent.insertBefore(child, lastNewNode);
-            });
-          }
-
-          function convertStats(statsElement, template) {
-            var stats = template.queryEffectiveChildren(statsElement);
-            if(stats) {
-              var dls = toArray(stats.getElementsByTagName('dl'));
-              var ps = dls.map(descriptionsToParagraphs);
-
-              dls.forEach(function(dl, i) {
-                replaceChildren(stats, ps[i], dl);
-              })
-            }
-          }
-
-          convertStats('combat-stats', this);
-          convertStats('stats', this);
-          convertStats('special-traits', this);
-          convertStats('actions', this);
-          convertStats('reactions', this);
-          convertStats('legendary-actions', this);
+            computed: '_displayAbility(wis)'
+          },
+          displayCharisma: {
+            type: String,
+            computed: '_displayAbility(cha)'
+          },
+          skills: Array,
+          damageResistances: String,
+          damageImmunities: Array,
+          conditionImmunities: Array,
+          senses: Array,
+          languages: Array,
+          cr: Number,
+          xp: Number,
+          specialTraits: Array,
+          spellcasting: Object,
+          spellcastingAction: {
+            type: Object,
+            computed: "_spellcastingAction(lowerCaseName, spellcasting)"
+          },
+          actions: Array,
+          reactions: Array,
+          legendaryActions: Object
         }
+      }
 
-      });
+      _displayAbility(ability) {
+        const bonus = Math.round((ability / 2.1) - 5);
 
-    });
+        if(bonus >= 0) return ability + ' (+' + bonus + ')';
+        else return ability + ' (' + bonus + ')';
+      }
 
+      _computerLowerCaseName(name) {
+        return name.toLowerCase();
+      }
+
+      _spellcastingAction(lowerCaseName, spellcasting) {
+        if(spellcasting) {
+          return {
+            name: "Spellcasting",
+            description: `
+              The ${lowerCaseName} is a ${spellcasting.level}-level spellcaster.
+              Its spellcasting ability is ${spellcasting.ability} (spell save DC ${spellcasting.save}, ${spellcasting.attackBonus} to hit with spell attacks), and ${spellcasting.notes}.
+              The ${lowerCaseName} has the following ${spellcasting.class} spells prepared:`
+          }
+        }
+      }
+    }
+
+    window.customElements.define(DndStatBlock.is, DndStatBlock);
   </script>
-
 </dom-module>

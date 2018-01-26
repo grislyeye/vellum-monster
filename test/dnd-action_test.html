@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>dnd-action test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../dnd-action.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+  </head>
+  <body>
+
+    <dom-bind id="multiattack-test-fixture">
+      <template>
+        <dnd-action id="multiattack" action=[[action]]></dnd-action>
+      </template>
+    </dom-bind>
+
+    <dom-bind id="claw-test-fixture">
+      <template>
+        <dnd-action id="claw" action=[[action]]></dnd-action>
+      </template>
+    </dom-bind>
+
+    <script>
+      suite('<dnd-action>', () => {
+        // TODO: uses workaround for fixture() issue - remove
+        // https://github.com/PolymerElements/test-fixture/issues/47
+
+        const multiattack = { name: 'Multiattack', description: 'The sphinx makes two claw attacks.'};
+
+        function multiattackTestFixture() {
+          const bind = document.querySelector('#multiattack-test-fixture');
+          bind.set('action', multiattack);
+          return document.querySelector('#multiattack');
+        }
+
+        test('displays action for multiattack', (done) => {
+          const element = multiattackTestFixture();
+
+          flush(() => {
+            const paragraph = element.shadowRoot.querySelector('p');
+            assert.include(Array.from(paragraph.classList), 'action');
+            done();
+          });
+        });
+
+        test('displays action name for multiattack', (done) => {
+          const element = multiattackTestFixture();
+
+          flush(() => {
+            const name = element.shadowRoot.querySelector('.action-name');
+            assert.isOk(name);
+            assert.include(name.textContent.trim(), 'Multiattack.');
+            done();
+          });
+        });
+
+        test('displays action description for multiattack', (done) => {
+          const element = multiattackTestFixture();
+
+          flush(() => {
+            const description = element.shadowRoot.querySelector('.action-description');
+            assert.isOk(description);
+            assert.equal(description.textContent.trim(), 'The sphinx makes two claw attacks.');
+            done();
+          });
+        });
+
+        const claw = {
+          name: 'Claw',
+          type: 'melee-attack',
+          bonus: '+9',
+          reach: '5ft.',
+          target: 'one target',
+          damage: '13 (2d8 + 4)',
+          damageType: 'slashing',
+          notes: '. This is a magic weapon attack.'
+        };
+
+        function clawTestFixture() {
+          const bind = document.querySelector('#claw-test-fixture');
+          bind.set('action', claw);
+          return document.querySelector('#claw');
+        }
+
+        test('displays attack for claw attack', (done) => {
+          const element = clawTestFixture();
+
+          flush(() => {
+            const paragraph = element.shadowRoot.querySelector('p');
+            assert.include(Array.from(paragraph.classList), 'attack');
+            done();
+          });
+        });
+
+         test('displays attack name', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             const name = element.shadowRoot.querySelector('.action-name');
+             assert.isOk(name);
+             assert.include(name.textContent.trim(), 'Claw.');
+             done();
+           });
+         });
+
+         test('displays attack type', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), 'Melee Weapon Attack');
+             done();
+           });
+         });
+
+         test('displays attack bonus', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), '+9');
+             done();
+           });
+         });
+
+         test('displays attack reach', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), '5ft.');
+             done();
+           });
+         });
+
+         test('displays attack target', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), 'one target');
+             done();
+           });
+         });
+
+         test('displays attack damage', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), '13 (2d8 + 4)');
+             done();
+           });
+         });
+
+         test('displays attack damage type', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), 'slashing');
+             done();
+           });
+         });
+
+         test('displays attack notes', (done) => {
+          const element = clawTestFixture();
+
+           flush(() => {
+             assert.include(element.shadowRoot.textContent.trim(), 'damage. This is a magic weapon attack.');
+             done();
+           });
+         });
+      });
+    </script>
+
+  </body>
+</html>
