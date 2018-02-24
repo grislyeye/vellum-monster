@@ -28,6 +28,7 @@
     "polymer-microdata": "^0.1.0"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^6.0.0"
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "iron-demo-helpers": "^2.0.0"
   }
 }
