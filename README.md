@@ -1,4 +1,4 @@
-# &lt;vellum-stat-block&gt; [![Build Status](https://travis-ci.org/rgladwell/vellum-stat-block.svg?branch=master)](https://travis-ci.org/rgladwell/vellum-stat-block)
+# &lt;vellum-stat-block&gt; [![Build Status](https://travis-ci.org/rgladwell/vellum-stat-block.svg?branch=master)](https://travis-ci.org/rgladwell/vellum-stat-block) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/rgladwell/vellum-stat-block)
 
 Web component for displaying monster stat blocks for the fifth edition of the world's most popular table-top roleplaying game. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
@@ -21,6 +21,16 @@ Add the following lines to your HTML `head` element:
 
 A stat block is written as follows:
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="vellum-stat-block.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <vellum-stat-block id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
