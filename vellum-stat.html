@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 
-<dom-module id="dnd-stat">
+<dom-module id="vellum-stat">
 
   <template>
 
@@ -32,9 +32,9 @@
   </template>
 
   <script>
-    class DndStat extends Polymer.Element {
+    class Stat extends Polymer.Element {
 
-      static get is() { return 'dnd-stat'; }
+      static get is() { return 'vellum-stat'; }
 
       static get properties() {
         return {
@@ -63,7 +63,7 @@
 
     }
 
-    customElements.define(DndStat.is, DndStat);
+    customElements.define(Stat.is, Stat);
   </script>
 
 </dom-module>

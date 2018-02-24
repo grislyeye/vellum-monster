@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 
-<dom-module id="dnd-spell-level">
+<dom-module id="vellum-spell-level">
 
   <template>
 
@@ -57,9 +57,9 @@
   </template>
 
   <script>
-    class DndSpellLevel extends Polymer.Element {
+    class SpellLevel extends Polymer.Element {
 
-      static get is() { return 'dnd-spell-level'; }
+      static get is() { return 'vellum-spell-level'; }
 
       static get properties() {
         return {
@@ -109,7 +109,7 @@
       }
     }
 
-    customElements.define(DndSpellLevel.is, DndSpellLevel);
+    customElements.define(SpellLevel.is, SpellLevel);
   </script>
 
 </dom-module>
