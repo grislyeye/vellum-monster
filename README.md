@@ -61,11 +61,11 @@ A stat block is written as follows:
 </vellum-stat-block>
 ```
 
-This module also includes a theme to give your stat blocks a Monster Manual look. Simply add the following lines to your HTML file `head` element:
+This module also includes a theme to give your stat blocks a more "official" look. Simply add the following lines to your HTML file `head` element:
 
 ```html
-<link rel="import" href="themes/monster-manual/monster-manual-theme.html">
-<style is="custom-style" include="monster-manual-theme"></style>
+<link rel="import" href="themes/official/official-theme.html">
+<style is="custom-style" include="official-theme"></style>
 ```
 
 ## Custom Themes
