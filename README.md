@@ -9,7 +9,7 @@ Web component for displaying monster stat blocks for the fifth edition of the wo
 To install:
 
 ```sh
-bower install --save-dev vellum-stat-block
+bower install --save vellum-stat-block
 ```
 
 Add the following lines to your HTML `head` element:
