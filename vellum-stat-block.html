@@ -1,14 +1,14 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="dnd-stat-block-divider.html">
-<link rel="import" href="dnd-stat.html">
-<link rel="import" href="dnd-spell-level.html">
-<link rel="import" href="dnd-action.html">
-<link rel="import" href="dnd-legendary-action.html">
+<link rel="import" href="vellum-stat-block-divider.html">
+<link rel="import" href="vellum-stat.html">
+<link rel="import" href="vellum-spell-level.html">
+<link rel="import" href="vellum-action.html">
+<link rel="import" href="vellum-legendary-action.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 <link rel="import" href="../polymer-microdata/polymer-microdata.html">
 
-<dom-module id="dnd-stat-block">
+<dom-module id="vellum-stat-block">
 
   <link rel="import" type="css" href="basic-style.css">
 
@@ -23,17 +23,17 @@
         <p>{{size}} {{type}}, {{alignment}}</p>
       </header>
 
-      <dnd-stat-block-divider></dnd-stat-block-divider>
+      <vellum-stat-block-divider></vellum-stat-block-divider>
 
       <div class="main-stats">
 
         <div class="combat-stats">
-          <dnd-stat id="ac" name="Armor Class" values$="{{ac}}"></dnd-stat>
-          <dnd-stat id="hit-points" name="Hit Points"  values$="{{hp}} ({{hitDie}})"></dnd-stat>
-          <dnd-stat id="speed" name="Speed" values$="{{speeds}}"></dnd-stat>
+          <vellum-stat id="ac" name="Armor Class" values$="{{ac}}"></vellum-stat>
+          <vellum-stat id="hit-points" name="Hit Points"  values$="{{hp}} ({{hitDie}})"></vellum-stat>
+          <vellum-stat id="speed" name="Speed" values$="{{speeds}}"></vellum-stat>
         </div>
 
-        <dnd-stat-block-divider></dnd-stat-block-divider>
+        <vellum-stat-block-divider></vellum-stat-block-divider>
 
         <table class="ability-scores">
           <tr>
@@ -54,38 +54,38 @@
           </tr>
         </table>
 
-        <dnd-stat-block-divider></dnd-stat-block-divider>
+        <vellum-stat-block-divider></vellum-stat-block-divider>
 
         <div>
 
-          <dnd-stat id="skills" name="Skills" values="{{skills}}"></dnd-stat>
-          <dnd-stat id="damage-resistances" name="Damage Resistances" values="{{damageResistances}}"></dnd-stat>
-          <dnd-stat id="damage-immunities" name="Damage Immunities" values="{{damageImmunities}}"></dnd-stat>
-          <dnd-stat id="condition-immunities" name="Condition Immunities" values="{{conditionImmunities}}"></dnd-stat>
-          <dnd-stat id="senses" name="Senses" values="{{senses}}"></dnd-stat>
-          <dnd-stat id="languages" name="Languages" values="{{languages}}"></dnd-stat>
-          <dnd-stat id="cr" name="Challenge" values="{{cr}} ({{xp}} XP)"></dnd-stat>
+          <vellum-stat id="skills" name="Skills" values="{{skills}}"></vellum-stat>
+          <vellum-stat id="damage-resistances" name="Damage Resistances" values="{{damageResistances}}"></vellum-stat>
+          <vellum-stat id="damage-immunities" name="Damage Immunities" values="{{damageImmunities}}"></vellum-stat>
+          <vellum-stat id="condition-immunities" name="Condition Immunities" values="{{conditionImmunities}}"></vellum-stat>
+          <vellum-stat id="senses" name="Senses" values="{{senses}}"></vellum-stat>
+          <vellum-stat id="languages" name="Languages" values="{{languages}}"></vellum-stat>
+          <vellum-stat id="cr" name="Challenge" values="{{cr}} ({{xp}} XP)"></vellum-stat>
 
         </div>
 
       </div>
 
-      <dnd-stat-block-divider></dnd-stat-block-divider>
+      <vellum-stat-block-divider></vellum-stat-block-divider>
 
       <div class="traits-and-actions">
         <dom-repeat items="{{specialTraits}}">
           <template>
-            <dnd-action id$="special-trait-{{index}}" action="{{item}}"></dnd-actions>
+            <vellum-action id$="special-trait-{{index}}" action="{{item}}"></vellum-actions>
           </template>
         </dom-repeat>
 
         <dom-if if="{{spellcasting}}">
           <template>
-            <dnd-action id="spellcasting" action="{{spellcastingAction}}"></dnd-action>
+            <vellum-action id="spellcasting" action="{{spellcastingAction}}"></vellum-action>
             <ul>
               <dom-repeat items={{spellcasting.levels}}>
                 <template>
-                  <li><dnd-spell-level id$="spell-level-{{index}}" level="{{item.level}}" slots="{{item.slots}}" spells={{item.spells}}></dnd-spell-level></li>
+                  <li><vellum-spell-level id$="spell-level-{{index}}" level="{{item.level}}" slots="{{item.slots}}" spells={{item.spells}}></vellum-spell-level></li>
                 </template>
               </dom-repeat>
             </ul>
@@ -96,7 +96,7 @@
 
         <dom-repeat items="{{actions}}">
           <template>
-            <dnd-action id$="action-{{index}}" action="{{item}}"></dnd-stat>
+            <vellum-action id$="action-{{index}}" action="{{item}}"></vellum-stat>
           </template>
         </dom-repeat>
 
@@ -106,7 +106,7 @@
 
             <dom-repeat items="{{reactions}}">
               <template>
-                <dnd-action id$="reaction-{{index}}" action="{{item}}"></dnd-stat>
+                <vellum-action id$="reaction-{{index}}" action="{{item}}"></vellum-stat>
               </template>
             </dom-repeat>
           </template>
@@ -122,7 +122,7 @@
               <ul>
                 <dom-repeat items={{legendaryActions.actions}}>
                   <template>
-                    <li><dnd-legendary-action id$="legendary-action-{{index}}" action="{{item}}"></dnd-legendary-action></li>
+                    <li><vellum-legendary-action id$="legendary-action-{{index}}" action="{{item}}"></vellum-legendary-action></li>
                   </template>
                 </dom-repeat>
               </ul>
@@ -139,9 +139,9 @@
   </template>
 
   <script>
-    class DndStatBlock extends Microdata.Mixin(Polymer.Element) {
+    class StatBlock extends Microdata.Mixin(Polymer.Element) {
 
-      static get is() { return 'dnd-stat-block'; }
+      static get is() { return 'vellum-stat-block'; }
 
       static get properties() {
         return {
@@ -231,6 +231,6 @@
       }
     }
 
-    window.customElements.define(DndStatBlock.is, DndStatBlock);
+    window.customElements.define(StatBlock.is, StatBlock);
   </script>
 </dom-module>

@@ -1,6 +1,6 @@
-# &lt;dnd-stat-block&gt;
+# &lt;vellum-stat-block&gt;
 
-Web component for displaying 5th Edition *Dunegons & Dragons* monster stat blocks. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
+Web component for displaying monster stat blocks for the fifth edition of the world's most popular table-top roleplaying game. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
   * Cross-browser support using Polymer and the Web Components polyfill
   * Simpler (just one import vs 5)
@@ -9,20 +9,20 @@ Web component for displaying 5th Edition *Dunegons & Dragons* monster stat block
 To install:
 
 ```sh
-bower install --save-dev dnd-stat-block
+bower install --save-dev vellum-stat-block
 ```
 
 Add the following lines to your HTML `head` element:
 
 ```html
 <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-<link rel="import" href="dnd-stat-block.html">
+<link rel="import" href="vellum-stat-block.html">
 ```
 
 A stat block is written as follows:
 
 ```html
-<dnd-stat-block id="warhorse" itemscope itemtype="http://rgladwell.github.io/dnd-schemas/monster.html">
+<vellum-stat-block id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
   <dl>
     <dt>Name</dt><dd itemprop="name">Warhorse</dd>
@@ -58,7 +58,7 @@ A stat block is written as follows:
       </li>
   </ol>
 
-</dnd-stat-block>
+</vellum-stat-block>
 ```
 
 This module also includes a theme to give your stat blocks a Monster Manual look. Simply add the following lines to your HTML file `head` element:
@@ -79,7 +79,7 @@ To create a custom theme for your own stat blocks create a file with the followi
 
   <template>
     <style>
-      html dnd-stat-block.my-stat-block {
+      html vellum-stat-block.my-stat-block {
         // CSS styles here
       }
     </style>

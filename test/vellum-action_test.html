@@ -4,30 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>dnd-action test</title>
+    <title>vellum-action test</title>
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../dnd-action.html">
+    <link rel="import" href="../vellum-action.html">
     <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
   </head>
   <body>
 
     <dom-bind id="multiattack-test-fixture">
       <template>
-        <dnd-action id="multiattack" action=[[action]]></dnd-action>
+        <vellum-action id="multiattack" action=[[action]]></vellum-action>
       </template>
     </dom-bind>
 
     <dom-bind id="claw-test-fixture">
       <template>
-        <dnd-action id="claw" action=[[action]]></dnd-action>
+        <vellum-action id="claw" action=[[action]]></vellum-action>
       </template>
     </dom-bind>
 
     <script>
-      suite('<dnd-action>', () => {
+      suite('<vellum-action>', () => {
         // TODO: uses workaround for fixture() issue - remove
         // https://github.com/PolymerElements/test-fixture/issues/47
 

@@ -4,36 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>dnd-stat test</title>
+    <title>vellum-stat test</title>
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../dnd-stat.html">
+    <link rel="import" href="../vellum-stat.html">
     <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
   </head>
   <body>
 
     <test-fixture id="empty-stat">
       <template>
-        <dnd-stat name="Empty Stat Name"></dnd-stat>
+        <vellum-stat name="Empty Stat Name"></vellum-stat>
       </template>
     </test-fixture>
 
     <test-fixture id="single-value-stat">
       <template>
-        <dnd-stat name="Armor Class" values="17 (natural armor)"></dnd-stat>
+        <vellum-stat name="Armor Class" values="17 (natural armor)"></vellum-stat>
       </template>
     </test-fixture>
 
     <test-fixture id="multiple-values-stat">
       <template>
-        <dnd-stat id="speeds" name="Speed" values='["40 ft.", "60 ft. fly"]'></dnd-stat>
+        <vellum-stat id="speeds" name="Speed" values='["40 ft.", "60 ft. fly"]'></vellum-stat>
       </template>
     </test-fixture>
 
     <script>
-      suite('<dnd-stat>', () => {
+      suite('<vellum-stat>', () => {
 
         test('does not display stat name for empty values', (done) => {
           const element = fixture('empty-stat');
