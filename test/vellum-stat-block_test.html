@@ -205,6 +205,15 @@
           });
         });
 
+        test('displays simple armour class', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.ac.shadowRoot.textContent), "11");
+            done();
+          });
+        });
+
         test('displays hit points', (done) => {
           const element = fixture('detailed-stat-block');
 
