@@ -32,7 +32,7 @@ A stat block is written as follows:
 ```
 -->
 ```html
-<vellum-stat-block id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+<vellum-stat-block class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
   <dl>
     <dt>Name</dt><dd itemprop="name">Warhorse</dd>
@@ -52,14 +52,15 @@ A stat block is written as follows:
     <dt>Charisma</dt><dd itemprop="cha">7</dd>
 
     <dt>Senses</dt><dd itemprop="senses">passive Perception 11</dd>
-    <dt>Challenge</dt><dd itemprop="challenge">1/2</dd>
+    <dt>Challenge</dt><dd itemprop="cr">1/2</dd>
+    <dt>XP</dt><dd itemprop="xp">100</dd>
   </dl>
 
   <ol>
     <li itemprop="specialTraits" itemscope>
       <span itemprop="name">Trampling Charge</span>
       <span itemprop="description">If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on
-  the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action.</span>
+the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action.</span>
     </li>
 
       <li itemprop="actions" itemscope>
