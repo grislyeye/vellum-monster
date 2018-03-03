@@ -73,6 +73,10 @@
           switch(this.action.type) {
             case 'melee-attack':
               return 'Melee Weapon Attack';
+            case 'ranged-attack':
+              return 'Ranged Weapon Attack';
+            case 'melee-or-ranged-attack':
+              return 'Melee or Ranged Weapon Attack';
           }
         }
       }

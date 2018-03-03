@@ -26,6 +26,18 @@
       </template>
     </dom-bind>
 
+    <dom-bind id="spear-test-fixture">
+      <template>
+        <vellum-action id="spear" action=[[action]]></vellum-action>
+      </template>
+    </dom-bind>
+
+    <dom-bind id="crossbow-test-fixture">
+      <template>
+        <vellum-action id="crossbow" action=[[action]]></vellum-action>
+      </template>
+    </dom-bind>
+
     <script>
       suite('<vellum-action>', () => {
         // TODO: uses workaround for fixture() issue - remove
@@ -171,6 +183,57 @@
              done();
            });
          });
+
+        const spear = {
+          name: 'Spear',
+          type: 'melee-or-ranged-attack',
+          bonus: '+3',
+          reach: '20/60 ft.',
+          target: 'one target',
+          damage: '13 (2d8 + 4)',
+          damageType: 'piercing'
+        };
+
+        function spearTestFixture() {
+          const bind = document.querySelector('#spear-test-fixture');
+          bind.set('action', spear);
+          return document.querySelector('#spear');
+        }
+
+        test('displays melee or ranged attack type', (done) => {
+         const element = spearTestFixture();
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'Melee or Ranged Weapon Attack');
+            done();
+          });
+        });
+
+        const crossbow = {
+          name: 'Crossbow',
+          type: 'ranged-attack',
+          bonus: '+3',
+          reach: '20/60 ft.',
+          target: 'one target',
+          damage: '13 (2d8 + 4)',
+          damageType: 'piercing'
+        };
+
+        function crossbowTestFixture() {
+          const bind = document.querySelector('#crossbow-test-fixture');
+          bind.set('action', crossbow);
+          return document.querySelector('#crossbow');
+        }
+
+        test('displays melee or ranged attack type', (done) => {
+         const element = crossbowTestFixture();
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'Ranged Weapon Attack');
+            done();
+          });
+        });
+
       });
     </script>
 
