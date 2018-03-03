@@ -64,10 +64,6 @@
   margin-bottom: 0.4em;
 }
 
-:host .main-stats {
-  color: var(--stat-block-header-color, black);
-}
-
 :host table.ability-scores  {
   width: 100%;
   border-collapse: collapse;
