@@ -32,6 +32,12 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="non-string-single-value-stat">
+      <template>
+        <vellum-stat name="Armor Class" values="11"></vellum-stat>
+      </template>
+    </test-fixture>
+
     <script>
       suite('<vellum-stat>', () => {
 
@@ -99,6 +105,15 @@
 
           flush(() => {
             assert.include(element.shadowRoot.textContent.trim(), 'a, b');
+            done();
+          });
+        });
+
+        test('displays stat for non-string single value', (done) => {
+          const element = fixture('non-string-single-value-stat');
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), '11');
             done();
           });
         });
