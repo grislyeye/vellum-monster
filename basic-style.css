@@ -39,7 +39,8 @@
 }
 
 :host header h1:first-child {
-  font-family: serif;
+  font-family: var(--stat-block-heading-font-family, serif);
+  font-weight: bold;
   margin: 0px;
   font-size: 2em;
   font-variant: small-caps;
@@ -54,6 +55,7 @@
 }
 
 :host h2, h3, h4, h5, h6 {
+  font-family: var(--stat-block-heading-font-family, serif);
   border-bottom: 1px solid;
   font-variant: small-caps;
   color: var(--stat-block-header-color, black);
