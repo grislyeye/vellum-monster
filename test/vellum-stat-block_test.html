@@ -36,6 +36,7 @@
             <dt>Wisdom</dt><dd itemprop="wis">11</dd>
             <dt>Charisma</dt><dd itemprop="cha">8</dd>
 
+            <dt>Saving Throws</dt><dd itemprop="savingThrows">Strength +14</dd>
             <dt>Skills</dt><dd itemprop="skills">Arcana +14</dd>
             <dt>Skills</dt><dd itemprop="skills">History +14</dd>
             <dt>Skills</dt><dd itemprop="skills">Perception +9</dd>
@@ -644,6 +645,24 @@
           flush(() => {
             const reaction = element.shadowRoot.querySelector('#reaction-0');
             assert.include(trimAll(reaction.shadowRoot.textContent), "The gynosphinx adds 3 to its AC against one melee attack that would hit it.");
+            done();
+          });
+        });
+
+        test('displays saving throws', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Strength +14');
+            done();
+          });
+        });
+
+        test('does not display saving throws for creature without saving throws', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Saving Throws');
             done();
           });
         });

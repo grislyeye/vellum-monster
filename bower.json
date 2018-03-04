@@ -2,7 +2,7 @@
   "name": "vellum-stat-block",
   "description": "Web component for displaying 5th Edition monster stat blocks",
   "main": "vellum-stat-block.html",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "authors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)",
     "Ricardo Gladwell <ricardo@gladwell.me> (https://gladwell.me)"
