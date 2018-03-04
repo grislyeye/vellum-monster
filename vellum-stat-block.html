@@ -58,6 +58,7 @@
 
         <div>
 
+          <vellum-stat id="saving-throws" name="Saving Throws" values="{{savingThrows}}"></vellum-stat>
           <vellum-stat id="skills" name="Skills" values="{{skills}}"></vellum-stat>
           <vellum-stat id="damage-resistances" name="Damage Resistances" values="{{damageResistances}}"></vellum-stat>
           <vellum-stat id="damage-immunities" name="Damage Immunities" values="{{damageImmunities}}"></vellum-stat>
@@ -187,6 +188,7 @@
             type: String,
             computed: '_displayAbility(cha)'
           },
+          savingThrows: Array,
           skills: Array,
           damageResistances: String,
           damageImmunities: Array,
