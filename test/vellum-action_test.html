@@ -8,6 +8,7 @@
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
+    <script src="test-util.js"></script>
 
     <link rel="import" href="../vellum-action.html">
     <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
@@ -35,6 +36,12 @@
     <dom-bind id="crossbow-test-fixture">
       <template>
         <vellum-action id="crossbow" action=[[action]]></vellum-action>
+      </template>
+    </dom-bind>
+
+    <dom-bind id="magical-attack-test-fixture">
+      <template>
+        <vellum-action id="magical-attack" action=[[action]]></vellum-action>
       </template>
     </dom-bind>
 
@@ -230,6 +237,38 @@
 
           flush(() => {
             assert.include(element.shadowRoot.textContent.trim(), 'Ranged Weapon Attack');
+            done();
+          });
+        });
+
+        const magicalAttack = {
+          name: 'Magical Attack',
+          type: 'ranged-attack',
+          bonus: '+3',
+          reach: '20/60 ft.',
+          target: 'one target',
+          damage: '13 (2d8 + 4)',
+          damageType: 'fire',
+          randomEffects: [
+            {
+              roll: 1,
+              name: 'Confusion',
+              effect: 'The target becomes confused.'
+            }
+          ]
+        };
+
+        function magicalAttackTestFixture() {
+          const bind = document.querySelector('#magical-attack-test-fixture');
+          bind.set('action', magicalAttack);
+          return document.querySelector('#magical-attack');
+        }
+
+        test('displays melee or ranged attack type', (done) => {
+         const element = magicalAttackTestFixture();
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), ' 1. Confusion. The target becomes confused.');
             done();
           });
         });

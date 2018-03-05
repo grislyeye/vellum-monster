@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="vellum-action">
 
@@ -18,6 +19,21 @@
       :host p {
         margin-top: 0;
         margin-bottom: 0.75em;
+      }
+      
+      :host ol.random-effects {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+      }
+
+      :host .random-effects li {
+        text-indent: 1em;
+        margin-bottom: 0;
+      }
+
+      :host .effect-title {
+        font-style: italic;
       }
     </style>
 
@@ -44,6 +60,18 @@
               <span class="action-name">{{action.name}}.</span>
               <span class="action-description">{{action.description}}</span>
             </p>
+          </template>
+        </dom-if>
+
+        <dom-if if="{{action.randomEffects}}">
+          <template>
+            <ol class="random-effects">
+              <dom-repeat items="{{action.randomEffects}}">
+                <template>
+                  <li><span class="effect-title">{{item.roll}}. {{item.name}}.</span> {{item.effect}}</li>
+                </template>
+              </dom-repeat>
+            <ol>
           </template>
         </dom-if>
       </template>
