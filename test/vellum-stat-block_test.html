@@ -86,6 +86,13 @@
             <li itemprop="actions" itemscope>
               <span itemprop="name">Claw</span>
               <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage <span itemprop="notes">. This is a magic weapon attack.</span></span>
+
+              <ul>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">1</strong> <span itemprop="name">Rabid</span> <span itemprop="effect">The target becomes rabid and uses any actions it has this turn to make melee attacks against its nearest ally.</span></li>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">2</strong> <span itemprop="name">Paralysed</span> <span itemprop="effect">The target becomes paralysed.</span></li> 
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">3-5</strong> <span itemprop="name">Poisoned</span> <span itemprop="effect">The target becomes poisoned and takes 1d4 poison damage.</span></li>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">6</strong> <span itemprop="name">Blinded</span> <span itemprop="effect">The target becomes blinded.</span></li>
+              </ul>
             </li>
 
             <li itemprop="reactions" itemscope>
@@ -460,6 +467,16 @@
           flush(() => {
             const attack = element.shadowRoot.querySelector('#action-1');
             assert.include(trimAll(attack.shadowRoot.textContent), ". This is a magic weapon attack.");
+            done();
+          });
+        });
+
+        test('displays random attack effects', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const attack = element.shadowRoot.querySelector('#action-1');
+            assert.include(trimAll(attack.shadowRoot.textContent), '2. Paralysed. The target becomes paralysed.');
             done();
           });
         });
