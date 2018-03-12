@@ -20,7 +20,7 @@
 
       <header>
         <h1>{{name}}</h1>
-        <p>{{size}} {{type}}, {{alignment}}</p>
+        <p>{{size}} {{type}}<dom-if if={{alignment}}><template>, {{alignment}}</template></dom-if></p>
       </header>
 
       <vellum-stat-block-divider></vellum-stat-block-divider>
@@ -29,32 +29,48 @@
 
         <div class="combat-stats">
           <vellum-stat id="ac" name="Armor Class" values$="{{ac}}"></vellum-stat>
-          <vellum-stat id="hit-points" name="Hit Points"  values$="{{hp}} ({{hitDie}})"></vellum-stat>
+
+          <dom-if if={{hitDie}}>
+            <template>
+              <vellum-stat id="hit-points-and-die" name="Hit Points" values$="{{hp}} ({{hitDie}})"></vellum-stat>
+            </template>
+          </dom-if>
+
+          <dom-if if="{{!hitDie}}">
+            <template>
+              <vellum-stat id="hit-points" name="Hit Points" values$="{{hp}}"></vellum-stat>
+            </template>
+          </dom-if>
+
           <vellum-stat id="speed" name="Speed" values$="{{speeds}}"></vellum-stat>
         </div>
 
-        <vellum-stat-block-divider></vellum-stat-block-divider>
+        <dom-if if={{hasAbilities}}>
+          <template>
+            <vellum-stat-block-divider></vellum-stat-block-divider>
 
-        <table class="ability-scores">
-          <tr>
-            <th>STR</th>
-            <th>DEX</th>
-            <th>CON</th>
-            <th>INT</th>
-            <th>WIS</th>
-            <th>CHA</th>
-          </tr>
-          <tr>
-            <td>{{displayStrength}}</td>
-            <td>{{displayDexterity}}</td>
-            <td>{{displayConstitution}}</td>
-            <td>{{displayIntelligence}}</td>
-            <td>{{displayWisdom}}</td>
-            <td>{{displayCharisma}}</td>
-          </tr>
-        </table>
+            <table id="ability-scores">
+              <tr>
+                <th>STR</th>
+                <th>DEX</th>
+                <th>CON</th>
+                <th>INT</th>
+                <th>WIS</th>
+                <th>CHA</th>
+              </tr>
+              <tr>
+                <td>{{displayStrength}}</td>
+                <td>{{displayDexterity}}</td>
+                <td>{{displayConstitution}}</td>
+                <td>{{displayIntelligence}}</td>
+                <td>{{displayWisdom}}</td>
+                <td>{{displayCharisma}}</td>
+              </tr>
+            </table>
 
-        <vellum-stat-block-divider></vellum-stat-block-divider>
+            <vellum-stat-block-divider></vellum-stat-block-divider>
+          </template>
+        </dom-if>
 
         <div>
 
@@ -62,10 +78,16 @@
           <vellum-stat id="skills" name="Skills" values="{{skills}}"></vellum-stat>
           <vellum-stat id="damage-resistances" name="Damage Resistances" values="{{damageResistances}}"></vellum-stat>
           <vellum-stat id="damage-immunities" name="Damage Immunities" values="{{damageImmunities}}"></vellum-stat>
+          <vellum-stat id="damage-threshold" name="Damage Threshold" values="{{damageThreshold}}"></vellum-stat>
           <vellum-stat id="condition-immunities" name="Condition Immunities" values="{{conditionImmunities}}"></vellum-stat>
           <vellum-stat id="senses" name="Senses" values="{{senses}}"></vellum-stat>
           <vellum-stat id="languages" name="Languages" values="{{languages}}"></vellum-stat>
-          <vellum-stat id="cr" name="Challenge" values="{{cr}} ({{xp}} XP)"></vellum-stat>
+
+          <dom-if if="{{cr}}">
+            <template>
+              <vellum-stat id="cr" name="Challenge" values="{{cr}} ({{xp}} XP)"></vellum-stat>
+            </template>
+          </dom-if>
 
         </div>
 
@@ -93,13 +115,19 @@
           </template>
         </dom-if>
 
-        <h2>Actions</h2>
-
-        <dom-repeat items="{{actions}}">
+        <dom-if if={{actions}}>
           <template>
-            <vellum-action id$="action-{{index}}" action="{{item}}"></vellum-stat>
+            <section id="actions">
+              <h2>Actions</h2>
+
+              <dom-repeat items="{{actions}}">
+                <template>
+                  <vellum-action id$="action-{{index}}" action="{{item}}"></vellum-stat>
+                </template>
+              </dom-repeat>
+            </section>
           </template>
-        </dom-repeat>
+        </dom-if>
 
         <dom-if if="{{reactions}}">
           <template>
@@ -156,7 +184,10 @@
           alignment: String,
           ac: Object,
           hp: String,
-          hitDie: String,
+          hitDie: {
+            type: String,
+            value: ''
+          },
           speeds: Array,
           str: Number,
           dex: Number,
@@ -164,6 +195,10 @@
           int: Number,
           wis: Number,
           cha: Number,
+          hasAbilities: {
+            type: Boolean,
+            computed: '_hasAbilities(str,dex,con,int,wis,cha)'
+          },
           displayStrength: {
             type: String,
             computed: '_displayAbility(str)'
@@ -192,6 +227,7 @@
           skills: Array,
           damageResistances: String,
           damageImmunities: Array,
+          damageThreshold: Number,
           conditionImmunities: Array,
           senses: Array,
           languages: Array,
@@ -207,6 +243,10 @@
           reactions: Array,
           legendaryActions: Object
         }
+      }
+
+      _hasAbilities(str, dex, con, int, wis, cha) {
+        return (str != undefined && dex != undefined && con != undefined && int != undefined && wis != undefined && cha != undefined);
       }
 
       _displayAbility(ability) {

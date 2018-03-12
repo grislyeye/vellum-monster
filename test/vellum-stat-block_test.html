@@ -89,7 +89,7 @@
 
               <ul>
                 <li itemscope itemprop="randomEffects"><strong itemprop="roll">1</strong> <span itemprop="name">Rabid</span> <span itemprop="effect">The target becomes rabid and uses any actions it has this turn to make melee attacks against its nearest ally.</span></li>
-                <li itemscope itemprop="randomEffects"><strong itemprop="roll">2</strong> <span itemprop="name">Paralysed</span> <span itemprop="effect">The target becomes paralysed.</span></li> 
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">2</strong> <span itemprop="name">Paralysed</span> <span itemprop="effect">The target becomes paralysed.</span></li>
                 <li itemscope itemprop="randomEffects"><strong itemprop="roll">3-5</strong> <span itemprop="name">Poisoned</span> <span itemprop="effect">The target becomes poisoned and takes 1d4 poison damage.</span></li>
                 <li itemscope itemprop="randomEffects"><strong itemprop="roll">6</strong> <span itemprop="name">Blinded</span> <span itemprop="effect">The target becomes blinded.</span></li>
               </ul>
@@ -165,6 +165,35 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="object-stat-block">
+      <template>
+
+       <vellum-stat-block id="trench" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+
+         <dl>
+           <dt>Name</dt><dd itemprop="name">Trench</dd>
+           <dt>Size</dt><dd itemprop="size">Huge</dd>
+           <dt>Type</dt><dd itemprop="type">object</dd>
+
+           <dt>Armor Class</dt><dd itemprop="ac">11</dd>
+           <dt>Hit Points</dt><dd><span itemprop="hp">40</span></dd>
+           <dt>Damage Immunities</dt><dd itemprop="damageImmunities">poison</dd>
+           <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
+           <dt>Damage Threshold</dt><dd itemprop="damageThreshold">10</dd>
+         </dl>
+
+         <ol>
+             <li itemprop="reactions" itemscope>
+               <span itemprop="name">Mire</span>
+               <span itemprop="description">The trench can grapple anyone attempting to cross it.</span>
+             </li>
+         </ol>
+
+       </vellum-stat-block>
+
+      </template>
+    </test-fixture>
+
     <script>
       suite('<vellum-stat-block>', () => {
 
@@ -204,6 +233,15 @@
           });
         });
 
+        test('does not display trailing comma after type if alignment not provided', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.shadowRoot.textContent), 'object,');
+            done();
+          });
+        });
+
         test('displays armour class', (done) => {
           const element = fixture('detailed-stat-block');
 
@@ -226,7 +264,18 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['hit-points'].shadowRoot.textContent), 136);
+            const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
+            assert.include(trimAll(hitPoints.shadowRoot.textContent), 136);
+            done();
+          });
+        });
+
+        test('displays hit points for objects', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const hitPoints = element.shadowRoot.querySelector('#hit-points');
+            assert.include(trimAll(hitPoints.shadowRoot.textContent), "40");
             done();
           });
         });
@@ -235,7 +284,18 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['hit-points'].shadowRoot.textContent), "16d10 + 48");
+            const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
+            assert.include(trimAll(hitPoints.shadowRoot.textContent), "16d10 + 48");
+            done();
+          });
+        });
+
+        test('does not display hit die brackets if hie die not provided', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const hitPoints = element.shadowRoot.querySelector('#hit-points');
+            assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), "()");
             done();
           });
         });
@@ -308,6 +368,15 @@
 
           flush(() => {
             assert.include(trimAll(element.shadowRoot.textContent), "8 (-1)");
+            done();
+          });
+        });
+
+        test('does not display abilities table for statblock without abilities', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            assert.isNotOk(element.$['ability-scores']);
             done();
           });
         });
@@ -415,7 +484,18 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.cr.shadowRoot.textContent), "11 (7200 XP)");
+            const challenge = element.shadowRoot.querySelector('#cr');
+            assert.include(trimAll(challenge.shadowRoot.textContent), '11 (7200 XP)');
+            done();
+          });
+        });
+
+        test('does not display challenge rating with XP for objects', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const challenge = element.shadowRoot.querySelector('#cr');
+            assert.isNotOk(challenge);
             done();
           });
         });
@@ -450,6 +530,15 @@
           });
         });
 
+        test('does not display actions if there are none', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const actions = element.shadowRoot.querySelector('#actions');
+            assert.isNotOk(actions);
+            done();
+          });
+        });
 
         test('displays attacks', (done) => {
           const element = fixture('detailed-stat-block');
@@ -680,6 +769,15 @@
 
           flush(() => {
             assert.notInclude(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Saving Throws');
+            done();
+          });
+        });
+
+        test('displays damage threshold for objects', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['damage-threshold'].shadowRoot.textContent), '10');
             done();
           });
         });
