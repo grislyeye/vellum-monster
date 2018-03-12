@@ -185,107 +185,141 @@
       <demo-snippet>
         <template>
 
-            <vellum-stat-block id="gynosphinx" class="two-column" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+          <vellum-stat-block id="gynosphinx" class="two-column" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
-              <header>
-                <h1 itemprop="name">Gynosphinx</h1>
-                <p><span itemprop="size">Large</span> <span itemprop="type">monstrosity</span>, <span itemprop="alignment">lawful neutral</span></p>
-              </header>
+            <header>
+              <h1 itemprop="name">Gynosphinx</h1>
+              <p><span itemprop="size">Large</span> <span itemprop="type">monstrosity</span>, <span itemprop="alignment">lawful neutral</span></p>
+            </header>
 
-              <dl>
-                <dt>Armor Class</dt><dd itemprop="ac">17 (natural armor)</dd>
-                <dt>Hit Points</dt><dd><span itemprop="hp">136</span> (<span itemprop="hitDie">16d10 + 48</span>)</dd>
-                <dt>Speed</dt><dd itemprop="speeds">40 ft.</dd>
-                <dt>Speed</dt><dd itemprop="speeds">fly 60 ft.</dd>
-              </dl>
+            <dl>
+              <dt>Armor Class</dt><dd itemprop="ac">17 (natural armor)</dd>
+              <dt>Hit Points</dt><dd><span itemprop="hp">136</span> (<span itemprop="hitDie">16d10 + 48</span>)</dd>
+              <dt>Speed</dt><dd itemprop="speeds">40 ft.</dd>
+              <dt>Speed</dt><dd itemprop="speeds">fly 60 ft.</dd>
+            </dl>
 
-              <dl>
-                <dt>Strength</dt><dd itemprop="str">18</dd>
-                <dt>Dexterity</dt><dd itemprop="dex">15</dd>
-                <dt>Constitution</dt><dd itemprop="con">16</dd>
-                <dt>Intelligence</dt><dd itemprop="int">18</dd>
-                <dt>Wisdom</dt><dd itemprop="wis">18</dd>
-                <dt>Charisma</dt><dd itemprop="cha">18</dd>
-              </dl>
+            <dl>
+              <dt>Strength</dt><dd itemprop="str">18</dd>
+              <dt>Dexterity</dt><dd itemprop="dex">15</dd>
+              <dt>Constitution</dt><dd itemprop="con">16</dd>
+              <dt>Intelligence</dt><dd itemprop="int">18</dd>
+              <dt>Wisdom</dt><dd itemprop="wis">18</dd>
+              <dt>Charisma</dt><dd itemprop="cha">18</dd>
+            </dl>
 
-              <dl>
-                <dt>Skills</dt><dd itemprop="skills">Arcana +14</dd>
-                <dt>Skills</dt><dd itemprop="skills">History +14</dd>
-                <dt>Skills</dt><dd itemprop="skills">Perception +9</dd>
-                <dt>Skills</dt><dd itemprop="skills">Religion +9</dd>
-                <dt>Damage Resistances</dt><dd itemprop="damageResistances">bludgeoning, piercing, and slashing from nonmagical items</dd>
-                <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
-                <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">charmed</dd>
-                <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">frightened</dd>
-                <dt>Senses</dt><dd itemprop="senses">truesight 120 ft.</dd>
-                <dt>Senses</dt><dd itemprop="senses">passive Perception 18</dd>
-                <dt>Languages</dt><dd itemprop="languages">Common</dd>
-                <dt>Languages</dt><dd itemprop="languages">Sphinx</dd>
-                <dt>Challenge</dt><dd itemprop="cr">11</dd>
-                <dt>XP</dt><dd itemprop="xp">7200</dd>
-              </dl>
+            <dl>
+              <dt>Skills</dt><dd itemprop="skills">Arcana +14</dd>
+              <dt>Skills</dt><dd itemprop="skills">History +14</dd>
+              <dt>Skills</dt><dd itemprop="skills">Perception +9</dd>
+              <dt>Skills</dt><dd itemprop="skills">Religion +9</dd>
+              <dt>Damage Resistances</dt><dd itemprop="damageResistances">bludgeoning, piercing, and slashing from nonmagical items</dd>
+              <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
+              <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">charmed</dd>
+              <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">frightened</dd>
+              <dt>Senses</dt><dd itemprop="senses">truesight 120 ft.</dd>
+              <dt>Senses</dt><dd itemprop="senses">passive Perception 18</dd>
+              <dt>Languages</dt><dd itemprop="languages">Common</dd>
+              <dt>Languages</dt><dd itemprop="languages">Sphinx</dd>
+              <dt>Challenge</dt><dd itemprop="cr">11</dd>
+              <dt>XP</dt><dd itemprop="xp">7200</dd>
+            </dl>
 
-              <ol>
+            <ol>
 
+              <li itemprop="specialTraits" itemscope>
+                <span itemprop="name">Inscrutable</span>
+                <span itemprop="description">The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx's intentions or sincerity have disadvantage.</span>
+              </li>
+
+              <li itemprop="specialTraits" itemscope>
+                <span itemprop="name">Magic Weapons</span>
+                <span itemprop="description">The sphinx's weapon attacks are magical.</span>
+              </li>
+
+                <dt>Spellcasting.</dt>
+                <dd itemscope itemprop="spellcasting">
+                  The sphinx is a <span itemprop="level">9th</span>-level spellcaster. Its spellcasting ability is <span itemprop="ability">Intelligence</span> (spell save DC <span itemprop="save">17</span>, <span itemprop="attackBonus">+9</span> to hit with spell attacks) and <span itemprop="notes">it requires no material components to cast its spells</span>. The sphinx has the following <span itemprop="class">wizard</span> Spells prepared:
+                  <ul>
+                    <li itemscope itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
+                    <li itemscope itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
+                    <li itemscope itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</em></li>
+                    <li itemscope itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</em></li>
+                    <li itemscope itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
+                    <li itemscope itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
+                  </ul>
+                </dd>
+
+            </ol>
+
+            <section>
+              <h2>Actions</h2>
+              <ul>
+
+                <li itemscope itemprop="actions"><strong itemprop="name">Multiattack</strong> <span itemprop="description">The sphinx makes two claw attacks.</span></li>
+
+              <li itemprop="actions" itemscope>
+                <span itemprop="name">Claw</span>
+                <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage.</span>
+              </li>
+
+              </ul>
+            </section>
+
+            <section itemscope itemprop="legendaryActions">
+              <h2>Legendary Actions</h2>
+
+              <p>Can take <span itemprop="number">3</span> legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
+
+              <ul>
+
+                <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> <span itemprop="description">The sphinx makes one claw attack.</span></li>
+
+                <li itemscope itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
+
+                <li itemscope itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
+
+              </ul>
+            </section>
+          </vellum-stat-block>
+
+        </template>
+      </demo-snippet>
+
+      <h3>Object Stat Block</h3>
+
+      <demo-snippet>
+        <template>
+
+          <vellum-stat-block id="trench" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+
+            <dl>
+              <dt>Name</dt><dd itemprop="name">Trench</dd>
+              <dt>Size</dt><dd itemprop="size">Huge</dd>
+              <dt>Type</dt><dd itemprop="type">object</dd>
+
+              <dt>Armor Class</dt><dd itemprop="ac">11</dd>
+              <dt>Hit Points</dt><dd><span itemprop="hp">40</span></dd>
+              <dt>Damage Immunities</dt><dd itemprop="damageImmunities">poison</dd>
+              <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
+              <dt>Damage Threshold</dt><dd itemprop="damageThreshold">10</dd>
+            </dl>
+
+            <ol>
                 <li itemprop="specialTraits" itemscope>
-                  <span itemprop="name">Inscrutable</span>
-                  <span itemprop="description">The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx's intentions or sincerity have disadvantage.</span>
+                  <span itemprop="name">Difficult Terrain</span>
+                  <span itemprop="description">The trench counts as difficult terrain.</span>
                 </li>
 
-                <li itemprop="specialTraits" itemscope>
-                  <span itemprop="name">Magic Weapons</span>
-                  <span itemprop="description">The sphinx's weapon attacks are magical.</span>
+                <li itemprop="reactions" itemscope>
+                  <span itemprop="name">Mire</span>
+                  <span itemprop="description">Any creature crossing the trench must make a Dexterity saving throw vs DC 12 or be restrained for 1 minute. A creature can repeat the saving throw at the end of each of its turn, ending the effect on itself on a success.</span>
                 </li>
+            </ol>
 
-                  <dt>Spellcasting.</dt>
-                  <dd itemscope itemprop="spellcasting">
-                    The sphinx is a <span itemprop="level">9th</span>-level spellcaster. Its spellcasting ability is <span itemprop="ability">Intelligence</span> (spell save DC <span itemprop="save">17</span>, <span itemprop="attackBonus">+9</span> to hit with spell attacks) and <span itemprop="notes">it requires no material components to cast its spells</span>. The sphinx has the following <span itemprop="class">wizard</span> Spells prepared:
-                    <ul>
-                      <li itemscope itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
-                      <li itemscope itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
-                      <li itemscope itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</em></li>
-                      <li itemscope itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</em></li>
-                      <li itemscope itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
-                      <li itemscope itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
-                    </ul>
-                  </dd>
-
-              </ol>
-
-              <section>
-                <h2>Actions</h2>
-                <ul>
-
-                  <li itemscope itemprop="actions"><strong itemprop="name">Multiattack</strong> <span itemprop="description">The sphinx makes two claw attacks.</span></li>
-
-                <li itemprop="actions" itemscope>
-                  <span itemprop="name">Claw</span>
-                  <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage.</span>
-                </li>
-
-                </ul>
-              </section>
-
-              <section itemscope itemprop="legendaryActions">
-                <h2>Legendary Actions</h2>
-
-                <p>Can take <span itemprop="number">3</span> legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
-
-                <ul>
-
-                  <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> <span itemprop="description">The sphinx makes one claw attack.</span></li>
-
-                  <li itemscope itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
-
-                  <li itemscope itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
-
-                </ul>
-              </section>
-            </vellum-stat-block>
-
-          </template>
-        </demo-snippet>
-
+          </vellum-stat-block>
+        <template>
+      <demo-snippet>
     </section>
 
   </body>
