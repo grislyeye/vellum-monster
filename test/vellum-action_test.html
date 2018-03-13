@@ -45,6 +45,12 @@
       </template>
     </dom-bind>
 
+    <dom-bind id="limited-usage-attack-test-fixture">
+      <template>
+        <vellum-action id="limited-usage-attack" action=[[action]]></vellum-action>
+      </template>
+    </dom-bind>
+
     <script>
       suite('<vellum-action>', () => {
         // TODO: uses workaround for fixture() issue - remove
@@ -269,6 +275,26 @@
 
           flush(() => {
             assert.include(trimAll(element.shadowRoot.textContent), ' 1. Confusion. The target becomes confused.');
+            done();
+          });
+        });
+
+        const limitedUsageAttack = {
+          name: 'Poison Breath',
+          limitedUsage: 'Recharge 6'
+        };
+
+        function limitedUsageAttackTestFixture() {
+          const bind = document.querySelector('#limited-usage-attack-test-fixture');
+          bind.set('action', limitedUsageAttack);
+          return document.querySelector('#limited-usage-attack');
+        }
+
+        test('displays limited usage', (done) => {
+         const element = limitedUsageAttackTestFixture();
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'Poison Breath (Recharge 6)');
             done();
           });
         });

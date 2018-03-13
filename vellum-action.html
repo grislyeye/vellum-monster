@@ -20,7 +20,7 @@
         margin-top: 0;
         margin-bottom: 0.75em;
       }
-      
+
       :host ol.random-effects {
         list-style: none;
         padding: 0;
@@ -57,7 +57,7 @@
         <dom-if if="{{!isAttack()}}">
           <template>
             <p class="action">
-              <span class="action-name">{{action.name}}.</span>
+              <span class="action-name">{{action.name}}<dom-if if="{{action.limitedUsage}}"><template> ({{action.limitedUsage}})</template></dom-if>.</span>
               <span class="action-description">{{action.description}}</span>
             </p>
           </template>
