@@ -66,7 +66,7 @@
         <dom-if if="{{action.randomEffects}}">
           <template>
             <ol class="random-effects">
-              <dom-repeat items="{{action.randomEffects}}">
+              <dom-repeat items="{{action.randomEffects}}" sort="sortRandomEffects">
                 <template>
                   <li><span class="effect-title">{{item.roll}}. {{item.name}}.</span> {{item.effect}}</li>
                 </template>
@@ -110,6 +110,11 @@
         }
       }
 
+      sortRandomEffects(a, b) {
+        if (a.roll < b.roll) return -1;
+        if (a.roll > b.roll) return 1;
+        return 0;
+      }
     }
 
     customElements.define(Action.is, Action);
