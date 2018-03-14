@@ -257,6 +257,11 @@
           damageType: 'fire',
           randomEffects: [
             {
+              roll: 2,
+              name: 'Blinded',
+              effect: 'The target becomes blinded.'
+            },
+            {
               roll: 1,
               name: 'Confusion',
               effect: 'The target becomes confused.'
@@ -275,6 +280,15 @@
 
           flush(() => {
             assert.include(trimAll(element.shadowRoot.textContent), ' 1. Confusion. The target becomes confused.');
+            done();
+          });
+        });
+
+        test('displays random effects in order of roll', (done) => {
+         const element = magicalAttackTestFixture();
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), ' 1. Confusion. The target becomes confused. 2. Blinded. The target becomes blinded.');
             done();
           });
         });
