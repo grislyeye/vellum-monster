@@ -5,13 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>vellum-stat-block demo</title>
+    <title>vellum-monster demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../vellum-stat-block.html">
+    <link rel="import" href="../vellum-monster.html">
+    <link rel="import" href="../vellum-stat.html">
+    <link rel="import" href="../vellum-stat-block-divider.html">
     <link rel="import" href="../themes/official/official-theme.html">
     <custom-style>
       <style is="custom-style" include="official-theme"></style>
@@ -32,7 +34,7 @@
       <demo-snippet>
         <template>
 
-          <vellum-stat-block id="gynosphinx" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+          <vellum-monster id="gynosphinx" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
             <header>
               <h1 itemprop="name">Gynosphinx</h1>
@@ -128,7 +130,7 @@
 
               </ul>
             </section>
-          </vellum-stat-block>
+          </vellum-monster>
 
         </template>
       </demo-snippet>
@@ -138,7 +140,7 @@
       <demo-snippet>
         <template>
 
-          <vellum-stat-block class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+          <vellum-monster class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
             <dl>
               <dt>Name</dt><dd itemprop="name">Warhorse</dd>
@@ -175,17 +177,17 @@
                 </li>
             </ol>
 
-          </vellum-stat-block>
+          </vellum-monster>
 
         </template>
       </demo-snippet>
 
-      <h3>Two-column Stat Block</h2>
+      <h3>Two-column Stat Block</h3>
 
       <demo-snippet>
         <template>
 
-          <vellum-stat-block id="gynosphinx" class="two-column" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+          <vellum-monster id="gynosphinx" class="two-column" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
             <header>
               <h1 itemprop="name">Gynosphinx</h1>
@@ -281,7 +283,29 @@
 
               </ul>
             </section>
-          </vellum-stat-block>
+          </vellum-monster>
+
+        </template>
+      </demo-snippet>
+
+      <h2>Custom Stat Block</h2>
+
+      <demo-snippet>
+        <template>
+
+          <vellum-stat-block
+            class="official"
+            name="Custom Stat Block"
+            description="Demonstration of custom stat blocks"
+          >
+
+            <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
+
+            <vellum-stat-block-divider></vellum-stat-block-divider>
+
+            <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
+
+          </vellum-monster>
 
         </template>
       </demo-snippet>
