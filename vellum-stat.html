@@ -20,7 +20,7 @@
       }
     </style>
 
-    <dom-if if="{{values}}">
+    <dom-if if="{{displayText}}">
       <template>
         <p>
           <span class="stat-name">{{name}}</span>
@@ -40,7 +40,8 @@
         return {
           name: String,
           values: {
-            type: Object
+            type: Object,
+            value: '_not-set'
           },
           displayText: {
             type: String,
@@ -50,10 +51,16 @@
       }
 
       _computeDisplayText(values) {
+        const textContent = this.textContent.trim();
+
         if(Array.isArray(values)) {
           return values.join(', ');
-        } else {
+        } else if(values === '_not-set' && textContent !== ""){
+          return textContent;
+        } else if(values !== '_not-set') {
           return values;
+        } else {
+          return undefined;
         }
       }
 
