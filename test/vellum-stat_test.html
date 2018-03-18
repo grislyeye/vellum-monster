@@ -38,6 +38,12 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="body-value-stat">
+      <template>
+        <vellum-stat name="Armor Class">12 (natural armor)</vellum-stat>
+      </template>
+    </test-fixture>
+
     <script>
       suite('<vellum-stat>', () => {
 
@@ -114,6 +120,15 @@
 
           flush(() => {
             assert.include(element.shadowRoot.textContent.trim(), '11');
+            done();
+          });
+        });
+
+        test('displays stat for body value', (done) => {
+          const element = fixture('body-value-stat');
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), '12 (natural armor)');
             done();
           });
         });
