@@ -1,6 +1,6 @@
 {
   "name": "vellum-stat-block",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Web component for displaying 5th Edition monster stat blocks",
   "keywords": [
     "polymer",

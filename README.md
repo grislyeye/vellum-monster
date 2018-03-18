@@ -16,7 +16,7 @@ Add the following lines to your HTML `head` element:
 
 ```html
 <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-<link rel="import" href="vellum-stat-block.html">
+<link rel="import" href="vellum-monster.html">
 ```
 
 A stat block is written as follows:
@@ -25,14 +25,14 @@ A stat block is written as follows:
 ```
 <custom-element-demo>
   <template>
-    <link rel="import" href="vellum-stat-block.html">
+    <link rel="import" href="vellum-monster.html">
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<vellum-stat-block class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+<vellum-monster class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
 
   <dl>
     <dt>Name</dt><dd itemprop="name">Warhorse</dd>
@@ -69,7 +69,7 @@ the same turn, that target must succeed on a DC 14 Strength saving throw or be k
       </li>
   </ol>
 
-</vellum-stat-block>
+</vellum-monster >
 ```
 
 This module also includes a theme to give your stat blocks a more "official" look. Simply add the following lines to your HTML file `head` element:
@@ -90,7 +90,7 @@ To create a custom theme for your own stat blocks create a file with the followi
 
   <template>
     <style>
-      html vellum-stat-block.my-stat-block {
+      html vellum-monster.my-stat-block, html vellum-stat-block.my-stat-block {
         // CSS styles here
       }
     </style>
@@ -119,6 +119,30 @@ Custom CSS properties for this component include:
 | `--stat-block-divider-color`           | The [colour](https://developer.mozilla.org/en-US/docs/Web/CSS/color) of the divider between sections of the stat block.
 | `--stat-block-two-column-width`        | If the `two-column` class is applied to the stat block, this defines the width of the wider stat block.
 | `--stat-block-two-column-column-width` | If the `two-column` class is applied to the stat block, this defines the width of the width of the columns within the stat block.
+
+## Custom Stat Blocks
+
+The `<vellum-stat-block>` element allows you to create custom stat-blocks layouts. This could be for information that doesn't conform to the stand monster stat block, such as [location stat blocks](https://imgur.com/a/aIVfv). Or to represent non-standard information the `<vellum-monster>` element doesn't yet support.
+
+For example:
+
+```html
+<vellum-stat-block
+  class="official"
+  name="Custom Stat Block"
+  description="Demonstration of custom stat blocks"
+>
+
+  <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
+
+  <vellum-stat-block-divider></vellum-stat-block-divider>
+
+  <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
+
+</vellum-monster>
+```
+
+**Note:** Users are encouraged `<vellum-monster>` element for monster descriptions wherever possible, and [raise bugs](https://github.com/rgladwell/vellum-stat-block/issues/new) where it doesn't support what you want to do. Rather than fallback to the `<vellum-stat-block>`.
 
 ## Hacking
 

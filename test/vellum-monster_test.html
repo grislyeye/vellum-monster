@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>vellum-monster test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="test-util.js"></script>
+
+    <link rel="import" href="../vellum-monster.html">
+  </head>
+  <body>
+
+    <test-fixture id="detailed-stat-block">
+      <template>
+
+        <vellum-monster id="gynosphinx" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+          <dl>
+            <dt>Name</dt><dd itemprop="name">Gynosphinx</dd>
+            <dt>Size</dt><dd itemprop="size">large</dd>
+            <dt>Type</dt><dd itemprop="type">monstrosity</dd>
+            <dt>Alignment</dt><dd itemprop="alignment">lawful neutral</dd>
+
+            <dt>Armor Class</dt><dd itemprop="ac">17 (natural armor)</dd>
+            <dt>Hit Points</dt><dd><span itemprop="hp">136</span> (<span itemprop="hitDie">16d10 + 48</span>)</dd>
+            <dt>Speed</dt><dd itemprop="speeds">40 ft.</dd>
+            <dt>Speed</dt><dd itemprop="speeds">fly 60 ft.</dd>
+
+            <dt>Strength</dt><dd itemprop="str">18</dd>
+            <dt>Dexterity</dt><dd itemprop="dex">17</dd>
+            <dt>Constitution</dt><dd itemprop="con">16</dd>
+            <dt>Intelligence</dt><dd itemprop="int">14</dd>
+            <dt>Wisdom</dt><dd itemprop="wis">11</dd>
+            <dt>Charisma</dt><dd itemprop="cha">8</dd>
+
+            <dt>Saving Throws</dt><dd itemprop="savingThrows">Strength +14</dd>
+            <dt>Skills</dt><dd itemprop="skills">Arcana +14</dd>
+            <dt>Skills</dt><dd itemprop="skills">History +14</dd>
+            <dt>Skills</dt><dd itemprop="skills">Perception +9</dd>
+            <dt>Skills</dt><dd itemprop="skills">Religion +9</dd>
+            <dt>Damage Resistances</dt><dd itemprop="damageResistances">bludgeoning, piercing, and slashing from nonmagical items</dd>
+            <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
+            <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">charmed</dd>
+            <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">frightened</dd>
+            <dt>Senses</dt><dd itemprop="senses">truesight 120 ft.</dd>
+            <dt>Senses</dt><dd itemprop="senses">passive Perception 18</dd>
+            <dt>Languages</dt><dd itemprop="languages">Common</dd>
+            <dt>Languages</dt><dd itemprop="languages">Sphinx</dd>
+            <dt>Challenge</dt><dd itemprop="cr">11</dd>
+            <dt>XP</dt><dd itemprop="xp">7200</dd>
+          </dl>
+
+          <ol>
+
+            <li itemprop="specialTraits" itemscope>
+              <span itemprop="name">Inscrutable</span>
+              <span itemprop="description">The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx's intentions or sincerity have disadvantage.</span>
+            </li>
+
+            <li itemprop="specialTraits" itemscope>
+              <span itemprop="name">Magic Weapons</span>
+              <span itemprop="description">The sphinx's weapon attacks are magical.</span>
+            </li>
+
+            <dt>Spellcasting.</dt>
+            <dd itemscope itemprop="spellcasting">
+              The sphinx is a <span itemprop="level">9th</span>-level spellcaster. Its spellcasting ability is <span itemprop="ability">Intelligence</span> (spell save DC <span itemprop="save">17</span>, <span itemprop="attackBonus">+9</span> to hit with spell attacks) and <span itemprop="notes">it requires no material components to cast its spells</span>. The sphinx has the following <span itemprop="class">wizard</span> Spells prepared:
+              <ul>
+                <li itemscope itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
+                <li itemscope itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
+                <li itemscope itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</em></li>
+                <li itemscope itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</em></li>
+                <li itemscope itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
+                <li itemscope itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
+              </ul>
+            </dd>
+
+            <li itemprop="actions" itemscope>
+              <span itemprop="name">Multiattack</span>
+              <span itemprop="description">The sphinx makes two claw attacks.</span>
+            </li>
+
+            <li itemprop="actions" itemscope>
+              <span itemprop="name">Claw</span>
+              <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage <span itemprop="notes">. This is a magic weapon attack.</span></span>
+
+              <ul>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">1</strong> <span itemprop="name">Rabid</span> <span itemprop="effect">The target becomes rabid and uses any actions it has this turn to make melee attacks against its nearest ally.</span></li>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">2</strong> <span itemprop="name">Paralysed</span> <span itemprop="effect">The target becomes paralysed.</span></li>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">3-5</strong> <span itemprop="name">Poisoned</span> <span itemprop="effect">The target becomes poisoned and takes 1d4 poison damage.</span></li>
+                <li itemscope itemprop="randomEffects"><strong itemprop="roll">6</strong> <span itemprop="name">Blinded</span> <span itemprop="effect">The target becomes blinded.</span></li>
+              </ul>
+            </li>
+
+            <li itemprop="reactions" itemscope>
+              <span itemprop="name">Parry</span>
+              <span itemprop="description">The gynosphinx adds 3 to its AC against one melee attack that would hit it.</span>
+            </li>
+
+          </ol>
+
+          <section itemscope itemprop="legendaryActions">
+            <p><span itemprop="number">3</span></p>
+
+            <ol>
+
+              <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> (Costs <span itemprop="actions">1</span> Actions) <span itemprop="description">The sphinx makes one claw attack.</span></li>
+
+              <li itemscope itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
+
+              <li itemscope itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
+
+            </ol>
+          </section>
+        </vellum-monster>
+
+      </template>
+    </test-fixture>
+
+    <test-fixture id="simple-stat-block">
+      <template>
+
+        <vellum-monster class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+
+          <dl>
+            <dt>Name</dt><dd itemprop="name">Warhorse</dd>
+            <dt>Size</dt><dd itemprop="size">Large</dd>
+            <dt>Type</dt><dd itemprop="type">beast</dd>
+            <dt>Alignment</dt><dd itemprop="alignment">unaligned</dd>
+
+            <dt>Armor Class</dt><dd itemprop="ac">11</dd>
+            <dt>Hit Points</dt><dd><span itemprop="hp">19</span> (<span itemprop="hitDie">3d10 + 3</span>)</dd>
+            <dt>Speed</dt><dd itemprop="speeds">60 ft.</dd>
+
+            <dt>Strength</dt><dd itemprop="str">18</dd>
+            <dt>Dexterity</dt><dd itemprop="dex">12</dd>
+            <dt>Constitution</dt><dd itemprop="con">13</dd>
+            <dt>Intelligence</dt><dd itemprop="int">2</dd>
+            <dt>Wisdom</dt><dd itemprop="wis">12</dd>
+            <dt>Charisma</dt><dd itemprop="cha">7</dd>
+
+            <dt>Senses</dt><dd itemprop="senses">passive Perception 11</dd>
+            <dt>Challenge</dt><dd itemprop="cr">1/2</dd>
+            <dt>XP</dt><dd itemprop="xp">100</dd>
+          </dl>
+
+          <ol>
+            <li itemprop="specialTraits" itemscope>
+              <span itemprop="name">Trampling Charge</span>
+              <span itemprop="description">If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on
+    the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action.</span>
+            </li>
+
+              <li itemprop="actions" itemscope>
+                <span itemprop="name">Hooves</span>
+                <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+4</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">11 (2d6 + 4)</span> <span itemprop="damageType">bludgeoning</span> damage.</span>
+              </li>
+          </ol>
+
+        </vellum-monster>
+
+      </template>
+    </test-fixture>
+
+    <test-fixture id="object-stat-block">
+      <template>
+
+       <vellum-monster id="trench" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+
+         <dl>
+           <dt>Name</dt><dd itemprop="name">Trench</dd>
+           <dt>Size</dt><dd itemprop="size">Huge</dd>
+           <dt>Type</dt><dd itemprop="type">object</dd>
+
+           <dt>Armor Class</dt><dd itemprop="ac">11</dd>
+           <dt>Hit Points</dt><dd><span itemprop="hp">40</span></dd>
+           <dt>Damage Immunities</dt><dd itemprop="damageImmunities">poison</dd>
+           <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
+           <dt>Damage Threshold</dt><dd itemprop="damageThreshold">10</dd>
+         </dl>
+
+         <ol>
+             <li itemprop="reactions" itemscope>
+               <span itemprop="name">Mire</span>
+               <span itemprop="description">The trench can grapple anyone attempting to cross it.</span>
+             </li>
+         </ol>
+
+       </vellum-monster>
+
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('<vellum-monster>', () => {
+
+        test('displays name', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'Gynosphinx');
+            done();
+          });
+        });
+
+        test('displays type', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'monstrosity');
+            done();
+          });
+        });
+
+        test('displays size', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'large');
+            done();
+          });
+        });
+
+        test('displays alignment', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'lawful neutral');
+            done();
+          });
+        });
+
+        test('does not display trailing comma after type if alignment not provided', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.shadowRoot.textContent), 'object,');
+            done();
+          });
+        });
+
+        test('displays armour class', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.ac.shadowRoot.textContent), "17 (natural armor)");
+            done();
+          });
+        });
+
+        test('displays simple armour class', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.ac.shadowRoot.textContent), "11");
+            done();
+          });
+        });
+
+        test('displays hit points', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
+            assert.include(trimAll(hitPoints.shadowRoot.textContent), 136);
+            done();
+          });
+        });
+
+        test('displays hit points for objects', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const hitPoints = element.shadowRoot.querySelector('#hit-points');
+            assert.include(trimAll(hitPoints.shadowRoot.textContent), "40");
+            done();
+          });
+        });
+
+        test('displays hit die', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
+            assert.include(trimAll(hitPoints.shadowRoot.textContent), "16d10 + 48");
+            done();
+          });
+        });
+
+        test('does not display hit die brackets if hie die not provided', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const hitPoints = element.shadowRoot.querySelector('#hit-points');
+            assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), "()");
+            done();
+          });
+        });
+
+        test('displays speeds', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.speed.shadowRoot.textContent), '40 ft., fly 60 ft.');
+            done();
+          });
+        });
+
+        test('displays single speed', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.speed.shadowRoot.textContent), '60 ft.');
+            done();
+          });
+        });
+
+        test('displays strength with bonus', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "18 (+4)");
+            done();
+          });
+        });
+
+        test('displays dexterity with bonus', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "17 (+3)");
+            done();
+          });
+        });
+
+        test('displays constitution with bonus', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "16 (+3)");
+            done();
+          });
+        });
+
+        test('displays intelligence with bonus', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "14 (+2)");
+            done();
+          });
+        });
+
+        test('displays wisdom with bonus', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "11 (+0)");
+            done();
+          });
+        });
+
+        test('displays charisma with bonus', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "8 (-1)");
+            done();
+          });
+        });
+
+        test('does not display abilities table for statblock without abilities', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            assert.isNotOk(element.$['ability-scores']);
+            done();
+          });
+        });
+
+        test('displays skills', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.skills.shadowRoot.textContent), 'Arcana +14, History +14, Perception +9, Religion +9');
+            done();
+          });
+        });
+
+        test('do not display skills if monster has no skills', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), "Skills");
+            done();
+          });
+        });
+
+        test('displays damage resistances', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['damage-resistances'].shadowRoot.textContent), "bludgeoning, piercing, and slashing from nonmagical items");
+            done();
+          });
+        });
+
+        test('do not display damage resistances if monster has no damage resistances', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$['damage-resistances'].shadowRoot.textContent), "Damage Resistances");
+            done();
+          });
+        });
+
+        test('displays damage immunities', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['damage-immunities'].shadowRoot.textContent), "psychic");
+            done();
+          });
+        });
+
+        test('do not display damage immunities if monster has no damage immunities', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$['damage-immunities'].shadowRoot.textContent), "Damage Immunities");
+            done();
+          });
+        });
+
+        test('displays condition immunities', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['condition-immunities'].shadowRoot.textContent), "charmed, frightened");
+            done();
+          });
+        });
+
+        test('do not display condition immunities if monster has no condition immunities', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$['condition-immunities'].shadowRoot.textContent), "Condition Immunities");
+            done();
+          });
+        });
+
+        test('displays senses', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.senses.shadowRoot.textContent), "truesight 120 ft., passive Perception 18");
+            done();
+          });
+        });
+
+        test('displays languages', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$.languages.shadowRoot.textContent), "Common, Sphinx");
+            done();
+          });
+        });
+
+        test('do not display languages if monster has no languages', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$.languages.shadowRoot.textContent), "Languages");
+            done();
+          });
+        });
+
+        test('displays challenge rating with XP', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const challenge = element.shadowRoot.querySelector('#cr');
+            assert.include(trimAll(challenge.shadowRoot.textContent), '11 (7200 XP)');
+            done();
+          });
+        });
+
+        test('does not display challenge rating with XP for objects', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const challenge = element.shadowRoot.querySelector('#cr');
+            assert.isNotOk(challenge);
+            done();
+          });
+        });
+
+        test('displays special traits', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const trait = element.shadowRoot.querySelector('#special-trait-1');
+            assert.include(trimAll(trait.shadowRoot.textContent), "Magic Weapons. The sphinx's weapon attacks are magical.");
+            done();
+          });
+        });
+
+        test('displays single special trait', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            const action = element.shadowRoot.querySelector('#special-trait-0');
+            assert.include(trimAll(action.shadowRoot.textContent), "Trampling Charge.");
+            done();
+          });
+        });
+
+        test('displays actions', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const action = element.shadowRoot.querySelector('#action-0');
+            assert.include(trimAll(action.shadowRoot.textContent), "Multiattack. The sphinx makes two claw attacks.");
+            done();
+          });
+        });
+
+        test('does not display actions if there are none', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            const actions = element.shadowRoot.querySelector('#actions');
+            assert.isNotOk(actions);
+            done();
+          });
+        });
+
+        test('displays attacks', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const attack = element.shadowRoot.querySelector('#action-1');
+            assert.include(trimAll(attack.shadowRoot.textContent), "Claw. Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) slashing damage");
+            done();
+          });
+        });
+
+        test('displays attack notes', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const attack = element.shadowRoot.querySelector('#action-1');
+            assert.include(trimAll(attack.shadowRoot.textContent), ". This is a magic weapon attack.");
+            done();
+          });
+        });
+
+        test('displays random attack effects', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const attack = element.shadowRoot.querySelector('#action-1');
+            assert.include(trimAll(attack.shadowRoot.textContent), '2. Paralysed. The target becomes paralysed.');
+            done();
+          });
+        });
+
+        test('displays single attack', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            const attack = element.shadowRoot.querySelector('#action-0');
+            assert.include(trimAll(attack.shadowRoot.textContent), "Hooves.");
+            done();
+          });
+        });
+
+        test('displays legendary actions for creature with legendary actions', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "Legendary Actions");
+            done();
+          });
+        });
+
+        test('does not display legendary actions for creature without legendary actions', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.shadowRoot.textContent), "Legendary Actions");
+            done();
+          });
+        });
+
+        test('displays number of legendary actions', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "The gynosphinx can take 3 legendary actions");
+            done();
+          });
+        });
+
+        test('displays legendary action with only 1 action cost', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const action = element.shadowRoot.querySelector('#legendary-action-0');
+            assert.include(trimAll(action.shadowRoot.textContent), "Claw Attack. The sphinx makes one claw attack.");
+            done();
+          });
+        });
+
+        test('displays legendary action with more than 1 action cost', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const action = element.shadowRoot.querySelector('#legendary-action-2');
+            assert.include(trimAll(action.shadowRoot.textContent), "Cast a Spell (Costs 3 Actions). The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.");
+            done();
+          });
+        });
+
+        test('displays spellcasting for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "Spellcasting");
+            done();
+          });
+        });
+
+        test('does not display spellcasting for creature without spellcasting', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.isNotOk(element.shadowRoot.querySelector('#spellcasting'));
+            done();
+          });
+        });
+
+        test('displays spellcasting level for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "The gynosphinx is a 9th-level spellcaster.");
+            done();
+          });
+        });
+
+        test('displays spellcasting ability for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "Its spellcasting ability is Intelligence");
+            done();
+          });
+        });
+
+        test('displays spell save for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "spell save DC 17");
+            done();
+          });
+        });
+
+        test('displays spell attack bonus for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "+9 to hit with spell attacks");
+            done();
+          });
+        });
+
+        test('displays spell list class for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "The gynosphinx has the following wizard spells prepared:");
+            done();
+          });
+        });
+
+        test('displays spell casting notes for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const spellcasting = element.shadowRoot.querySelector('#spellcasting');
+            assert.include(trimAll(spellcasting.shadowRoot.textContent), "and it requires no material components to cast its spells.");
+            done();
+          });
+        });
+
+        test('displays cantrip spells for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const level = element.shadowRoot.querySelector('#spell-level-0');
+            assert.include(trimAll(level.shadowRoot.textContent), "Cantrips (at will): mage hand, minor illusion, prestidigitation");
+            done();
+          });
+        });
+
+        test('displays spell and slots for creature with spellcasting', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const level = element.shadowRoot.querySelector('#spell-level-5');
+            assert.include(trimAll(level.shadowRoot.textContent), "5th level (1 slot): legend lore");
+            done();
+          });
+        });
+
+        test('displays reactions', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "Reactions");
+            done();
+          });
+        });
+
+        test('displays reaction name', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const reaction = element.shadowRoot.querySelector('#reaction-0');
+            assert.include(trimAll(reaction.shadowRoot.textContent), "Parry");
+            done();
+          });
+        });
+
+        test('displays reaction description', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            const reaction = element.shadowRoot.querySelector('#reaction-0');
+            assert.include(trimAll(reaction.shadowRoot.textContent), "The gynosphinx adds 3 to its AC against one melee attack that would hit it.");
+            done();
+          });
+        });
+
+        test('displays saving throws', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Strength +14');
+            done();
+          });
+        });
+
+        test('does not display saving throws for creature without saving throws', (done) => {
+          const element = fixture('simple-stat-block');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Saving Throws');
+            done();
+          });
+        });
+
+        test('displays damage threshold for objects', (done) => {
+          const element = fixture('object-stat-block');
+
+          flush(() => {
+            assert.include(trimAll(element.$['damage-threshold'].shadowRoot.textContent), '10');
+            done();
+          });
+        });
+      });
+    </script>
+
+  </body>
+</html>
