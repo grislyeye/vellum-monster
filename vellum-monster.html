@@ -12,6 +12,29 @@
 <dom-module id="vellum-monster">
 
   <template>
+    <style>
+      table#ability-scores  {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border-spacing: 0;
+        margin: 0.2em;
+      }
+
+      table#ability-scores th, table#ability-scores td {
+        text-align: center;
+        width: 50px;
+        min-width: 50px;
+        padding: 0;
+        vertical-align: middle;
+      }
+
+      .legendary-actions ul li {
+        margin: 0;
+        padding-left: 1em;
+        text-indent: -1em;
+      }
+    </style>
 
     <div id="monster-stats" class="main-stats">
 
