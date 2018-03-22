@@ -584,7 +584,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "Legendary Actions");
+            const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions');
+            assert.include(trimAll(lengendaryActions.shadowRoot.textContent), "Legendary Actions");
             done();
           });
         });
@@ -593,7 +594,7 @@
           const element = fixture('simple-stat-block');
 
           flush(() => {
-            assert.notInclude(trimAll(element.shadowRoot.textContent), "Legendary Actions");
+            assert.isNotOk(element.shadowRoot.querySelector('#legendary-actions'));
             done();
           });
         });
@@ -602,7 +603,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "The gynosphinx can take 3 legendary actions");
+            const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions');
+            assert.include(trimAll(lengendaryActions.textContent), "The gynosphinx can take 3 legendary actions");
             done();
           });
         });
@@ -730,7 +732,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "Reactions");
+            const reactions = element.shadowRoot.querySelector('#reactions');
+            assert.include(trimAll(reactions.shadowRoot.textContent), "Reactions");
             done();
           });
         });

@@ -30,7 +30,7 @@
         vertical-align: middle;
       }
 
-      .legendary-actions ul li {
+      #legendary-actions ul li {
         margin: 0;
         padding-left: 1em;
         text-indent: -1em;
@@ -143,7 +143,7 @@
 
       <dom-if if="{{reactions}}">
         <template>
-          <vellum-stat-block-section name="Reactions">
+          <vellum-stat-block-section id="reactions" name="Reactions">
             <dom-repeat items="{{reactions}}">
               <template>
                 <vellum-action id$="reaction-{{index}}" action="{{item}}"></vellum-action>
@@ -155,7 +155,7 @@
 
       <dom-if if="{{legendaryActions}}">
         <template>
-          <vellum-stat-block-section class="legendary-actions" name="Legendary Actions">
+          <vellum-stat-block-section id="legendary-actions" name="Legendary Actions">
 
             <p>The {{lowerCaseName}} can take {{legendaryActions.number}} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
 
