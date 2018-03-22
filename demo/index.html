@@ -13,7 +13,6 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../vellum-monster.html">
     <link rel="import" href="../vellum-stat.html">
-    <link rel="import" href="../vellum-stat-block-divider.html">
     <link rel="import" href="../themes/official/official-theme.html">
     <custom-style>
       <style is="custom-style" include="official-theme"></style>
@@ -299,7 +298,9 @@
             description="Demonstration of custom stat blocks"
           >
 
-            <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
+            <vellum-stat-block-section name="Custom Stats">
+              <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
+            </vellum-stat-block-section>
 
             <vellum-stat-block-divider></vellum-stat-block-divider>
 
