@@ -8,8 +8,6 @@
       :host {
         display: block;
         overflow: hidden;
-        break-inside: avoid-column;
-        -webkit-column-break-inside: avoid;
         font-family: sans-serif;
         width: 350px;
         font-size: 10pt;
@@ -29,11 +27,11 @@
         padding: 0.5em;
       }
 
-      :host.two-column {
+      :host(.two-column) {
         width: var(--stat-block-two-column-width, 840px);
       }
 
-      :host.two-column .content-wrapper {
+      :host(.two-column) .content-wrapper {
 
          -webkit-columns: var(--stat-block-two-column-column-width, 390px) 2;
             -moz-columns: var(--stat-block-two-column-column-width, 390px) 2;
