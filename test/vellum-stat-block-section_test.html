@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>vellum-stat-block-section test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../vellum-stat-block-section.html">
+  </head>
+  <body>
+
+    <test-fixture id="stat-block-section">
+      <template>
+        <vellum-stat-block-section name="Section Title">
+          <div>Section Content</div>
+        </vellum-stat>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('<vellum-stat-block-section>', () => {
+
+        test('displays section heading', (done) => {
+          const element = fixture('stat-block-section');
+
+          flush(() => {
+            assert.include(element.shadowRoot.textContent.trim(), 'Section Title');
+            done();
+          });
+        });
+
+        test('displays section content', (done) => {
+          const element = fixture('stat-block-section');
+
+          flush(() => {
+            assert.include(element.textContent.trim(), 'Section Content');
+            done();
+          });
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

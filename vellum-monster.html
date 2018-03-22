@@ -3,6 +3,7 @@
 <link rel="import" href="vellum-stat-block-divider.html">
 <link rel="import" href="vellum-stat.html">
 <link rel="import" href="vellum-spell-level.html">
+<link rel="import" href="vellum-stat-block-section.html">
 <link rel="import" href="vellum-action.html">
 <link rel="import" href="vellum-legendary-action.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
@@ -128,34 +129,33 @@
 
       <dom-if if={{actions}}>
         <template>
-          <section id="actions">
-            <h2>Actions</h2>
+          <vellum-stat-block-section id="actions" name="Actions">
 
             <dom-repeat items="{{actions}}">
               <template>
                 <vellum-action id$="action-{{index}}" action="{{item}}"></vellum-stat>
               </template>
             </dom-repeat>
-          </section>
+
+          </vellum-stat-block-section>
         </template>
       </dom-if>
 
       <dom-if if="{{reactions}}">
         <template>
-          <h2>Reactions</h2>
-
-          <dom-repeat items="{{reactions}}">
-            <template>
-              <vellum-action id$="reaction-{{index}}" action="{{item}}"></vellum-stat>
-            </template>
-          </dom-repeat>
+          <vellum-stat-block-section name="Reactions">
+            <dom-repeat items="{{reactions}}">
+              <template>
+                <vellum-action id$="reaction-{{index}}" action="{{item}}"></vellum-action>
+              </template>
+            </dom-repeat>
+          </vellum-stat-block-section>
         </template>
       </dom-if>
 
       <dom-if if="{{legendaryActions}}">
         <template>
-          <section class="legendary-actions">
-            <h2>Legendary Actions</h2>
+          <vellum-stat-block-section class="legendary-actions" name="Legendary Actions">
 
             <p>The {{lowerCaseName}} can take {{legendaryActions.number}} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
 
@@ -166,7 +166,7 @@
                 </template>
               </dom-repeat>
             </ul>
-          </section>
+          </vellum-stat-block-section>
 
         </template>
       </dom-if>
