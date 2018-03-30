@@ -1,4 +1,4 @@
-# &lt;vellum-stat-block&gt; [![Build Status](https://travis-ci.org/grislyeye/vellum-stat-block.svg?branch=master)](https://travis-ci.org/grislyeye/vellum-stat-block) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/grislyeye/vellum-stat-block)
+# &lt;vellum-monster&gt; [![Build Status](https://travis-ci.org/grislyeye/vellum-monster.svg?branch=master)](https://travis-ci.org/grislyeye/vellum-monster) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/grislyeye/vellum-monster)
 
 Web component for displaying monster stat blocks for the fifth edition of the world's most popular table-top roleplaying game. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
@@ -9,7 +9,7 @@ Web component for displaying monster stat blocks for the fifth edition of the wo
 To install:
 
 ```sh
-bower install --save vellum-stat-block
+bower install --save vellum-monster
 ```
 
 Add the following lines to your HTML `head` element:
