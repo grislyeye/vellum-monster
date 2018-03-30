@@ -1,4 +1,4 @@
-# &lt;vellum-stat-block&gt; [![Build Status](https://travis-ci.org/rgladwell/vellum-stat-block.svg?branch=master)](https://travis-ci.org/rgladwell/vellum-stat-block) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/rgladwell/vellum-stat-block)
+# &lt;vellum-stat-block&gt; [![Build Status](https://travis-ci.org/grislyeye/vellum-stat-block.svg?branch=master)](https://travis-ci.org/grislyeye/vellum-stat-block) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/grislyeye/vellum-stat-block)
 
 Web component for displaying monster stat blocks for the fifth edition of the world's most popular table-top roleplaying game. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
@@ -32,7 +32,7 @@ A stat block is written as follows:
 ```
 -->
 ```html
-<vellum-monster class="official" id="warhorse" itemscope itemtype="http://rgladwell.github.io/vellum-schemas/monster.html">
+<vellum-monster class="official" id="warhorse" itemscope itemtype="https://grislyeye.com/vellum-schemas/monster.html">
 
   <dl>
     <dt>Name</dt><dd itemprop="name">Warhorse</dd>
@@ -142,7 +142,7 @@ For example:
 </vellum-monster>
 ```
 
-**Note:** Users are encouraged `<vellum-monster>` element for monster descriptions wherever possible, and [raise bugs](https://github.com/rgladwell/vellum-stat-block/issues/new) where it doesn't support what you want to do. Rather than fallback to the `<vellum-stat-block>`.
+**Note:** Users are encouraged `<vellum-monster>` element for monster descriptions wherever possible, and [raise bugs](https://github.com/grislyeye/vellum-stat-block/issues/new) where it doesn't support what you want to do. Rather than fallback to the `<vellum-stat-block>`.
 
 ## Hacking
 

@@ -1,12 +1,12 @@
 {
   "name": "vellum-stat-block",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Web component for displaying 5th Edition monster stat blocks",
   "keywords": [
     "polymer",
     "webcomponent"
   ],
-  "author": "Ricardo Gladwell <ricardo@gladwell.me> (https://gladwell.me)",
+  "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
   ],
