@@ -5,7 +5,7 @@
 <link rel="import" href="vellum-stat-block-ability-scores.html">
 <link rel="import" href="vellum-spell-level.html">
 <link rel="import" href="vellum-stat-block-section.html">
-<link rel="import" href="vellum-action.html">
+<link rel="import" href="vellum-attack.html">
 <link rel="import" href="vellum-legendary-action.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
@@ -75,16 +75,16 @@
 
     <vellum-stat-block-divider></vellum-stat-block-divider>
 
-    <div class="traits-and-actions">
+    <div id="traits-and-actions">
       <dom-repeat items="{{specialTraits}}">
         <template>
-          <vellum-action id$="special-trait-{{index}}" action="{{item}}"></vellum-actions>
+          <vellum-stat id$="special-trait-{{index}}" class="trait" name="{{item.name}}." values="{{item.description}}"></vellum-stat>
         </template>
       </dom-repeat>
 
       <dom-if if="{{spellcasting}}">
         <template>
-          <vellum-action id="spellcasting" action="{{spellcastingAction}}"></vellum-action>
+          <vellum-stat id="spellcasting" class="trait" name="Spellcasting." values="{{spellcastingDescription}}"></vellum-stat>
           <ul>
             <dom-repeat items={{spellcasting.levels}}>
               <template>
@@ -101,7 +101,19 @@
 
             <dom-repeat items="{{actions}}">
               <template>
-                <vellum-action id$="action-{{index}}" action="{{item}}"></vellum-stat>
+
+                <dom-if if="{{!item.type}}">
+                  <template>
+                    <vellum-stat id$="action-{{index}}" class="action" name="{{item.name}}." values="{{item.description}}"></vellum-stat>
+                  </template>
+                </dom-if>
+
+                <dom-if if={{item.type}}>
+                  <template>
+                    <vellum-attack id$="action-{{index}}" name="{{item.name}}" type="{{item.type}}" bonus="{{item.bonus}}" reach="{{item.reach}}" target="{{item.target}}" damage="{{item.damage}}" damage-type="{{item.damageType}}" notes="{{item.notes}}" limited-usage="{{item.limitedUsage}}" effects="{{item.randomEffects}}"></vellum-attack>
+                  </template>
+                </dom-if>
+
               </template>
             </dom-repeat>
 
@@ -114,7 +126,7 @@
           <vellum-stat-block-section id="reactions" name="Reactions">
             <dom-repeat items="{{reactions}}">
               <template>
-                <vellum-action id$="reaction-{{index}}" action="{{item}}"></vellum-action>
+                <vellum-stat id$="reaction-{{index}}" class="action" name="{{item.name}}" values="{{item.description}}"></vellum-stat>
               </template>
             </dom-repeat>
           </vellum-stat-block-section>
@@ -192,9 +204,9 @@
           xp: Number,
           specialTraits: Array,
           spellcasting: Object,
-          spellcastingAction: {
+          spellcastingDescription: {
             type: Object,
-            computed: "_spellcastingAction(lowerCaseName, spellcasting)"
+            computed: "_spellcastingDescription(lowerCaseName, spellcasting)"
           },
           actions: Array,
           reactions: Array,
@@ -230,15 +242,12 @@
         return name.toLowerCase();
       }
 
-      _spellcastingAction(lowerCaseName, spellcasting) {
+      _spellcastingDescription(lowerCaseName, spellcasting) {
         if(spellcasting) {
-          return {
-            name: "Spellcasting",
-            description: `
-              The ${lowerCaseName} is a ${spellcasting.level}-level spellcaster.
-              Its spellcasting ability is ${spellcasting.ability} (spell save DC ${spellcasting.save}, ${spellcasting.attackBonus} to hit with spell attacks), and ${spellcasting.notes}.
-              The ${lowerCaseName} has the following ${spellcasting.class} spells prepared:`
-          }
+          return `
+            The ${lowerCaseName} is a ${spellcasting.level}-level spellcaster.
+            Its spellcasting ability is ${spellcasting.ability} (spell save DC ${spellcasting.save}, ${spellcasting.attackBonus} to hit with spell attacks), and ${spellcasting.notes}.
+            The ${lowerCaseName} has the following ${spellcasting.class} spells prepared:`
         }
       }
     }
