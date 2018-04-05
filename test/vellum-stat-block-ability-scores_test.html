@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>vellum-stat-block-ability-scores test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="test-util.js"></script>
+
+    <link rel="import" href="../vellum-stat-block-ability-scores.html">
+  </head>
+  <body>
+
+    <test-fixture id="ability-scores">
+      <template>
+        <vellum-stat-block-ability-scores id="ability-scores" str="18" dex="16" con="14" int="12" wis="10" cha="8"></vellum-stat-block-ability-scores>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('<vellum-stat-block-ability-scores>', () => {
+
+        test('displays strength with bonus', (done) => {
+          const element = fixture('ability-scores');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "18 (+4)");
+            done();
+          });
+        });
+
+        test('displays dexterity with bonus', (done) => {
+          const element = fixture('ability-scores');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "16 (+3)");
+            done();
+          });
+        });
+
+        test('displays constitution with bonus', (done) => {
+          const element = fixture('ability-scores');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "14 (+2)");
+            done();
+          });
+        });
+
+        test('displays intelligence with bonus', (done) => {
+          const element = fixture('ability-scores');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "12 (+1)");
+            done();
+          });
+        });
+
+        test('displays wisdom with bonus', (done) => {
+          const element = fixture('ability-scores');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "10 (+0)");
+            done();
+          });
+        });
+
+        test('displays charisma with bonus', (done) => {
+          const element = fixture('ability-scores');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), "8 (-1)");
+            done();
+          });
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

@@ -297,14 +297,17 @@
             name="Custom Stat Block"
             description="Demonstration of custom stat blocks"
           >
-
-            <vellum-stat-block-section name="Custom Stats">
-              <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
-            </vellum-stat-block-section>
+            <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
 
             <vellum-stat-block-divider></vellum-stat-block-divider>
 
-            <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
+            <vellum-stat-block-ability-scores id="ability-scores" str="18" dex="16" con="14" int="12" wis="10" cha="8"></vellum-stat-block-ability-scores>
+
+            <vellum-stat-block-divider></vellum-stat-block-divider>
+
+            <vellum-stat-block-section name="Custom Stats Section">
+              <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
+            </vellum-stat-block-section>
 
           </vellum-monster>
 
