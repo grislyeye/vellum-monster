@@ -540,8 +540,7 @@
           const element = fixture('object-stat-block');
 
           flush(() => {
-            const actions = element.shadowRoot.querySelector('#actions');
-            assert.isNotOk(actions);
+            assert.isNotOk(element.shadowRoot.querySelector('#actions'));
             done();
           });
         });
