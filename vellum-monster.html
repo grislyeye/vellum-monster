@@ -2,6 +2,7 @@
 <link rel="import" href="vellum-stat-block.html">
 <link rel="import" href="vellum-stat-block-divider.html">
 <link rel="import" href="vellum-stat.html">
+<link rel="import" href="vellum-stat-block-ability-scores.html">
 <link rel="import" href="vellum-spell-level.html">
 <link rel="import" href="vellum-stat-block-section.html">
 <link rel="import" href="vellum-action.html">
@@ -14,22 +15,6 @@
 
   <template>
     <style>
-      table#ability-scores  {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        border-spacing: 0;
-        margin: 0.2em;
-      }
-
-      table#ability-scores th, table#ability-scores td {
-        text-align: center;
-        width: 50px;
-        min-width: 50px;
-        padding: 0;
-        vertical-align: middle;
-      }
-
       #legendary-actions ul li {
         margin: 0;
         padding-left: 1em;
@@ -61,24 +46,7 @@
         <template>
           <vellum-stat-block-divider></vellum-stat-block-divider>
 
-          <table id="ability-scores">
-            <tr>
-              <th>STR</th>
-              <th>DEX</th>
-              <th>CON</th>
-              <th>INT</th>
-              <th>WIS</th>
-              <th>CHA</th>
-            </tr>
-            <tr>
-              <td>{{displayStrength}}</td>
-              <td>{{displayDexterity}}</td>
-              <td>{{displayConstitution}}</td>
-              <td>{{displayIntelligence}}</td>
-              <td>{{displayWisdom}}</td>
-              <td>{{displayCharisma}}</td>
-            </tr>
-          </table>
+          <vellum-stat-block-ability-scores id="ability-scores" str="{{str}}" dex="{{dex}}" con={{con}} int={{int}} wis={{wis}} cha={{cha}}></vellum-stat-block-ability-scores>
 
           <vellum-stat-block-divider></vellum-stat-block-divider>
         </template>
@@ -212,30 +180,6 @@
             type: Boolean,
             computed: '_hasAbilities(str,dex,con,int,wis,cha)'
           },
-          displayStrength: {
-            type: String,
-            computed: '_displayAbility(str)'
-          },
-          displayDexterity: {
-            type: String,
-            computed: '_displayAbility(dex)'
-          },
-          displayConstitution: {
-            type: String,
-            computed: '_displayAbility(con)'
-          },
-          displayIntelligence: {
-            type: String,
-            computed: '_displayAbility(int)'
-          },
-          displayWisdom: {
-            type: String,
-            computed: '_displayAbility(wis)'
-          },
-          displayCharisma: {
-            type: String,
-            computed: '_displayAbility(cha)'
-          },
           savingThrows: Array,
           skills: Array,
           damageResistances: String,
@@ -280,13 +224,6 @@
 
       _hasAbilities(str, dex, con, int, wis, cha) {
         return (str != undefined && dex != undefined && con != undefined && int != undefined && wis != undefined && cha != undefined);
-      }
-
-      _displayAbility(ability) {
-        const bonus = Math.round((ability / 2.1) - 5);
-
-        if(bonus >= 0) return ability + ' (+' + bonus + ')';
-        else return ability + ' (' + bonus + ')';
       }
 
       _computerLowerCaseName(name) {
