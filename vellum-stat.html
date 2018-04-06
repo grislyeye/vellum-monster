@@ -6,6 +6,10 @@
   <template>
 
     <style>
+      .stat-name {
+        font-weight: bold;
+      }
+
       p {
         margin-top: 1pt;
         margin-bottom: 0;
@@ -15,8 +19,13 @@
         text-indent: -1em;
       }
 
-      .stat-name {
-        font-weight: bold;
+      :host(.trait) p, :host(.action) {
+        margin-top: 0;
+        margin-bottom: 1em;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        text-indent: 0;
       }
     </style>
 

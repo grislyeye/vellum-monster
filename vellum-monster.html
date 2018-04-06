@@ -2,9 +2,10 @@
 <link rel="import" href="vellum-stat-block.html">
 <link rel="import" href="vellum-stat-block-divider.html">
 <link rel="import" href="vellum-stat.html">
+<link rel="import" href="vellum-stat-block-ability-scores.html">
 <link rel="import" href="vellum-spell-level.html">
 <link rel="import" href="vellum-stat-block-section.html">
-<link rel="import" href="vellum-action.html">
+<link rel="import" href="vellum-attack.html">
 <link rel="import" href="vellum-legendary-action.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
@@ -14,22 +15,6 @@
 
   <template>
     <style>
-      table#ability-scores  {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        border-spacing: 0;
-        margin: 0.2em;
-      }
-
-      table#ability-scores th, table#ability-scores td {
-        text-align: center;
-        width: 50px;
-        min-width: 50px;
-        padding: 0;
-        vertical-align: middle;
-      }
-
       #legendary-actions ul li {
         margin: 0;
         padding-left: 1em;
@@ -61,24 +46,7 @@
         <template>
           <vellum-stat-block-divider></vellum-stat-block-divider>
 
-          <table id="ability-scores">
-            <tr>
-              <th>STR</th>
-              <th>DEX</th>
-              <th>CON</th>
-              <th>INT</th>
-              <th>WIS</th>
-              <th>CHA</th>
-            </tr>
-            <tr>
-              <td>{{displayStrength}}</td>
-              <td>{{displayDexterity}}</td>
-              <td>{{displayConstitution}}</td>
-              <td>{{displayIntelligence}}</td>
-              <td>{{displayWisdom}}</td>
-              <td>{{displayCharisma}}</td>
-            </tr>
-          </table>
+          <vellum-stat-block-ability-scores id="ability-scores" str="{{str}}" dex="{{dex}}" con={{con}} int={{int}} wis={{wis}} cha={{cha}}></vellum-stat-block-ability-scores>
 
           <vellum-stat-block-divider></vellum-stat-block-divider>
         </template>
@@ -107,16 +75,16 @@
 
     <vellum-stat-block-divider></vellum-stat-block-divider>
 
-    <div class="traits-and-actions">
+    <div id="traits-and-actions">
       <dom-repeat items="{{specialTraits}}">
         <template>
-          <vellum-action id$="special-trait-{{index}}" action="{{item}}"></vellum-actions>
+          <vellum-stat id$="special-trait-{{index}}" class="trait" name="{{item.name}}." values="{{item.description}}"></vellum-stat>
         </template>
       </dom-repeat>
 
       <dom-if if="{{spellcasting}}">
         <template>
-          <vellum-action id="spellcasting" action="{{spellcastingAction}}"></vellum-action>
+          <vellum-stat id="spellcasting" class="trait" name="Spellcasting." values="{{spellcastingDescription}}"></vellum-stat>
           <ul>
             <dom-repeat items={{spellcasting.levels}}>
               <template>
@@ -133,7 +101,19 @@
 
             <dom-repeat items="{{actions}}">
               <template>
-                <vellum-action id$="action-{{index}}" action="{{item}}"></vellum-stat>
+
+                <dom-if if="{{!item.type}}">
+                  <template>
+                    <vellum-stat id$="action-{{index}}" class="action" name="{{item.name}}." values="{{item.description}}"></vellum-stat>
+                  </template>
+                </dom-if>
+
+                <dom-if if={{item.type}}>
+                  <template>
+                    <vellum-attack id$="action-{{index}}" name="{{item.name}}" type="{{item.type}}" bonus="{{item.bonus}}" reach="{{item.reach}}" target="{{item.target}}" damage="{{item.damage}}" damage-type="{{item.damageType}}" notes="{{item.notes}}" limited-usage="{{item.limitedUsage}}" effects="{{item.randomEffects}}"></vellum-attack>
+                  </template>
+                </dom-if>
+
               </template>
             </dom-repeat>
 
@@ -146,7 +126,7 @@
           <vellum-stat-block-section id="reactions" name="Reactions">
             <dom-repeat items="{{reactions}}">
               <template>
-                <vellum-action id$="reaction-{{index}}" action="{{item}}"></vellum-action>
+                <vellum-stat id$="reaction-{{index}}" class="action" name="{{item.name}}" values="{{item.description}}"></vellum-stat>
               </template>
             </dom-repeat>
           </vellum-stat-block-section>
@@ -212,30 +192,6 @@
             type: Boolean,
             computed: '_hasAbilities(str,dex,con,int,wis,cha)'
           },
-          displayStrength: {
-            type: String,
-            computed: '_displayAbility(str)'
-          },
-          displayDexterity: {
-            type: String,
-            computed: '_displayAbility(dex)'
-          },
-          displayConstitution: {
-            type: String,
-            computed: '_displayAbility(con)'
-          },
-          displayIntelligence: {
-            type: String,
-            computed: '_displayAbility(int)'
-          },
-          displayWisdom: {
-            type: String,
-            computed: '_displayAbility(wis)'
-          },
-          displayCharisma: {
-            type: String,
-            computed: '_displayAbility(cha)'
-          },
           savingThrows: Array,
           skills: Array,
           damageResistances: String,
@@ -248,9 +204,9 @@
           xp: Number,
           specialTraits: Array,
           spellcasting: Object,
-          spellcastingAction: {
+          spellcastingDescription: {
             type: Object,
-            computed: "_spellcastingAction(lowerCaseName, spellcasting)"
+            computed: "_spellcastingDescription(lowerCaseName, spellcasting)"
           },
           actions: Array,
           reactions: Array,
@@ -282,26 +238,16 @@
         return (str != undefined && dex != undefined && con != undefined && int != undefined && wis != undefined && cha != undefined);
       }
 
-      _displayAbility(ability) {
-        const bonus = Math.round((ability / 2.1) - 5);
-
-        if(bonus >= 0) return ability + ' (+' + bonus + ')';
-        else return ability + ' (' + bonus + ')';
-      }
-
       _computerLowerCaseName(name) {
         return name.toLowerCase();
       }
 
-      _spellcastingAction(lowerCaseName, spellcasting) {
+      _spellcastingDescription(lowerCaseName, spellcasting) {
         if(spellcasting) {
-          return {
-            name: "Spellcasting",
-            description: `
-              The ${lowerCaseName} is a ${spellcasting.level}-level spellcaster.
-              Its spellcasting ability is ${spellcasting.ability} (spell save DC ${spellcasting.save}, ${spellcasting.attackBonus} to hit with spell attacks), and ${spellcasting.notes}.
-              The ${lowerCaseName} has the following ${spellcasting.class} spells prepared:`
-          }
+          return `
+            The ${lowerCaseName} is a ${spellcasting.level}-level spellcaster.
+            Its spellcasting ability is ${spellcasting.ability} (spell save DC ${spellcasting.save}, ${spellcasting.attackBonus} to hit with spell attacks), and ${spellcasting.notes}.
+            The ${lowerCaseName} has the following ${spellcasting.class} spells prepared:`
         }
       }
     }

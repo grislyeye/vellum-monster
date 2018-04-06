@@ -322,7 +322,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "18 (+4)");
+            const abilityScores = element.shadowRoot.querySelector('#ability-scores');
+            assert.include(trimAll(abilityScores.shadowRoot.textContent), "18 (+4)");
             done();
           });
         });
@@ -331,7 +332,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "17 (+3)");
+            const abilityScores = element.shadowRoot.querySelector('#ability-scores');
+            assert.include(trimAll(abilityScores.shadowRoot.textContent), "17 (+3)");
             done();
           });
         });
@@ -340,7 +342,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "16 (+3)");
+            const abilityScores = element.shadowRoot.querySelector('#ability-scores');
+            assert.include(trimAll(abilityScores.shadowRoot.textContent), "16 (+3)");
             done();
           });
         });
@@ -349,7 +352,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "14 (+2)");
+            const abilityScores = element.shadowRoot.querySelector('#ability-scores');
+            assert.include(trimAll(abilityScores.shadowRoot.textContent), "14 (+2)");
             done();
           });
         });
@@ -358,7 +362,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "11 (+0)");
+            const abilityScores = element.shadowRoot.querySelector('#ability-scores');
+            assert.include(trimAll(abilityScores.shadowRoot.textContent), "11 (+0)");
             done();
           });
         });
@@ -367,7 +372,8 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "8 (-1)");
+            const abilityScores = element.shadowRoot.querySelector('#ability-scores');
+            assert.include(trimAll(abilityScores.shadowRoot.textContent), "8 (-1)");
             done();
           });
         });
@@ -376,7 +382,7 @@
           const element = fixture('object-stat-block');
 
           flush(() => {
-            assert.isNotOk(element.$['ability-scores']);
+            assert.isNotOk(element.shadowRoot.querySelector('#ability-scores'));
             done();
           });
         });
@@ -534,8 +540,7 @@
           const element = fixture('object-stat-block');
 
           flush(() => {
-            const actions = element.shadowRoot.querySelector('#actions');
-            assert.isNotOk(actions);
+            assert.isNotOk(element.shadowRoot.querySelector('#actions'));
             done();
           });
         });
