@@ -40,7 +40,7 @@
 
     <test-fixture id="body-value-stat">
       <template>
-        <vellum-stat name="Armor Class">12 (natural armor)</vellum-stat>
+        <vellum-stat name="Armor Class"><span id="armor"><strong>12</strong> (natural armor)</span></vellum-stat>
       </template>
     </test-fixture>
 
@@ -129,6 +129,17 @@
 
           flush(() => {
             assert.include(element.shadowRoot.textContent.trim(), '12 (natural armor)');
+            done();
+          });
+        });
+
+        // quarantine test: cannot verify element inner HTML
+        test.skip('displays HTML tags from stat body', (done) => {
+          const element = fixture('body-value-stat');
+
+          flush(() => {
+            console.log(element.shadowRoot.innerHTML);
+            assert.include(element.$.armor.innerHTML.trim(), '<strong>12</strong>');
             done();
           });
         });

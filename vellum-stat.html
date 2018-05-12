@@ -29,12 +29,27 @@
       }
     </style>
 
-    <dom-if if="{{displayText}}">
+    <dom-if if="{{hasDescription}}">
       <template>
-        <p>
-          <span class="stat-name">{{name}}</span>
-          <span class="stat-description">{{displayText}}</span>
-        </p>
+
+        <dom-if if="{{displayText}}">
+          <template>
+            <p>
+              <span class="stat-name">{{name}}</span>
+              <span class="stat-description">{{displayText}}</span>
+            </p>
+          </template>
+        </dom-if>
+
+        <dom-if if="!{{displayText}}" restamp="true">
+          <template>
+            <p>
+              <span class="stat-name">{{name}}</span>
+              <span id="description" class="stat-description"><slot></slot></span>
+            </p>
+          </template>
+        </dom-if>
+
       </template>
     </dom-if>
 
@@ -52,6 +67,10 @@
             type: Object,
             value: '_not-set'
           },
+          hasDescription: {
+            type: Boolean,
+            computed: '_hasDescription(values)'
+          },
           displayText: {
             type: String,
             computed: '_computeDisplayText(values)'
@@ -59,13 +78,14 @@
         }
       }
 
-      _computeDisplayText(values) {
-        const textContent = this.textContent.trim();
+      _hasDescription(values) {
+        const innerHTML = this.innerHTML.trim();
+        return (values !== '_not-set' || innerHTML !== "");
+      }
 
+      _computeDisplayText(values) {
         if(Array.isArray(values)) {
           return values.join(', ');
-        } else if(values === '_not-set' && textContent !== ""){
-          return textContent;
         } else if(values !== '_not-set') {
           return values;
         } else {
