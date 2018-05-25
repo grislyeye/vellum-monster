@@ -9,6 +9,7 @@
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
     <script src="test-util.js"></script>
+    <script src="custom-assertions.js"></script>
 
     <link rel="import" href="../vellum-monster.html">
   </head>
@@ -201,7 +202,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'Gynosphinx');
+            expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('Gynosphinx');
             done();
           });
         });
@@ -210,7 +211,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'monstrosity');
+            expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('monstrosity');
             done();
           });
         });
@@ -219,7 +220,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'large');
+            expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('large');
             done();
           });
         });
@@ -228,7 +229,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'lawful neutral');
+            expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('lawful neutral');
             done();
           });
         });
@@ -242,11 +243,22 @@
           });
         });
 
+        test('displays stat name', (done) => {
+          const element = fixture('detailed-stat-block');
+
+          flush(() => {
+            console.log(trimAll(element.$.ac.shadowRoot.textContent));
+            expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('Armor Class');
+            done();
+          });
+        });
+
         test('displays armour class', (done) => {
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.ac.shadowRoot.textContent), "17 (natural armor)");
+            console.log(trimAll(element.$.ac.shadowRoot.textContent));
+            expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('17 (natural armor)');
             done();
           });
         });
@@ -255,7 +267,7 @@
           const element = fixture('simple-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.ac.shadowRoot.textContent), "11");
+            expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('11');
             done();
           });
         });
@@ -265,7 +277,7 @@
 
           flush(() => {
             const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
-            assert.include(trimAll(hitPoints.shadowRoot.textContent), 136);
+            expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce(136);
             done();
           });
         });
@@ -275,7 +287,7 @@
 
           flush(() => {
             const hitPoints = element.shadowRoot.querySelector('#hit-points');
-            assert.include(trimAll(hitPoints.shadowRoot.textContent), "40");
+            expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('40');
             done();
           });
         });
@@ -285,7 +297,7 @@
 
           flush(() => {
             const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
-            assert.include(trimAll(hitPoints.shadowRoot.textContent), "16d10 + 48");
+            expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('16d10 + 48');
             done();
           });
         });
@@ -295,7 +307,7 @@
 
           flush(() => {
             const hitPoints = element.shadowRoot.querySelector('#hit-points');
-            assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), "()");
+            assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), '()');
             done();
           });
         });
@@ -304,7 +316,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.speed.shadowRoot.textContent), '40 ft., fly 60 ft.');
+            expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('40 ft., fly 60 ft.');
             done();
           });
         });
@@ -313,7 +325,7 @@
           const element = fixture('simple-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.speed.shadowRoot.textContent), '60 ft.');
+            expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('60 ft.');
             done();
           });
         });
@@ -323,7 +335,7 @@
 
           flush(() => {
             const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-            assert.include(trimAll(abilityScores.shadowRoot.textContent), "18 (+4)");
+            expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('18 (+4)');
             done();
           });
         });
@@ -333,7 +345,7 @@
 
           flush(() => {
             const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-            assert.include(trimAll(abilityScores.shadowRoot.textContent), "17 (+3)");
+            expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('17 (+3)');
             done();
           });
         });
@@ -343,7 +355,7 @@
 
           flush(() => {
             const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-            assert.include(trimAll(abilityScores.shadowRoot.textContent), "16 (+3)");
+            expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('16 (+3)');
             done();
           });
         });
@@ -353,7 +365,7 @@
 
           flush(() => {
             const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-            assert.include(trimAll(abilityScores.shadowRoot.textContent), "14 (+2)");
+            expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('14 (+2)');
             done();
           });
         });
@@ -363,7 +375,7 @@
 
           flush(() => {
             const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-            assert.include(trimAll(abilityScores.shadowRoot.textContent), "11 (+0)");
+            expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('11 (+0)');
             done();
           });
         });
@@ -373,7 +385,7 @@
 
           flush(() => {
             const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-            assert.include(trimAll(abilityScores.shadowRoot.textContent), "8 (-1)");
+            expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('8 (-1)');
             done();
           });
         });
@@ -391,7 +403,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.skills.shadowRoot.textContent), 'Arcana +14, History +14, Perception +9, Religion +9');
+            expect(trimAll(element.$.skills.shadowRoot.textContent)).to.includeOnce('Arcana +14, History +14, Perception +9, Religion +9');
             done();
           });
         });
@@ -400,7 +412,7 @@
           const element = fixture('simple-stat-block');
 
           flush(() => {
-            assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), "Skills");
+            assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), 'Skills');
             done();
           });
         });
@@ -409,7 +421,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['damage-resistances'].shadowRoot.textContent), "bludgeoning, piercing, and slashing from nonmagical items");
+            expect(trimAll(element.$['damage-resistances'].shadowRoot.textContent)).to.includeOnce('bludgeoning, piercing, and slashing from nonmagical items');
             done();
           });
         });
@@ -418,7 +430,7 @@
           const element = fixture('simple-stat-block');
 
           flush(() => {
-            assert.notInclude(trimAll(element.$['damage-resistances'].shadowRoot.textContent), "Damage Resistances");
+            assert.notInclude(trimAll(element.$['damage-resistances'].shadowRoot.textContent), 'Damage Resistances');
             done();
           });
         });
@@ -427,7 +439,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['damage-immunities'].shadowRoot.textContent), "psychic");
+            expect(trimAll(element.$['damage-immunities'].shadowRoot.textContent)).to.includeOnce('psychic');
             done();
           });
         });
@@ -445,7 +457,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['condition-immunities'].shadowRoot.textContent), "charmed, frightened");
+            expect(trimAll(element.$['condition-immunities'].shadowRoot.textContent)).to.includeOnce('charmed, frightened');
             done();
           });
         });
@@ -463,7 +475,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.senses.shadowRoot.textContent), "truesight 120 ft., passive Perception 18");
+            expect(trimAll(element.$.senses.shadowRoot.textContent)).to.includeOnce('truesight 120 ft., passive Perception 18');
             done();
           });
         });
@@ -472,7 +484,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$.languages.shadowRoot.textContent), "Common, Sphinx");
+            expect(trimAll(element.$.languages.shadowRoot.textContent)).to.includeOnce('Common, Sphinx');
             done();
           });
         });
@@ -491,7 +503,7 @@
 
           flush(() => {
             const challenge = element.shadowRoot.querySelector('#cr');
-            assert.include(trimAll(challenge.shadowRoot.textContent), '11 (7200 XP)');
+            expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (7200 XP)');
             done();
           });
         });
@@ -511,7 +523,7 @@
 
           flush(() => {
             const trait = element.shadowRoot.querySelector('#special-trait-1');
-            assert.include(trimAll(trait.shadowRoot.textContent), "Magic Weapons. The sphinx's weapon attacks are magical.");
+            expect(trimAll(trait.shadowRoot.textContent)).to.includeOnce('Magic Weapons. The sphinx\'s weapon attacks are magical.');
             done();
           });
         });
@@ -521,7 +533,7 @@
 
           flush(() => {
             const action = element.shadowRoot.querySelector('#special-trait-0');
-            assert.include(trimAll(action.shadowRoot.textContent), "Trampling Charge.");
+            expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Trampling Charge.');
             done();
           });
         });
@@ -531,7 +543,7 @@
 
           flush(() => {
             const action = element.shadowRoot.querySelector('#action-0');
-            assert.include(trimAll(action.shadowRoot.textContent), "Multiattack. The sphinx makes two claw attacks.");
+            expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Multiattack. The sphinx makes two claw attacks.');
             done();
           });
         });
@@ -550,7 +562,7 @@
 
           flush(() => {
             const attack = element.shadowRoot.querySelector('#action-1');
-            assert.include(trimAll(attack.shadowRoot.textContent), "Claw. Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) slashing damage");
+            expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) slashing damage');
             done();
           });
         });
@@ -560,7 +572,7 @@
 
           flush(() => {
             const attack = element.shadowRoot.querySelector('#action-1');
-            assert.include(trimAll(attack.shadowRoot.textContent), ". This is a magic weapon attack.");
+            expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('. This is a magic weapon attack.');
             done();
           });
         });
@@ -570,7 +582,7 @@
 
           flush(() => {
             const attack = element.shadowRoot.querySelector('#action-1');
-            assert.include(trimAll(attack.shadowRoot.textContent), '2. Paralysed. The target becomes paralysed.');
+            expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('2. Paralysed. The target becomes paralysed.');
             done();
           });
         });
@@ -580,7 +592,7 @@
 
           flush(() => {
             const attack = element.shadowRoot.querySelector('#action-0');
-            assert.include(trimAll(attack.shadowRoot.textContent), "Hooves.");
+            expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Hooves.');
             done();
           });
         });
@@ -590,7 +602,7 @@
 
           flush(() => {
             const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions');
-            assert.include(trimAll(lengendaryActions.shadowRoot.textContent), "Legendary Actions");
+            expect(trimAll(lengendaryActions.shadowRoot.textContent)).to.includeOnce('Legendary Actions');
             done();
           });
         });
@@ -609,7 +621,7 @@
 
           flush(() => {
             const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions');
-            assert.include(trimAll(lengendaryActions.textContent), "The gynosphinx can take 3 legendary actions");
+            expect(trimAll(lengendaryActions.textContent)).to.includeOnce('The gynosphinx can take 3 legendary actions');
             done();
           });
         });
@@ -619,7 +631,7 @@
 
           flush(() => {
             const action = element.shadowRoot.querySelector('#legendary-action-0');
-            assert.include(trimAll(action.shadowRoot.textContent), "Claw Attack. The sphinx makes one claw attack.");
+            expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Claw Attack. The sphinx makes one claw attack.');
             done();
           });
         });
@@ -629,7 +641,7 @@
 
           flush(() => {
             const action = element.shadowRoot.querySelector('#legendary-action-2');
-            assert.include(trimAll(action.shadowRoot.textContent), "Cast a Spell (Costs 3 Actions). The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.");
+            expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Cast a Spell (Costs 3 Actions). The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.');
             done();
           });
         });
@@ -639,7 +651,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "Spellcasting");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('Spellcasting');
             done();
           });
         });
@@ -658,7 +670,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "The gynosphinx is a 9th-level spellcaster.");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The gynosphinx is a 9th-level spellcaster.');
             done();
           });
         });
@@ -668,7 +680,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "Its spellcasting ability is Intelligence");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('Its spellcasting ability is Intelligence');
             done();
           });
         });
@@ -678,7 +690,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "spell save DC 17");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('spell save DC 17');
             done();
           });
         });
@@ -688,7 +700,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "+9 to hit with spell attacks");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('+9 to hit with spell attacks');
             done();
           });
         });
@@ -698,7 +710,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "The gynosphinx has the following wizard spells prepared:");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The gynosphinx has the following wizard spells prepared:');
             done();
           });
         });
@@ -708,7 +720,7 @@
 
           flush(() => {
             const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-            assert.include(trimAll(spellcasting.shadowRoot.textContent), "and it requires no material components to cast its spells.");
+            expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('and it requires no material components to cast its spells.');
             done();
           });
         });
@@ -718,7 +730,7 @@
 
           flush(() => {
             const level = element.shadowRoot.querySelector('#spell-level-0');
-            assert.include(trimAll(level.shadowRoot.textContent), "Cantrips (at will): mage hand, minor illusion, prestidigitation");
+            expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('Cantrips (at will): mage hand, minor illusion, prestidigitation');
             done();
           });
         });
@@ -728,7 +740,7 @@
 
           flush(() => {
             const level = element.shadowRoot.querySelector('#spell-level-5');
-            assert.include(trimAll(level.shadowRoot.textContent), "5th level (1 slot): legend lore");
+            expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('5th level (1 slot): legend lore');
             done();
           });
         });
@@ -738,7 +750,7 @@
 
           flush(() => {
             const reactions = element.shadowRoot.querySelector('#reactions');
-            assert.include(trimAll(reactions.shadowRoot.textContent), "Reactions");
+            expect(trimAll(reactions.shadowRoot.textContent)).to.includeOnce('Reactions');
             done();
           });
         });
@@ -748,7 +760,7 @@
 
           flush(() => {
             const reaction = element.shadowRoot.querySelector('#reaction-0');
-            assert.include(trimAll(reaction.shadowRoot.textContent), "Parry");
+            expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('Parry');
             done();
           });
         });
@@ -758,7 +770,7 @@
 
           flush(() => {
             const reaction = element.shadowRoot.querySelector('#reaction-0');
-            assert.include(trimAll(reaction.shadowRoot.textContent), "The gynosphinx adds 3 to its AC against one melee attack that would hit it.");
+            expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('The gynosphinx adds 3 to its AC against one melee attack that would hit it.');
             done();
           });
         });
@@ -767,7 +779,7 @@
           const element = fixture('detailed-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Strength +14');
+            expect(trimAll(element.$['saving-throws'].shadowRoot.textContent)).to.includeOnce('Strength +14');
             done();
           });
         });
@@ -785,7 +797,7 @@
           const element = fixture('object-stat-block');
 
           flush(() => {
-            assert.include(trimAll(element.$['damage-threshold'].shadowRoot.textContent), '10');
+            expect(trimAll(element.$['damage-threshold'].shadowRoot.textContent)).to.includeOnce('10');
             done();
           });
         });

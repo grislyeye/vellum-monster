@@ -36,7 +36,7 @@
     <dom-if if="{{hasDescription}}">
       <template>
 
-        <dom-if if="{{displayText}}">
+        <dom-if if="{{hasValues}}">
           <template>
             <p>
               <span class="stat-name">{{name}}</span>
@@ -45,7 +45,7 @@
           </template>
         </dom-if>
 
-        <dom-if if="!{{displayText}}" restamp="true">
+        <dom-if if="{{!hasValues}}">
           <template>
             <p>
               <span class="stat-name">{{name}}</span>
@@ -75,9 +75,13 @@
             type: Boolean,
             computed: '_hasDescription(values)'
           },
+          hasValues: {
+            type: String,
+            computed: '_hasValues(values)'
+          },
           displayText: {
             type: String,
-            computed: '_computeDisplayText(values)'
+            computed: '_displayText(values)'
           }
         }
       }
@@ -87,7 +91,11 @@
         return (values !== '_not-set' || innerHTML !== "");
       }
 
-      _computeDisplayText(values) {
+      _hasValues(values) {
+        return Array.isArray(values) || values !== '_not-set';
+      }
+
+      _displayText(values) {
         if(Array.isArray(values)) {
           return values.join(', ');
         } else if(values !== '_not-set') {

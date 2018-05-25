@@ -11,6 +11,7 @@
 
     <link rel="import" href="../vellum-stat.html">
     <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <script src="custom-assertions.js"></script>
   </head>
   <body>
 
@@ -60,7 +61,7 @@
           const element = fixture('single-value-stat');
 
           flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), 'Armor Class');
+            expect(element.shadowRoot.textContent.trim()).to.includeOnce('Armor Class');
             done();
           });
         });
@@ -138,7 +139,6 @@
           const element = fixture('body-value-stat');
 
           flush(() => {
-            console.log(element.shadowRoot.innerHTML);
             assert.include(element.$.armor.innerHTML.trim(), '<strong>12</strong>');
             done();
           });
