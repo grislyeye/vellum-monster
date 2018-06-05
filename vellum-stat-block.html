@@ -12,7 +12,6 @@
         width: 350px;
         font-size: 10pt;
         margin-bottom: 1em;
-        box-shadow: 2px 4px 4px lightgray;
       }
 
       .bar {
@@ -20,13 +19,20 @@
         border: var(--stat-block-bar-border, 1px solid #000);
         position: relative;
         z-index: 1;
-        background: var(--stat-block-bar-background);
+        background: var(--stat-block-bar-background, white);
+      }
+
+      .stat-block {
+        margin-left: 0.2em;
+        margin-right: 0.2em;
       }
 
       .content-wrapper {
+        background: var(--stat-block-background, white);
         border-left: 1px var(--stat-block-border-color, black) solid;
         border-right: 1px var(--stat-block-border-color, black) solid;
         padding: 0.5em;
+        box-shadow: 0.1em 0 0.1em lightgray, -0.1em 0 0.1em lightgray;
       }
 
       :host(.two-column) {
@@ -35,9 +41,9 @@
 
       :host(.two-column) .content-wrapper {
 
-         -webkit-columns: var(--stat-block-two-column-column-width, 390px) 2;
-            -moz-columns: var(--stat-block-two-column-column-width, 390px) 2;
-                 columns: var(--stat-block-two-column-column-width, 390px) 2;
+         -webkit-columns: var(--stat-block-two-column-column-width, 388px) 2;
+            -moz-columns: var(--stat-block-two-column-column-width, 388px) 2;
+                 columns: var(--stat-block-two-column-column-width, 388px) 2;
 
          -webkit-column-gap: 40px;
             -moz-column-gap: 40px;
@@ -75,19 +81,21 @@
 
     <div class="bar"></div>
 
-    <div class="content-wrapper">
+    <div class="stat-block">
+      <div class="content-wrapper">
 
-      <header>
-        <h1>{{name}}</h1>
-        <p>{{description}}</p>
-      </header>
+        <header>
+          <h1>{{name}}</h1>
+          <p>{{description}}</p>
+        </header>
 
-      <vellum-stat-block-divider></vellum-stat-block-divider>
+        <vellum-stat-block-divider></vellum-stat-block-divider>
 
-      <div id="stats">
-        <slot></slot>
+        <div id="stats">
+          <slot></slot>
+        </div>
+
       </div>
-
     </div>
 
     <div class="bar"></div>
