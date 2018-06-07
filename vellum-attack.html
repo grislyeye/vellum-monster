@@ -37,7 +37,7 @@
       <span class="attack-description">
         <span class="attack-type">{{attackType}}:</span>
         {{bonus}} to hit,
-        reach {{reach}},
+        {{reachOrRange}},
         {{target}}.
         Hit: {{damage}} {{damageType}} damage{{notes}}.
       </span>
@@ -72,12 +72,17 @@
           },
           bonus: String,
           reach: String,
+          range: String,
           target: String,
           damage: String,
           damageType: String,
           notes: String,
           limitedUsage: String,
-          effects: Array
+          effects: Array,
+          reachOrRange: {
+            type: String,
+            computed: '_reachOrRange(type, reach, range)'
+          }
         };
       }
 
@@ -89,6 +94,17 @@
             return 'Ranged Weapon Attack';
           case 'melee-or-ranged-attack':
             return 'Melee or Ranged Weapon Attack';
+        }
+      }
+
+      _reachOrRange(attackType, reach, range) {
+        switch(attackType) {
+          case 'melee-attack':
+            return 'reach ' + reach;
+          case 'ranged-attack':
+            return 'range ' + range;
+          case 'melee-or-ranged-attack':
+            return 'reach ' + reach + ' or range ' + range;
         }
       }
 

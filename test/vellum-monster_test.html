@@ -86,7 +86,7 @@
 
             <li itemprop="actions" itemscope>
               <span itemprop="name">Claw</span>
-              <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage <span itemprop="notes">. This is a magic weapon attack.</span></span>
+              <span><data itemprop="type" value="melee-or-ranged-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5 ft.</span> or range <span itemprop="range">10ft./20ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage <span itemprop="notes">. This is a magic weapon attack.</span></span>
 
               <ul>
                 <li itemscope itemprop="randomEffects"><strong itemprop="roll">1</strong> <span itemprop="name">Rabid</span> <span itemprop="effect">The target becomes rabid and uses any actions it has this turn to make melee attacks against its nearest ally.</span></li>
@@ -562,7 +562,7 @@
 
           flush(() => {
             const attack = element.shadowRoot.querySelector('#action-1');
-            expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) slashing damage');
+            expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee or Ranged Weapon Attack: +9 to hit, reach 5 ft. or range 10ft./20ft., one target. Hit: 13 (2d8 + 4) slashing damage');
             done();
           });
         });

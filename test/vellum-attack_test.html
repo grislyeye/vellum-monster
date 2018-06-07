@@ -22,19 +22,19 @@
 
     <test-fixture id="spear-attack">
       <template>
-        <vellum-attack name="Spear" type="melee-or-ranged-attack" bonus="+3" reach="20/60 ft." target="one target" damage="13 (2d8 + 4)" damage-type="piercing"></vellum-attack>
+        <vellum-attack name="Spear" type="melee-or-ranged-attack" bonus="+3" reach="5 ft." range="20/60 ft." target="one target" damage="13 (2d8 + 4)" damage-type="piercing"></vellum-attack>
       </template>
     </test-fixture>
 
     <test-fixture id="crossbow-attack">
       <template>
-        <vellum-attack name="Crossbow" type="ranged-attack" bonus="+3" reach="20/60 ft." target="one target" damage="13 (2d8 + 4)" damage-type="piercing"></vellum-attack>
+        <vellum-attack name="Crossbow" type="ranged-attack" bonus="+3" range="20/60 ft." target="one target" damage="13 (2d8 + 4)" damage-type="piercing"></vellum-attack>
       </template>
     </test-fixture>
 
     <test-fixture id="magical-attack">
       <template>
-        <vellum-attack name="Crossbow" type="ranged-attack" bonus="+3" reach="20/60 ft." target="one target" damage="13 (2d8 + 4)" damage-type="fire" effects='[{"roll": "2", "name": "Blinded", "effect": "The target becomes blinded."}, {"roll": "1", "name": "Confusion", "effect": "The target becomes confused."}]'></vellum-attack>
+        <vellum-attack name="Crossbow" type="ranged-attack" bonus="+3" range="20/60 ft." target="one target" damage="13 (2d8 + 4)" damage-type="fire" effects='[{"roll": "2", "name": "Blinded", "effect": "The target becomes blinded."}, {"roll": "1", "name": "Confusion", "effect": "The target becomes confused."}]'></vellum-attack>
       </template>
     </test-fixture>
 
@@ -119,6 +119,16 @@
            });
          });
 
+        test('does not display melee attack range', (done) => {
+          const element = fixture('claw-attack');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.shadowRoot.textContent), 'range');
+            done();
+          });
+        });
+
+
         test('displays melee or ranged attack type', (done) => {
           const element = fixture('spear-attack');
 
@@ -128,11 +138,38 @@
           });
         });
 
-        test('displays melee or ranged attack type', (done) => {
+        test('displays melee or ranged attack range and reach', (done) => {
+          const element = fixture('spear-attack');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'reach 5 ft. or range 20/60 ft.');
+            done();
+          });
+        });
+
+        test('displays ranged attack type', (done) => {
           const element = fixture('crossbow-attack');
 
           flush(() => {
             assert.include(trimAll(element.shadowRoot.textContent), 'Ranged Weapon Attack');
+            done();
+          });
+        });
+
+        test('displays ranged attack range', (done) => {
+          const element = fixture('crossbow-attack');
+
+          flush(() => {
+            assert.include(trimAll(element.shadowRoot.textContent), 'range 20/60 ft.');
+            done();
+          });
+        });
+
+        test('does not display ranged attack reach', (done) => {
+          const element = fixture('crossbow-attack');
+
+          flush(() => {
+            assert.notInclude(trimAll(element.shadowRoot.textContent), 'reach');
             done();
           });
         });
