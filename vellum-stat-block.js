@@ -66,6 +66,12 @@ export class StatBlock extends PolymerElement {
         color: var(--stat-block-header-color, black);
       }
 
+      :host p {
+        margin-top: 1pt;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
       header *:nth-child(2) {
         font-weight: normal;
         font-style: italic;
