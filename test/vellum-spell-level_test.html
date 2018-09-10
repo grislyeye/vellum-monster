@@ -6,11 +6,11 @@
 
     <title>vellum-spell-level test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="test-util.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
+    <script src="./test-util.js"></script>
 
-    <link rel="import" href="../vellum-spell-level.html">
+    <script type="module" src="../vellum-spell-level.js"></script>
   </head>
   <body>
 
@@ -32,75 +32,76 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('<vellum-spell-level>', () => {
+    <script type="module">
+import '../vellum-spell-level.js';
+suite('<vellum-spell-level>', () => {
 
-        test('displays spell level', (done) => {
-          const element = fixture('1st-level-spells');
+  test('displays spell level', (done) => {
+    const element = fixture('1st-level-spells');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), '1st level');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '1st level');
+      done();
+    });
+  });
 
-        test('displays spell slots', (done) => {
-          const element = fixture('1st-level-spells');
+  test('displays spell slots', (done) => {
+    const element = fixture('1st-level-spells');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), '(3 slots)');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '(3 slots)');
+      done();
+    });
+  });
 
-        test('displays spell slot', (done) => {
-          const element = fixture('5th-level-spells');
+  test('displays spell slot', (done) => {
+    const element = fixture('5th-level-spells');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), '(1 slot)');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '(1 slot)');
+      done();
+    });
+  });
 
-        test('displays spells', (done) => {
-          const element = fixture('1st-level-spells');
+  test('displays spells', (done) => {
+    const element = fixture('1st-level-spells');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'charm person, sleep');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'charm person, sleep');
+      done();
+    });
+  });
 
-        test('displays single spell for level', (done) => {
-          const element = fixture('5th-level-spells');
+  test('displays single spell for level', (done) => {
+    const element = fixture('5th-level-spells');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'legend lore');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'legend lore');
+      done();
+    });
+  });
 
-        test('displays cantrips', (done) => {
-          const element = fixture('cantrips');
+  test('displays cantrips', (done) => {
+    const element = fixture('cantrips');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'Cantrips');
-            assert.notInclude(trimAll(element.shadowRoot.textContent), 'Level');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'Cantrips');
+      assert.notInclude(trimAll(element.shadowRoot.textContent), 'Level');
+      done();
+    });
+  });
 
-        test('displays "at will" as slows', (done) => {
-          const element = fixture('cantrips');
+  test('displays "at will" as slows', (done) => {
+    const element = fixture('cantrips');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'at will');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'at will');
+      done();
+    });
+  });
 
-      });
-    </script>
+});
+</script>
 
   </body>
 </html>

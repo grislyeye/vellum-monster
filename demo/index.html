@@ -7,33 +7,56 @@
 
     <title>vellum-monster demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../vellum-monster.html">
-    <link rel="import" href="../vellum-stat.html">
-    <link rel="import" href="../themes/official/official-theme.html">
-    <custom-style>
+    <script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+    <script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+    <script type="module" src="../vellum-monster.js"></script>
+    <script type="module" src="../vellum-stat.js"></script>
+    <script type="module" src="../themes/official/official-theme.js"></script>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style is="custom-style" include="official-theme"></style>
-    </custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
 
-    <custom-style>
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
       </style>
-    </custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
   </head>
 
   <body>
 
-    <section class="vertical-section-container centered">
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<section class="vertical-section-container centered">
       <h2>Detailed Stat Block</h2>
 
       <demo-snippet>
         <template>
 
-          <vellum-monster id="gynosphinx" itemscope itemtype="https://grislyeye.com/vellum-schemas/monster.html">
+          <vellum-monster id="gynosphinx" itemscope="" itemtype="https://grislyeye.com/vellum-schemas/monster.html">
 
             <header>
               <h1 itemprop="name">Gynosphinx</h1>
@@ -75,26 +98,26 @@
 
             <ol>
 
-              <li itemprop="specialTraits" itemscope>
+              <li itemprop="specialTraits" itemscope="">
                 <span itemprop="name">Inscrutable</span>
                 <span itemprop="description">The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx's intentions or sincerity have disadvantage.</span>
               </li>
 
-              <li itemprop="specialTraits" itemscope>
+              <li itemprop="specialTraits" itemscope="">
                 <span itemprop="name">Magic Weapons</span>
                 <span itemprop="description">The sphinx's weapon attacks are magical.</span>
               </li>
 
                 <dt>Spellcasting.</dt>
-                <dd itemscope itemprop="spellcasting">
+                <dd itemscope="" itemprop="spellcasting">
                   The sphinx is a <span itemprop="level">9th</span>-level spellcaster. Its spellcasting ability is <span itemprop="ability">Intelligence</span> (spell save DC <span itemprop="save">17</span>, <span itemprop="attackBonus">+9</span> to hit with spell attacks) and <span itemprop="notes">it requires no material components to cast its spells</span>. The sphinx has the following <span itemprop="class">wizard</span> Spells prepared:
                   <ul>
-                    <li itemscope itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
                   </ul>
                 </dd>
 
@@ -104,9 +127,9 @@
               <h2>Actions</h2>
               <ul>
 
-                <li itemscope itemprop="actions"><strong itemprop="name">Multiattack</strong> <span itemprop="description">The sphinx makes two claw attacks.</span></li>
+                <li itemscope="" itemprop="actions"><strong itemprop="name">Multiattack</strong> <span itemprop="description">The sphinx makes two claw attacks.</span></li>
 
-              <li itemprop="actions" itemscope>
+              <li itemprop="actions" itemscope="">
                 <span itemprop="name">Claw</span>
                 <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage.</span>
               </li>
@@ -114,18 +137,18 @@
               </ul>
             </section>
 
-            <section itemscope itemprop="legendaryActions">
+            <section itemscope="" itemprop="legendaryActions">
               <h2>Legendary Actions</h2>
 
               <p>Can take <span itemprop="number">3</span> legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
 
               <ul>
 
-                <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> <span itemprop="description">The sphinx makes one claw attack.</span></li>
+                <li itemscope="" itemprop="actions"><strong itemprop="name">Claw Attack</strong> <span itemprop="description">The sphinx makes one claw attack.</span></li>
 
-                <li itemscope itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
+                <li itemscope="" itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
 
-                <li itemscope itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
+                <li itemscope="" itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
 
               </ul>
             </section>
@@ -139,7 +162,7 @@
       <demo-snippet>
         <template>
 
-          <vellum-monster class="official" id="warhorse" itemscope itemtype="https://grislyeye.com/vellum-schemas/monster.html">
+          <vellum-monster class="official" id="warhorse" itemscope="" itemtype="https://grislyeye.com/vellum-schemas/monster.html">
 
             <dl>
               <dt>Name</dt><dd itemprop="name">Warhorse</dd>
@@ -164,13 +187,13 @@
             </dl>
 
             <ol>
-              <li itemprop="specialTraits" itemscope>
+              <li itemprop="specialTraits" itemscope="">
                 <span itemprop="name">Trampling Charge</span>
                 <span itemprop="description">If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on
       the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action.</span>
               </li>
 
-                <li itemprop="actions" itemscope>
+                <li itemprop="actions" itemscope="">
                   <span itemprop="name">Hooves</span>
                   <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+4</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">11 (2d6 + 4)</span> <span itemprop="damageType">bludgeoning</span> damage.</span>
                 </li>
@@ -186,7 +209,7 @@
       <demo-snippet>
         <template>
 
-          <vellum-monster id="gynosphinx" class="two-column" itemscope itemtype="https://grislyeye.com/vellum-schemas/monster.html">
+          <vellum-monster id="gynosphinx" class="two-column" itemscope="" itemtype="https://grislyeye.com/vellum-schemas/monster.html">
 
             <header>
               <h1 itemprop="name">Gynosphinx</h1>
@@ -228,26 +251,26 @@
 
             <ol>
 
-              <li itemprop="specialTraits" itemscope>
+              <li itemprop="specialTraits" itemscope="">
                 <span itemprop="name">Inscrutable</span>
                 <span itemprop="description">The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx's intentions or sincerity have disadvantage.</span>
               </li>
 
-              <li itemprop="specialTraits" itemscope>
+              <li itemprop="specialTraits" itemscope="">
                 <span itemprop="name">Magic Weapons</span>
                 <span itemprop="description">The sphinx's weapon attacks are magical.</span>
               </li>
 
                 <dt>Spellcasting.</dt>
-                <dd itemscope itemprop="spellcasting">
+                <dd itemscope="" itemprop="spellcasting">
                   The sphinx is a <span itemprop="level">9th</span>-level spellcaster. Its spellcasting ability is <span itemprop="ability">Intelligence</span> (spell save DC <span itemprop="save">17</span>, <span itemprop="attackBonus">+9</span> to hit with spell attacks) and <span itemprop="notes">it requires no material components to cast its spells</span>. The sphinx has the following <span itemprop="class">wizard</span> Spells prepared:
                   <ul>
-                    <li itemscope itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
-                    <li itemscope itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">Cantrips</span> (at will): <em><span itemprop="spells">mage hand</span>, <span itemprop="spells">minor illusion</span>, <span itemprop="spells">prestidigitation</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">1st</span> Level (<span itemprop="slots">4</span> slots): <em><span itemprop="spells">detect magic</span>, <span itemprop="spells">identify</span>, <span itemprop="spells">shield</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">2nd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">darkness</span>, <span itemprop="spells">locate object</span>, <span itemprop="spells">suggestion</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">3rd</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">dispel magic</span>, <span itemprop="spells">remove curse</span>, <span itemprop="spells">tongues</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">4th</span> Level (<span itemprop="slots">3</span> slots): <em><span itemprop="spells">banishment</span>, <span itemprop="spells">greater invisibility</span></em></li>
+                    <li itemscope="" itemprop="levels"><span itemprop="level">5th</span> Level (<span itemprop="slots">1</span> slot): <em><span itemprop="spells">legend lore</span></em></li>
                   </ul>
                 </dd>
 
@@ -257,9 +280,9 @@
               <h2>Actions</h2>
               <ul>
 
-                <li itemscope itemprop="actions"><strong itemprop="name">Multiattack</strong> <span itemprop="description">The sphinx makes two claw attacks.</span></li>
+                <li itemscope="" itemprop="actions"><strong itemprop="name">Multiattack</strong> <span itemprop="description">The sphinx makes two claw attacks.</span></li>
 
-              <li itemprop="actions" itemscope>
+              <li itemprop="actions" itemscope="">
                 <span itemprop="name">Claw</span>
                 <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage.</span>
               </li>
@@ -267,18 +290,18 @@
               </ul>
             </section>
 
-            <section itemscope itemprop="legendaryActions">
+            <section itemscope="" itemprop="legendaryActions">
               <h2>Legendary Actions</h2>
 
               <p>Can take <span itemprop="number">3</span> legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
 
               <ul>
 
-                <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> <span itemprop="description">The sphinx makes one claw attack.</span></li>
+                <li itemscope="" itemprop="actions"><strong itemprop="name">Claw Attack</strong> <span itemprop="description">The sphinx makes one claw attack.</span></li>
 
-                <li itemscope itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
+                <li itemscope="" itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
 
-                <li itemscope itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
+                <li itemscope="" itemprop="actions"><strong><span itemprop="name">Cast a Spell</span> (Costs <span itemprop="actions">3</span> Actions).</strong> <span itemprop="description">The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.</span></li>
 
               </ul>
             </section>
@@ -292,11 +315,7 @@
       <demo-snippet>
         <template>
 
-          <vellum-stat-block
-            class="official"
-            name="Custom Stat Block"
-            description="Demonstration of custom stat blocks"
-          >
+          <vellum-stat-block class="official" name="Custom Stat Block" description="Demonstration of custom stat blocks">
             <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
 
             <vellum-stat-block-divider></vellum-stat-block-divider>
@@ -309,12 +328,15 @@
               <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
             </vellum-stat-block-section>
 
-          </vellum-monster>
+          
 
-        </template>
+        </vellum-stat-block></template>
       </demo-snippet>
 
-    </section>
+    </section>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
   </body>
 

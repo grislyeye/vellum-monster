@@ -6,11 +6,11 @@
 
     <title>vellum-attack test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="test-util.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
+    <script src="./test-util.js"></script>
 
-    <link rel="import" href="../vellum-attack.html">
+    <script type="module" src="../vellum-attack.js"></script>
   </head>
   <body>
 
@@ -44,165 +44,166 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('<vellum-attack>', () => {
-         test('displays attack name', (done) => {
-          const element = fixture('claw-attack');
+    <script type="module">
+import '../vellum-attack.js';
+suite('<vellum-attack>', () => {
+   test('displays attack name', (done) => {
+    const element = fixture('claw-attack');
 
-           flush(() => {
-             assert.include(trimAll(element.shadowRoot.textContent), 'Claw');
-             done();
-           });
-         });
+     flush(() => {
+       assert.include(trimAll(element.shadowRoot.textContent), 'Claw');
+       done();
+     });
+   });
 
-         test('displays attack type', (done) => {
-          const element = fixture('claw-attack');
+   test('displays attack type', (done) => {
+    const element = fixture('claw-attack');
 
-           flush(() => {
-             assert.include(trimAll(element.shadowRoot.textContent), 'Melee Weapon Attack');
-             done();
-           });
-         });
+     flush(() => {
+       assert.include(trimAll(element.shadowRoot.textContent), 'Melee Weapon Attack');
+       done();
+     });
+   });
 
-         test('displays attack bonus', (done) => {
-          const element = fixture('claw-attack');
+   test('displays attack bonus', (done) => {
+    const element = fixture('claw-attack');
 
-           flush(() => {
-             assert.include(trimAll(element.shadowRoot.textContent), '+9 to hit');
-             done();
-           });
-         });
+     flush(() => {
+       assert.include(trimAll(element.shadowRoot.textContent), '+9 to hit');
+       done();
+     });
+   });
 
-         test('displays attack reach', (done) => {
-          const element = fixture('claw-attack');
+   test('displays attack reach', (done) => {
+    const element = fixture('claw-attack');
 
-           flush(() => {
-             assert.include(trimAll(element.shadowRoot.textContent), 'reach 5ft.');
-             done();
-           });
-         });
+     flush(() => {
+       assert.include(trimAll(element.shadowRoot.textContent), 'reach 5ft.');
+       done();
+     });
+   });
 
-         test('displays attack target', (done) => {
-          const element = fixture('claw-attack');
+   test('displays attack target', (done) => {
+    const element = fixture('claw-attack');
 
-           flush(() => {
-             assert.include(trimAll(element.shadowRoot.textContent), 'one target');
-             done();
-           });
-         });
+     flush(() => {
+       assert.include(trimAll(element.shadowRoot.textContent), 'one target');
+       done();
+     });
+   });
 
-         test('displays attack damage', (done) => {
-          const element = fixture('claw-attack');
-
-
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), '13 (2d8 + 4)');
-            done();
-          });
-        });
-
-         test('displays attack damage type', (done) => {
-          const element = fixture('claw-attack');
-
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'slashing damage.');
-            done();
-           });
-         });
-
-         test('displays attack notes', (done) => {
-          const element = fixture('claw-attack');
-
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent),  'damage. This is a magic weapon attack.');
-            done();
-           });
-         });
-
-        test('does not display melee attack range', (done) => {
-          const element = fixture('claw-attack');
-
-          flush(() => {
-            assert.notInclude(trimAll(element.shadowRoot.textContent), 'range');
-            done();
-          });
-        });
+   test('displays attack damage', (done) => {
+    const element = fixture('claw-attack');
 
 
-        test('displays melee or ranged attack type', (done) => {
-          const element = fixture('spear-attack');
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '13 (2d8 + 4)');
+      done();
+    });
+  });
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'Melee or Ranged Weapon Attack');
-            done();
-          });
-        });
+   test('displays attack damage type', (done) => {
+    const element = fixture('claw-attack');
 
-        test('displays melee or ranged attack range and reach', (done) => {
-          const element = fixture('spear-attack');
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'slashing damage.');
+      done();
+     });
+   });
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'reach 5 ft. or range 20/60 ft.');
-            done();
-          });
-        });
+   test('displays attack notes', (done) => {
+    const element = fixture('claw-attack');
 
-        test('displays ranged attack type', (done) => {
-          const element = fixture('crossbow-attack');
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent),  'damage. This is a magic weapon attack.');
+      done();
+     });
+   });
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'Ranged Weapon Attack');
-            done();
-          });
-        });
+  test('does not display melee attack range', (done) => {
+    const element = fixture('claw-attack');
 
-        test('displays ranged attack range', (done) => {
-          const element = fixture('crossbow-attack');
+    flush(() => {
+      assert.notInclude(trimAll(element.shadowRoot.textContent), 'range');
+      done();
+    });
+  });
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), 'range 20/60 ft.');
-            done();
-          });
-        });
 
-        test('does not display ranged attack reach', (done) => {
-          const element = fixture('crossbow-attack');
+  test('displays melee or ranged attack type', (done) => {
+    const element = fixture('spear-attack');
 
-          flush(() => {
-            assert.notInclude(trimAll(element.shadowRoot.textContent), 'reach');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'Melee or Ranged Weapon Attack');
+      done();
+    });
+  });
 
-        test('displays random effects', (done) => {
-          const element = fixture('magical-attack');
+  test('displays melee or ranged attack range and reach', (done) => {
+    const element = fixture('spear-attack');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), '1. Confusion. The target becomes confused.');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'reach 5 ft. or range 20/60 ft.');
+      done();
+    });
+  });
 
-        test('displays random effects in order of roll', (done) => {
-          const element = fixture('magical-attack');
+  test('displays ranged attack type', (done) => {
+    const element = fixture('crossbow-attack');
 
-           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent),'1. Confusion. The target becomes confused. 2. Blinded. The target becomes blinded.');
-             done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'Ranged Weapon Attack');
+      done();
+    });
+  });
 
-        test('displays limited usage', (done) => {
-          const element = fixture('limited-usage-attack');
+  test('displays ranged attack range', (done) => {
+    const element = fixture('crossbow-attack');
 
-           flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent),'Poison Breath (Recharge 6)');
-             done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'range 20/60 ft.');
+      done();
+    });
+  });
 
-      });
-    </script>
+  test('does not display ranged attack reach', (done) => {
+    const element = fixture('crossbow-attack');
+
+    flush(() => {
+      assert.notInclude(trimAll(element.shadowRoot.textContent), 'reach');
+      done();
+    });
+  });
+
+  test('displays random effects', (done) => {
+    const element = fixture('magical-attack');
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '1. Confusion. The target becomes confused.');
+      done();
+    });
+  });
+
+  test('displays random effects in order of roll', (done) => {
+    const element = fixture('magical-attack');
+
+     flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent),'1. Confusion. The target becomes confused. 2. Blinded. The target becomes blinded.');
+       done();
+    });
+  });
+
+  test('displays limited usage', (done) => {
+    const element = fixture('limited-usage-attack');
+
+     flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent),'Poison Breath (Recharge 6)');
+       done();
+    });
+  });
+
+});
+</script>
 
   </body>
 </html>

@@ -5,8 +5,9 @@ addons:
   firefox: latest
   chrome: stable
 before_install:
-  - "npm install -g polymer-cli"
-  - "polymer install"
+  - npm install -g polymer-cli
+  - polymer install
 script:
   - polymer lint
-  - xvfb-run polymer test -l firefox,chrome
+  - 'xvfb-run polymer test --module-resolution=node --npm -l firefox,chrome'
+

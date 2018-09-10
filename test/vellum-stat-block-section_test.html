@@ -6,10 +6,10 @@
 
     <title>vellum-stat-block-section test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
 
-    <link rel="import" href="../vellum-stat-block-section.html">
+    <script type="module" src="../vellum-stat-block-section.js"></script>
   </head>
   <body>
 
@@ -21,29 +21,30 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('<vellum-stat-block-section>', () => {
+    <script type="module">
+import '../vellum-stat-block-section.js';
+suite('<vellum-stat-block-section>', () => {
 
-        test('displays section heading', (done) => {
-          const element = fixture('stat-block-section');
+  test('displays section heading', (done) => {
+    const element = fixture('stat-block-section');
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), 'Section Title');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), 'Section Title');
+      done();
+    });
+  });
 
-        test('displays section content', (done) => {
-          const element = fixture('stat-block-section');
+  test('displays section content', (done) => {
+    const element = fixture('stat-block-section');
 
-          flush(() => {
-            assert.include(element.textContent.trim(), 'Section Content');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.textContent.trim(), 'Section Content');
+      done();
+    });
+  });
 
-      });
-    </script>
+});
+</script>
 
   </body>
 </html>

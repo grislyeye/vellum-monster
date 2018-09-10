@@ -6,12 +6,12 @@
 
     <title>vellum-stat test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
 
-    <link rel="import" href="../vellum-stat.html">
-    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
-    <script src="custom-assertions.js"></script>
+    <script type="module" src="../vellum-stat.js"></script>
+    <script type="module" src="../../@polymer/polymer/lib/elements/dom-bind.js"></script>
+    <script src="./custom-assertions.js"></script>
   </head>
   <body>
 
@@ -45,108 +45,110 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('<vellum-stat>', () => {
+    <script type="module">
+import '../vellum-stat.js';
+import '../../@polymer/polymer/lib/elements/dom-bind.js';
+suite('<vellum-stat>', () => {
 
-        test('does not display stat name for empty values', (done) => {
-          const element = fixture('empty-stat');
+  test('does not display stat name for empty values', (done) => {
+    const element = fixture('empty-stat');
 
-          flush(() => {
-            assert.notInclude(element.shadowRoot.textContent.trim(), 'Empty Stat Name');
-            done();
-          });
-        });
+    flush(() => {
+      assert.notInclude(element.shadowRoot.textContent.trim(), 'Empty Stat Name');
+      done();
+    });
+  });
 
-        test('displays stat name for single value', (done) => {
-          const element = fixture('single-value-stat');
+  test('displays stat name for single value', (done) => {
+    const element = fixture('single-value-stat');
 
-          flush(() => {
-            expect(element.shadowRoot.textContent.trim()).to.includeOnce('Armor Class');
-            done();
-          });
-        });
+    flush(() => {
+      expect(element.shadowRoot.textContent.trim()).to.includeOnce('Armor Class');
+      done();
+    });
+  });
 
-        test('displays stat for single value', (done) => {
-          const element = fixture('single-value-stat');
+  test('displays stat for single value', (done) => {
+    const element = fixture('single-value-stat');
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), '17 (natural armor)');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), '17 (natural armor)');
+      done();
+    });
+  });
 
-        // FIX: uses workaround for fixture() issue - remove
-        // https://github.com/PolymerElements/test-fixture/issues/47
-        test('displays stat name for multiple values', (done) => {
-          const element = fixture('multiple-values-stat');
+  // FIX: uses workaround for fixture() issue - remove
+  // https://github.com/PolymerElements/test-fixture/issues/47
+  test('displays stat name for multiple values', (done) => {
+    const element = fixture('multiple-values-stat');
 
-          flush(() => {
-            const statName = element.shadowRoot.querySelector('.stat-name');
-            assert.equal(statName.textContent.trim(), 'Speed');
-            done();
-          });
-        });
+    flush(() => {
+      const statName = element.shadowRoot.querySelector('.stat-name');
+      assert.equal(statName.textContent.trim(), 'Speed');
+      done();
+    });
+  });
 
-        test('displays stat for multiple values', (done) => {
-          const element = fixture('multiple-values-stat');
+  test('displays stat for multiple values', (done) => {
+    const element = fixture('multiple-values-stat');
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), '40 ft., 60 ft. fly');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), '40 ft., 60 ft. fly');
+      done();
+    });
+  });
 
-        test('updates display when values change to single value', (done) => {
-          const element = fixture('multiple-values-stat');
-          element.values = '16 (natural armor)';
+  test('updates display when values change to single value', (done) => {
+    const element = fixture('multiple-values-stat');
+    element.values = '16 (natural armor)';
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), '16 (natural armor)');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), '16 (natural armor)');
+      done();
+    });
+  });
 
-        test('updates display when values change to multuple values', (done) => {
-          const element = fixture('single-value-stat');
-          element.values = ['a', 'b']
+  test('updates display when values change to multuple values', (done) => {
+    const element = fixture('single-value-stat');
+    element.values = ['a', 'b']
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), 'a, b');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), 'a, b');
+      done();
+    });
+  });
 
-        test('displays stat for non-string single value', (done) => {
-          const element = fixture('non-string-single-value-stat');
+  test('displays stat for non-string single value', (done) => {
+    const element = fixture('non-string-single-value-stat');
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), '11');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), '11');
+      done();
+    });
+  });
 
-        // quarantine test: failing on Chrome
-        test.skip('displays stat for body value', (done) => {
-          const element = fixture('body-value-stat');
+  // quarantine test: failing on Chrome
+  test.skip('displays stat for body value', (done) => {
+    const element = fixture('body-value-stat');
 
-          flush(() => {
-            assert.include(element.shadowRoot.textContent.trim(), '12 (natural armor)');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.shadowRoot.textContent.trim(), '12 (natural armor)');
+      done();
+    });
+  });
 
-        // quarantine test: cannot verify element inner HTML
-        test.skip('displays HTML tags from stat body', (done) => {
-          const element = fixture('body-value-stat');
+  // quarantine test: cannot verify element inner HTML
+  test.skip('displays HTML tags from stat body', (done) => {
+    const element = fixture('body-value-stat');
 
-          flush(() => {
-            assert.include(element.$.armor.innerHTML.trim(), '<strong>12</strong>');
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(element.$.armor.innerHTML.trim(), '<strong>12</strong>');
+      done();
+    });
+  });
 
-      });
-    </script>
+});
+</script>
 
   </body>
 </html>

@@ -6,11 +6,11 @@
 
     <title>vellum-stat-block-ability-scores test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="test-util.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
+    <script src="./test-util.js"></script>
 
-    <link rel="import" href="../vellum-stat-block-ability-scores.html">
+    <script type="module" src="../vellum-stat-block-ability-scores.js"></script>
   </head>
   <body>
 
@@ -20,65 +20,66 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('<vellum-stat-block-ability-scores>', () => {
+    <script type="module">
+import '../vellum-stat-block-ability-scores.js';
+suite('<vellum-stat-block-ability-scores>', () => {
 
-        test('displays strength with bonus', (done) => {
-          const element = fixture('ability-scores');
+  test('displays strength with bonus', (done) => {
+    const element = fixture('ability-scores');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "18 (+4)");
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), "18 (+4)");
+      done();
+    });
+  });
 
-        test('displays dexterity with bonus', (done) => {
-          const element = fixture('ability-scores');
+  test('displays dexterity with bonus', (done) => {
+    const element = fixture('ability-scores');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "16 (+3)");
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), "16 (+3)");
+      done();
+    });
+  });
 
-        test('displays constitution with bonus', (done) => {
-          const element = fixture('ability-scores');
+  test('displays constitution with bonus', (done) => {
+    const element = fixture('ability-scores');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "14 (+2)");
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), "14 (+2)");
+      done();
+    });
+  });
 
-        test('displays intelligence with bonus', (done) => {
-          const element = fixture('ability-scores');
+  test('displays intelligence with bonus', (done) => {
+    const element = fixture('ability-scores');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "12 (+1)");
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), "12 (+1)");
+      done();
+    });
+  });
 
-        test('displays wisdom with bonus', (done) => {
-          const element = fixture('ability-scores');
+  test('displays wisdom with bonus', (done) => {
+    const element = fixture('ability-scores');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "10 (+0)");
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), "10 (+0)");
+      done();
+    });
+  });
 
-        test('displays charisma with bonus', (done) => {
-          const element = fixture('ability-scores');
+  test('displays charisma with bonus', (done) => {
+    const element = fixture('ability-scores');
 
-          flush(() => {
-            assert.include(trimAll(element.shadowRoot.textContent), "8 (-1)");
-            done();
-          });
-        });
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), "8 (-1)");
+      done();
+    });
+  });
 
-      });
-    </script>
+});
+</script>
 
   </body>
 </html>

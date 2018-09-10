@@ -1,9 +1,10 @@
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="vellum-stat-block-divider.html">
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
+import './vellum-stat-block-divider.js';
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="vellum-stat-block">
-
-  <template>
+export class StatBlock extends PolymerElement {
+  static get template() {
+    return html`
     <style>
       :host {
         display: block;
@@ -102,25 +103,17 @@
       </div>
     </div>
 
-    <div class="bar"></div>
+    <div class="bar"></div>`;
+  }
 
-  </template>
+  static get is() { return 'vellum-stat-block'; }
 
-  <script>
-    class StatBlock extends Polymer.Element {
+  static get properties() {
+    return {
+      name: String,
+      description: String
+    };
+  }
+}
 
-      static get is() { return 'vellum-stat-block'; }
-
-      static get properties() {
-        return {
-          name: String,
-          description: String
-        };
-      }
-
-    }
-
-    customElements.define(StatBlock.is, StatBlock);
-  </script>
-
-</dom-module>
+customElements.define(StatBlock.is, StatBlock);

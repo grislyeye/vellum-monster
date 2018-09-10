@@ -1,9 +1,7 @@
-<link rel="import" href="../../../polymer/polymer-element.html">
+import { PolymerElement } from '../../../@polymer/polymer/polymer-element.js';
+const $_documentContainer = document.createElement('template');
 
-<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:700' rel='stylesheet'>
-<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet'>
-
-<dom-module id="official-theme">
+$_documentContainer.innerHTML = `<dom-module id="official-theme">
 
   <template>
     <style>
@@ -20,10 +18,11 @@
     </style>
   </template>
 
-  <script>
-    class OfficialTheme extends Polymer.Element {
-      static get is() { return 'official-theme'; }
-    }
-  </script>
+  
 
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);
+class OfficialTheme extends PolymerElement {
+  static get is() { return 'official-theme'; }
+}

@@ -1,9 +1,9 @@
-<link rel="import" href="../polymer/polymer-element.html">
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="vellum-stat-block-section">
-
-  <template>
-
+class StatBlockSection extends PolymerElement {
+  static get template() {
+    return html`
     <style>
       :host {
         display: block;
@@ -26,23 +26,16 @@
       <h2>{{name}}</h2>
 
       <slot></slot>
-    </section>
-  </template>
+    </section>`;
+  }
 
-  <script>
-    class StatBlockSection extends Polymer.Element {
+  static get is() { return 'vellum-stat-block-section'; }
 
-      static get is() { return 'vellum-stat-block-section'; }
-
-      static get properties() {
-        return {
-          name: String
-        }
-      }
-
+  static get properties() {
+    return {
+      name: String
     }
+  }
+}
 
-    customElements.define(StatBlockSection.is, StatBlockSection);
-  </script>
-
-</dom-module>
+customElements.define(StatBlockSection.is, StatBlockSection);
