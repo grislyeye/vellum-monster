@@ -1,8 +1,9 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import '../@polymer/polymer/lib/elements/dom-if.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 class AbilityScores extends PolymerElement {
+
   static get template() {
     return html`
     <style>
@@ -40,10 +41,10 @@ class AbilityScores extends PolymerElement {
         <td>{{displayWisdom}}</td>
         <td>{{displayCharisma}}</td>
       </tr>
-    </tbody></table>`;
+    </tbody></table>`
   }
 
-  static get is() { return 'vellum-stat-block-ability-scores'; }
+  static get is() { return 'vellum-stat-block-ability-scores' }
 
   static get properties() {
     return {
@@ -81,11 +82,11 @@ class AbilityScores extends PolymerElement {
   }
 
   _displayAbility(ability) {
-    const bonus = Math.round((ability / 2.1) - 5);
+    const bonus = Math.round((ability / 2.1) - 5)
 
-    if(bonus >= 0) return ability + ' (+' + bonus + ')';
-    else return ability + ' (' + bonus + ')';
+    if (bonus >= 0) return ability + ' (+' + bonus + ')'
+    else return ability + ' (' + bonus + ')'
   }
 }
 
-customElements.define(AbilityScores.is, AbilityScores);
+customElements.define(AbilityScores.is, AbilityScores)

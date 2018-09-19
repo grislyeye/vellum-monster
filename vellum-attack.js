@@ -1,7 +1,7 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import '../@polymer/polymer/lib/elements/dom-if.js';
-import '../@polymer/polymer/lib/elements/dom-repeat.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+import '../@polymer/polymer/lib/elements/dom-repeat.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 class Attack extends PolymerElement {
   static get template() {
@@ -53,10 +53,10 @@ class Attack extends PolymerElement {
           </dom-repeat>
         <ol>
       </ol></ol></template>
-    </dom-if>`;
+    </dom-if>`
   }
 
-  static get is() { return 'vellum-attack'; }
+  static get is() { return 'vellum-attack' }
 
   static get properties() {
     return {
@@ -79,36 +79,36 @@ class Attack extends PolymerElement {
         type: String,
         computed: '_reachOrRange(type, reach, range)'
       }
-    };
+    }
   }
 
   _attackType(attackType) {
-    switch(attackType) {
+    switch (attackType) {
       case 'melee-attack':
-        return 'Melee Weapon Attack';
+        return 'Melee Weapon Attack'
       case 'ranged-attack':
-        return 'Ranged Weapon Attack';
+        return 'Ranged Weapon Attack'
       case 'melee-or-ranged-attack':
-        return 'Melee or Ranged Weapon Attack';
+        return 'Melee or Ranged Weapon Attack'
     }
   }
 
   _reachOrRange(attackType, reach, range) {
-    switch(attackType) {
+    switch (attackType) {
       case 'melee-attack':
-        return 'reach ' + reach;
+        return 'reach ' + reach
       case 'ranged-attack':
-        return 'range ' + range;
+        return 'range ' + range
       case 'melee-or-ranged-attack':
-        return 'reach ' + reach + ' or range ' + range;
+        return 'reach ' + reach + ' or range ' + range
     }
   }
 
   sortRandomEffects(a, b) {
-    if (a.roll < b.roll) return -1;
-    if (a.roll > b.roll) return 1;
-    return 0;
+    if (a.roll < b.roll) return -1
+    if (a.roll > b.roll) return 1
+    return 0
   }
 }
 
-customElements.define(Attack.is, Attack);
+customElements.define(Attack.is, Attack)

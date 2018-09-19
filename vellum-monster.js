@@ -1,21 +1,21 @@
-import '../@polymer/polymer/polymer-element.js';
-import {StatBlock} from './vellum-stat-block.js';
-import './vellum-stat-block-divider.js';
-import './vellum-stat.js';
-import './vellum-stat-block-ability-scores.js';
-import './vellum-spell-level.js';
-import './vellum-stat-block-section.js';
-import './vellum-attack.js';
-import './vellum-legendary-action.js';
-import '../@polymer/polymer/lib/elements/dom-repeat.js';
-import '../@polymer/polymer/lib/elements/dom-if.js';
-import '../polymer-microdata/polymer-microdata.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
-import { DomModule } from '../@polymer/polymer/lib/elements/dom-module.js';
+import '../@polymer/polymer/polymer-element.js'
+import { StatBlock } from './vellum-stat-block.js'
+import './vellum-stat-block-divider.js'
+import './vellum-stat.js'
+import './vellum-stat-block-ability-scores.js'
+import './vellum-spell-level.js'
+import './vellum-stat-block-section.js'
+import './vellum-attack.js'
+import './vellum-legendary-action.js'
+import '../@polymer/polymer/lib/elements/dom-repeat.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
+import '../@polymer/polymer/lib/elements/dom-module.js'
 
-let memoizedTemplate;
+let memoizedTemplate
 
-class Monster extends Microdata.Mixin(StatBlock) {
+class Monster extends MicrodataMixin(StatBlock) {
 
   static get template() {
 
@@ -156,17 +156,18 @@ class Monster extends Microdata.Mixin(StatBlock) {
 
         </template>
       </dom-if>
-    </div>`;
+    </div>`
 
     if (!memoizedTemplate) {
-      memoizedTemplate = StatBlock.template.cloneNode(true);
-      const stats = memoizedTemplate.content.querySelector('#stats');
-      stats.innerHTML = template.innerHTML;
+      memoizedTemplate = StatBlock.template.cloneNode(true)
+      const stats = memoizedTemplate.content.querySelector('#stats')
+      stats.innerHTML = template.innerHTML
     }
-    return memoizedTemplate;
+    return memoizedTemplate
+
   }
 
-  static get is() { return 'vellum-monster'; }
+  static get is() { return 'vellum-monster' }
 
   static get properties() {
     return {
@@ -213,7 +214,7 @@ class Monster extends Microdata.Mixin(StatBlock) {
       spellcasting: Object,
       spellcastingDescription: {
         type: Object,
-        computed: "_spellcastingDescription(lowerCaseName, spellcasting)"
+        computed: '_spellcastingDescription(lowerCaseName, spellcasting)'
       },
       actions: Array,
       reactions: Array,
@@ -222,24 +223,24 @@ class Monster extends Microdata.Mixin(StatBlock) {
   }
 
   _description(size, type, alignment) {
-    const basicDescription = size + " " + type;
-    if(alignment) {
-      return basicDescription + ", " + alignment;
+    const basicDescription = size + ' ' + type
+    if (alignment) {
+      return basicDescription + ', ' + alignment
     } else {
-      return basicDescription;
+      return basicDescription
     }
   }
 
   _hasAbilities(str, dex, con, int, wis, cha) {
-    return (str != undefined && dex != undefined && con != undefined && int != undefined && wis != undefined && cha != undefined);
+    return (str !== undefined && dex !== undefined && con !== undefined && int !== undefined && wis !== undefined && cha !== undefined)
   }
 
   _computerLowerCaseName(name) {
-    return name.toLowerCase();
+    return name.toLowerCase()
   }
 
   _spellcastingDescription(lowerCaseName, spellcasting) {
-    if(spellcasting) {
+    if (spellcasting) {
       return `
         The ${lowerCaseName} is a ${spellcasting.level}-level spellcaster.
         Its spellcasting ability is ${spellcasting.ability} (spell save DC ${spellcasting.save}, ${spellcasting.attackBonus} to hit with spell attacks), and ${spellcasting.notes}.
@@ -248,4 +249,4 @@ class Monster extends Microdata.Mixin(StatBlock) {
   }
 }
 
-window.customElements.define(Monster.is, Monster);
+window.customElements.define(Monster.is, Monster)

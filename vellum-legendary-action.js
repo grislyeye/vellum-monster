@@ -1,6 +1,6 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import '../@polymer/polymer/lib/elements/dom-if.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 class LegendaryAction extends PolymerElement {
   static get template() {
@@ -16,10 +16,10 @@ class LegendaryAction extends PolymerElement {
         <span class="action-name">{{action.name}}<dom-if if="{{costsMulipleActions()}}"><template> (Costs {{action.actions}} Actions)</template></dom-if>.</span>
         {{action.description}}
       </template>
-    </dom-if>`;
+    </dom-if>`
   }
 
-  static get is() { return 'vellum-legendary-action'; }
+  static get is() { return 'vellum-legendary-action' }
 
   static get properties() {
     return {
@@ -27,12 +27,12 @@ class LegendaryAction extends PolymerElement {
       action: {
         type: Object
       }
-    };
+    }
   }
 
   costsMulipleActions() {
-    return (this.action.actions > 1);
+    return (this.action.actions > 1)
   }
 }
 
-customElements.define(LegendaryAction.is, LegendaryAction);
+customElements.define(LegendaryAction.is, LegendaryAction)

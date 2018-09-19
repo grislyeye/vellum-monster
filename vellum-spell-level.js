@@ -1,8 +1,9 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import '../@polymer/polymer/lib/elements/dom-if.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 class SpellLevel extends PolymerElement {
+
   static get template() {
     return html`
     <style>
@@ -52,10 +53,10 @@ class SpellLevel extends PolymerElement {
       </span>
 
       <span class="spells">{{spellsDisplay}}</span>
-    </span>`;
+    </span>`
   }
 
-  static get is() { return 'vellum-spell-level'; }
+  static get is() { return 'vellum-spell-level' }
 
   static get properties() {
     return {
@@ -81,28 +82,28 @@ class SpellLevel extends PolymerElement {
         type: String,
         computed: '_spellsDisplay(spells)'
       }
-    };
+    }
   }
 
   _cantrips(level) {
-    return level.toLowerCase() == 'cantrips';
+    return level.toLowerCase() === 'cantrips'
   }
 
   _hasSlots(slots) {
-    return slots > 0;
+    return slots > 0
   }
 
   _hasMultipleSlots(slots) {
-    return slots > 1;
+    return slots > 1
   }
 
   _spellsDisplay(spells) {
-    if(Array.isArray(spells)) {
-      return spells.join(', ');
+    if (Array.isArray(spells)) {
+      return spells.join(', ')
     } else {
-      return spells;
+      return spells
     }
   }
 }
 
-customElements.define(SpellLevel.is, SpellLevel);
+customElements.define(SpellLevel.is, SpellLevel)

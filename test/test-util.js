@@ -1,3 +1,3 @@
-function trimAll(string) {
-  return string.replace(/\s+/g, " ").trim();
+export function trimAll(string) {
+  return string.replace(/\s+/g, ' ').trim()
 }

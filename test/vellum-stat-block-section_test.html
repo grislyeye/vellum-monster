@@ -22,28 +22,29 @@
     </test-fixture>
 
     <script type="module">
-import '../vellum-stat-block-section.js';
+import '../vellum-stat-block-section.js'
+
 suite('<vellum-stat-block-section>', () => {
 
   test('displays section heading', (done) => {
-    const element = fixture('stat-block-section');
+    const element = fixture('stat-block-section')
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), 'Section Title');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), 'Section Title')
+      done()
+    })
+  })
 
   test('displays section content', (done) => {
-    const element = fixture('stat-block-section');
+    const element = fixture('stat-block-section')
 
     flush(() => {
-      assert.include(element.textContent.trim(), 'Section Content');
-      done();
-    });
-  });
+      assert.include(element.textContent.trim(), 'Section Content')
+      done()
+    })
+  })
 
-});
+})
 </script>
 
   </body>

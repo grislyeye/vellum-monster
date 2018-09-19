@@ -8,6 +8,6 @@ before_install:
   - npm install -g polymer-cli
   - polymer install
 script:
-  - polymer lint
+  - npm run lint
   - 'xvfb-run polymer test --module-resolution=node --npm -l firefox,chrome'
 

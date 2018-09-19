@@ -1,8 +1,9 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import '../@polymer/polymer/lib/elements/dom-if.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 class Stat extends PolymerElement {
+
   static get template() {
     return html`
     <style>
@@ -55,10 +56,10 @@ class Stat extends PolymerElement {
         </dom-if>
 
       </template>
-    </dom-if>`;
+    </dom-if>`
   }
 
-  static get is() { return 'vellum-stat'; }
+  static get is() { return 'vellum-stat' }
 
   static get properties() {
     return {
@@ -83,23 +84,23 @@ class Stat extends PolymerElement {
   }
 
   _hasDescription(values) {
-    const innerHTML = this.innerHTML.trim();
-    return (values !== '_not-set' || innerHTML !== "");
+    const innerHTML = this.innerHTML.trim()
+    return (values !== '_not-set' || innerHTML !== '')
   }
 
   _hasValues(values) {
-    return Array.isArray(values) || values !== '_not-set';
+    return Array.isArray(values) || values !== '_not-set'
   }
 
   _displayText(values) {
-    if(Array.isArray(values)) {
-      return values.join(', ');
-    } else if(values !== '_not-set') {
-      return values;
+    if (Array.isArray(values)) {
+      return values.join(', ')
+    } else if (values !== '_not-set') {
+      return values
     } else {
-      return undefined;
+      return undefined
     }
   }
 }
 
-customElements.define(Stat.is, Stat);
+customElements.define(Stat.is, Stat)

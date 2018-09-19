@@ -12,8 +12,15 @@
   ],
   "license": "Apache 2.0",
   "devDependencies": {
-    "wct-browser-legacy": "^1.0.1",
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.18"
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-html": "^4.0.5",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "wct-browser-legacy": "^1.0.1"
   },
   "resolutions": {
     "inherits": "2.0.3",
@@ -24,6 +31,9 @@
   "main": "vellum-monster.js",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "polymer-microdata": "^0.2.0"
+    "polymer-microdata": "^0.3.0"
+  },
+  "scripts": {
+    "lint": "polymer lint && eslint *.js test/*.js test*.html"
   }
 }

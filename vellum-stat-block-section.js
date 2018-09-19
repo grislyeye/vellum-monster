@@ -1,5 +1,5 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 class StatBlockSection extends PolymerElement {
   static get template() {
@@ -26,10 +26,10 @@ class StatBlockSection extends PolymerElement {
       <h2>{{name}}</h2>
 
       <slot></slot>
-    </section>`;
+    </section>`
   }
 
-  static get is() { return 'vellum-stat-block-section'; }
+  static get is() { return 'vellum-stat-block-section' }
 
   static get properties() {
     return {
@@ -38,4 +38,4 @@ class StatBlockSection extends PolymerElement {
   }
 }
 
-customElements.define(StatBlockSection.is, StatBlockSection);
+customElements.define(StatBlockSection.is, StatBlockSection)

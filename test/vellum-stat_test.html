@@ -46,108 +46,109 @@
     </test-fixture>
 
     <script type="module">
-import '../vellum-stat.js';
-import '../../@polymer/polymer/lib/elements/dom-bind.js';
+import '../vellum-stat.js'
+import '../../@polymer/polymer/lib/elements/dom-bind.js'
+
 suite('<vellum-stat>', () => {
 
   test('does not display stat name for empty values', (done) => {
-    const element = fixture('empty-stat');
+    const element = fixture('empty-stat')
 
     flush(() => {
-      assert.notInclude(element.shadowRoot.textContent.trim(), 'Empty Stat Name');
-      done();
-    });
-  });
+      assert.notInclude(element.shadowRoot.textContent.trim(), 'Empty Stat Name')
+      done()
+    })
+  })
 
   test('displays stat name for single value', (done) => {
-    const element = fixture('single-value-stat');
+    const element = fixture('single-value-stat')
 
     flush(() => {
-      expect(element.shadowRoot.textContent.trim()).to.includeOnce('Armor Class');
-      done();
-    });
-  });
+      expect(element.shadowRoot.textContent.trim()).to.includeOnce('Armor Class')
+      done()
+    })
+  })
 
   test('displays stat for single value', (done) => {
-    const element = fixture('single-value-stat');
+    const element = fixture('single-value-stat')
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), '17 (natural armor)');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), '17 (natural armor)')
+      done()
+    })
+  })
 
   // FIX: uses workaround for fixture() issue - remove
   // https://github.com/PolymerElements/test-fixture/issues/47
   test('displays stat name for multiple values', (done) => {
-    const element = fixture('multiple-values-stat');
+    const element = fixture('multiple-values-stat')
 
     flush(() => {
-      const statName = element.shadowRoot.querySelector('.stat-name');
-      assert.equal(statName.textContent.trim(), 'Speed');
-      done();
-    });
-  });
+      const statName = element.shadowRoot.querySelector('.stat-name')
+      assert.equal(statName.textContent.trim(), 'Speed')
+      done()
+    })
+  })
 
   test('displays stat for multiple values', (done) => {
-    const element = fixture('multiple-values-stat');
+    const element = fixture('multiple-values-stat')
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), '40 ft., 60 ft. fly');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), '40 ft., 60 ft. fly')
+      done()
+    })
+  })
 
   test('updates display when values change to single value', (done) => {
-    const element = fixture('multiple-values-stat');
-    element.values = '16 (natural armor)';
+    const element = fixture('multiple-values-stat')
+    element.values = '16 (natural armor)'
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), '16 (natural armor)');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), '16 (natural armor)')
+      done()
+    })
+  })
 
   test('updates display when values change to multuple values', (done) => {
-    const element = fixture('single-value-stat');
+    const element = fixture('single-value-stat')
     element.values = ['a', 'b']
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), 'a, b');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), 'a, b')
+      done()
+    })
+  })
 
   test('displays stat for non-string single value', (done) => {
-    const element = fixture('non-string-single-value-stat');
+    const element = fixture('non-string-single-value-stat')
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), '11');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), '11')
+      done()
+    })
+  })
 
   // quarantine test: failing on Chrome
   test.skip('displays stat for body value', (done) => {
-    const element = fixture('body-value-stat');
+    const element = fixture('body-value-stat')
 
     flush(() => {
-      assert.include(element.shadowRoot.textContent.trim(), '12 (natural armor)');
-      done();
-    });
-  });
+      assert.include(element.shadowRoot.textContent.trim(), '12 (natural armor)')
+      done()
+    })
+  })
 
   // quarantine test: cannot verify element inner HTML
   test.skip('displays HTML tags from stat body', (done) => {
-    const element = fixture('body-value-stat');
+    const element = fixture('body-value-stat')
 
     flush(() => {
-      assert.include(element.$.armor.innerHTML.trim(), '<strong>12</strong>');
-      done();
-    });
-  });
+      assert.include(element.$.armor.innerHTML.trim(), '<strong>12</strong>')
+      done()
+    })
+  })
 
-});
+})
 </script>
 
   </body>

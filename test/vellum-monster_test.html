@@ -8,7 +8,6 @@
 
     <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../wct-browser-legacy/browser.js"></script>
-    <script src="./test-util.js"></script>
     <script src="./custom-assertions.js"></script>
 
     <script type="module" src="../vellum-monster.js"></script>
@@ -196,613 +195,612 @@
     </test-fixture>
 
     <script type="module">
-import '../vellum-monster.js';
+import '../vellum-monster.js'
+import { trimAll } from './test-util.js'
+
 suite('<vellum-monster>', () => {
 
   test('displays name', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('Gynosphinx');
-      done();
-    });
-  });
+      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('Gynosphinx')
+      done()
+    })
+  })
 
   test('displays type', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('monstrosity');
-      done();
-    });
-  });
+      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('monstrosity')
+      done()
+    })
+  })
 
   test('displays size', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('large');
-      done();
-    });
-  });
+      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('large')
+      done()
+    })
+  })
 
   test('displays alignment', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('lawful neutral');
-      done();
-    });
-  });
+      expect(trimAll(element.shadowRoot.textContent)).to.includeOnce('lawful neutral')
+      done()
+    })
+  })
 
   test('does not display trailing comma after type if alignment not provided', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.shadowRoot.textContent), 'object,');
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.shadowRoot.textContent), 'object,')
+      done()
+    })
+  })
 
   test('displays stat name', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      console.log(trimAll(element.$.ac.shadowRoot.textContent));
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('Armor Class');
-      done();
-    });
-  });
+      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('Armor Class')
+      done()
+    })
+  })
 
   test('displays armour class', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      console.log(trimAll(element.$.ac.shadowRoot.textContent));
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('17 (natural armor)');
-      done();
-    });
-  });
+      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('17 (natural armor)')
+      done()
+    })
+  })
 
   test('displays simple armour class', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('11');
-      done();
-    });
-  });
+      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('11')
+      done()
+    })
+  })
 
   test('displays hit points', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
-      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce(136);
-      done();
-    });
-  });
+      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
+      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce(136)
+      done()
+    })
+  })
 
   test('displays hit points for objects', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points');
-      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('40');
-      done();
-    });
-  });
+      const hitPoints = element.shadowRoot.querySelector('#hit-points')
+      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('40')
+      done()
+    })
+  })
 
   test('displays hit die', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die');
-      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('16d10 + 48');
-      done();
-    });
-  });
+      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
+      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('16d10 + 48')
+      done()
+    })
+  })
 
   test('does not display hit die brackets if hie die not provided', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points');
-      assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), '()');
-      done();
-    });
-  });
+      const hitPoints = element.shadowRoot.querySelector('#hit-points')
+      assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), '()')
+      done()
+    })
+  })
 
   test('displays speeds', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('40 ft., fly 60 ft.');
-      done();
-    });
-  });
+      expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('40 ft., fly 60 ft.')
+      done()
+    })
+  })
 
   test('displays single speed', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('60 ft.');
-      done();
-    });
-  });
+      expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('60 ft.')
+      done()
+    })
+  })
 
   test('displays strength with bonus', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('18 (+4)');
-      done();
-    });
-  });
+      const abilityScores = element.shadowRoot.querySelector('#ability-scores')
+      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('18 (+4)')
+      done()
+    })
+  })
 
   test('displays dexterity with bonus', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('17 (+3)');
-      done();
-    });
-  });
+      const abilityScores = element.shadowRoot.querySelector('#ability-scores')
+      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('17 (+3)')
+      done()
+    })
+  })
 
   test('displays constitution with bonus', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('16 (+3)');
-      done();
-    });
-  });
+      const abilityScores = element.shadowRoot.querySelector('#ability-scores')
+      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('16 (+3)')
+      done()
+    })
+  })
 
   test('displays intelligence with bonus', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('14 (+2)');
-      done();
-    });
-  });
+      const abilityScores = element.shadowRoot.querySelector('#ability-scores')
+      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('14 (+2)')
+      done()
+    })
+  })
 
   test('displays wisdom with bonus', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('11 (+0)');
-      done();
-    });
-  });
+      const abilityScores = element.shadowRoot.querySelector('#ability-scores')
+      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('11 (+0)')
+      done()
+    })
+  })
 
   test('displays charisma with bonus', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const abilityScores = element.shadowRoot.querySelector('#ability-scores');
-      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('8 (-1)');
-      done();
-    });
-  });
+      const abilityScores = element.shadowRoot.querySelector('#ability-scores')
+      expect(trimAll(abilityScores.shadowRoot.textContent)).to.includeOnce('8 (-1)')
+      done()
+    })
+  })
 
   test('does not display abilities table for statblock without abilities', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      assert.isNotOk(element.shadowRoot.querySelector('#ability-scores'));
-      done();
-    });
-  });
+      assert.isNotOk(element.shadowRoot.querySelector('#ability-scores'))
+      done()
+    })
+  })
 
   test('displays skills', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.skills.shadowRoot.textContent)).to.includeOnce('Arcana +14, History +14, Perception +9, Religion +9');
-      done();
-    });
-  });
+      expect(trimAll(element.$.skills.shadowRoot.textContent)).to.includeOnce('Arcana +14, History +14, Perception +9, Religion +9')
+      done()
+    })
+  })
 
   test('do not display skills if monster has no skills', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), 'Skills');
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), 'Skills')
+      done()
+    })
+  })
 
   test('displays damage resistances', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-resistances'].shadowRoot.textContent)).to.includeOnce('bludgeoning, piercing, and slashing from nonmagical items');
-      done();
-    });
-  });
+      expect(trimAll(element.$['damage-resistances'].shadowRoot.textContent)).to.includeOnce('bludgeoning, piercing, and slashing from nonmagical items')
+      done()
+    })
+  })
 
   test('do not display damage resistances if monster has no damage resistances', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['damage-resistances'].shadowRoot.textContent), 'Damage Resistances');
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.$['damage-resistances'].shadowRoot.textContent), 'Damage Resistances')
+      done()
+    })
+  })
 
   test('displays damage immunities', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-immunities'].shadowRoot.textContent)).to.includeOnce('psychic');
-      done();
-    });
-  });
+      expect(trimAll(element.$['damage-immunities'].shadowRoot.textContent)).to.includeOnce('psychic')
+      done()
+    })
+  })
 
   test('do not display damage immunities if monster has no damage immunities', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['damage-immunities'].shadowRoot.textContent), "Damage Immunities");
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.$['damage-immunities'].shadowRoot.textContent), 'Damage Immunities')
+      done()
+    })
+  })
 
   test('displays condition immunities', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['condition-immunities'].shadowRoot.textContent)).to.includeOnce('charmed, frightened');
-      done();
-    });
-  });
+      expect(trimAll(element.$['condition-immunities'].shadowRoot.textContent)).to.includeOnce('charmed, frightened')
+      done()
+    })
+  })
 
   test('do not display condition immunities if monster has no condition immunities', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['condition-immunities'].shadowRoot.textContent), "Condition Immunities");
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.$['condition-immunities'].shadowRoot.textContent), 'Condition Immunities')
+      done()
+    })
+  })
 
   test('displays senses', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.senses.shadowRoot.textContent)).to.includeOnce('truesight 120 ft., passive Perception 18');
-      done();
-    });
-  });
+      expect(trimAll(element.$.senses.shadowRoot.textContent)).to.includeOnce('truesight 120 ft., passive Perception 18')
+      done()
+    })
+  })
 
   test('displays languages', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.languages.shadowRoot.textContent)).to.includeOnce('Common, Sphinx');
-      done();
-    });
-  });
+      expect(trimAll(element.$.languages.shadowRoot.textContent)).to.includeOnce('Common, Sphinx')
+      done()
+    })
+  })
 
   test('do not display languages if monster has no languages', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$.languages.shadowRoot.textContent), "Languages");
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.$.languages.shadowRoot.textContent), 'Languages')
+      done()
+    })
+  })
 
   test('displays challenge rating with XP', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const challenge = element.shadowRoot.querySelector('#cr');
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (7200 XP)');
-      done();
-    });
-  });
+      const challenge = element.shadowRoot.querySelector('#cr')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (7200 XP)')
+      done()
+    })
+  })
 
   test('does not display challenge rating with XP for objects', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      const challenge = element.shadowRoot.querySelector('#cr');
-      assert.isNotOk(challenge);
-      done();
-    });
-  });
+      const challenge = element.shadowRoot.querySelector('#cr')
+      assert.isNotOk(challenge)
+      done()
+    })
+  })
 
   test('displays special traits', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const trait = element.shadowRoot.querySelector('#special-trait-1');
-      expect(trimAll(trait.shadowRoot.textContent)).to.includeOnce('Magic Weapons. The sphinx\'s weapon attacks are magical.');
-      done();
-    });
-  });
+      const trait = element.shadowRoot.querySelector('#special-trait-1')
+      expect(trimAll(trait.shadowRoot.textContent)).to.includeOnce('Magic Weapons. The sphinx\'s weapon attacks are magical.')
+      done()
+    })
+  })
 
   test('displays single special trait', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      const action = element.shadowRoot.querySelector('#special-trait-0');
-      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Trampling Charge.');
-      done();
-    });
-  });
+      const action = element.shadowRoot.querySelector('#special-trait-0')
+      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Trampling Charge.')
+      done()
+    })
+  })
 
   test('displays actions', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const action = element.shadowRoot.querySelector('#action-0');
-      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Multiattack. The sphinx makes two claw attacks.');
-      done();
-    });
-  });
+      const action = element.shadowRoot.querySelector('#action-0')
+      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Multiattack. The sphinx makes two claw attacks.')
+      done()
+    })
+  })
 
   test('does not display actions if there are none', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      assert.isNotOk(element.shadowRoot.querySelector('#actions'));
-      done();
-    });
-  });
+      assert.isNotOk(element.shadowRoot.querySelector('#actions'))
+      done()
+    })
+  })
 
   test('displays attacks', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-1');
-      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee or Ranged Weapon Attack: +9 to hit, reach 5 ft. or range 10ft./20ft., one target. Hit: 13 (2d8 + 4) slashing damage');
-      done();
-    });
-  });
+      const attack = element.shadowRoot.querySelector('#action-1')
+      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee or Ranged Weapon Attack: +9 to hit, reach 5 ft. or range 10ft./20ft., one target. Hit: 13 (2d8 + 4) slashing damage')
+      done()
+    })
+  })
 
   test('displays attack notes', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-1');
-      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('. This is a magic weapon attack.');
-      done();
-    });
-  });
+      const attack = element.shadowRoot.querySelector('#action-1')
+      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('. This is a magic weapon attack.')
+      done()
+    })
+  })
 
   test('displays random attack effects', (done) => {
-    const element = fixture('detailed-stat-block');
-
+    const element = fixture('detailed-stat-block')
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-1');
-      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('2. Paralysed. The target becomes paralysed.');
-      done();
-    });
-  });
+      const attack = element.shadowRoot.querySelector('#action-1')
+      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('2. Paralysed. The target becomes paralysed.')
+      done()
+    })
+  })
 
   test('displays single attack', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-0');
-      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Hooves.');
-      done();
-    });
-  });
+      const attack = element.shadowRoot.querySelector('#action-0')
+      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Hooves.')
+      done()
+    })
+  })
 
   test('displays legendary actions for creature with legendary actions', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions');
-      expect(trimAll(lengendaryActions.shadowRoot.textContent)).to.includeOnce('Legendary Actions');
-      done();
-    });
-  });
+      const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions')
+      expect(trimAll(lengendaryActions.shadowRoot.textContent)).to.includeOnce('Legendary Actions')
+      done()
+    })
+  })
 
   test('does not display legendary actions for creature without legendary actions', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.isNotOk(element.shadowRoot.querySelector('#legendary-actions'));
-      done();
-    });
-  });
+      assert.isNotOk(element.shadowRoot.querySelector('#legendary-actions'))
+      done()
+    })
+  })
 
   test('displays number of legendary actions', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions');
-      expect(trimAll(lengendaryActions.textContent)).to.includeOnce('The gynosphinx can take 3 legendary actions');
-      done();
-    });
-  });
+      const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions')
+      expect(trimAll(lengendaryActions.textContent)).to.includeOnce('The gynosphinx can take 3 legendary actions')
+      done()
+    })
+  })
 
   test('displays legendary action with only 1 action cost', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const action = element.shadowRoot.querySelector('#legendary-action-0');
-      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Claw Attack. The sphinx makes one claw attack.');
-      done();
-    });
-  });
+      const action = element.shadowRoot.querySelector('#legendary-action-0')
+      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Claw Attack. The sphinx makes one claw attack.')
+      done()
+    })
+  })
 
   test('displays legendary action with more than 1 action cost', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const action = element.shadowRoot.querySelector('#legendary-action-2');
-      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Cast a Spell (Costs 3 Actions). The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.');
-      done();
-    });
-  });
+      const action = element.shadowRoot.querySelector('#legendary-action-2')
+      expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Cast a Spell (Costs 3 Actions). The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal.')
+      done()
+    })
+  })
 
   test('displays spellcasting for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('Spellcasting');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('Spellcasting')
+      done()
+    })
+  })
 
   test('does not display spellcasting for creature without spellcasting', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.isNotOk(element.shadowRoot.querySelector('#spellcasting'));
-      done();
-    });
-  });
+      assert.isNotOk(element.shadowRoot.querySelector('#spellcasting'))
+      done()
+    })
+  })
 
   test('displays spellcasting level for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The gynosphinx is a 9th-level spellcaster.');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The gynosphinx is a 9th-level spellcaster.')
+      done()
+    })
+  })
 
   test('displays spellcasting ability for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('Its spellcasting ability is Intelligence');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('Its spellcasting ability is Intelligence')
+      done()
+    })
+  })
 
   test('displays spell save for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('spell save DC 17');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('spell save DC 17')
+      done()
+    })
+  })
 
   test('displays spell attack bonus for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('+9 to hit with spell attacks');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('+9 to hit with spell attacks')
+      done()
+    })
+  })
 
   test('displays spell list class for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The gynosphinx has the following wizard spells prepared:');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The gynosphinx has the following wizard spells prepared:')
+      done()
+    })
+  })
 
   test('displays spell casting notes for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const spellcasting = element.shadowRoot.querySelector('#spellcasting');
-      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('and it requires no material components to cast its spells.');
-      done();
-    });
-  });
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('and it requires no material components to cast its spells.')
+      done()
+    })
+  })
 
   test('displays cantrip spells for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const level = element.shadowRoot.querySelector('#spell-level-0');
-      expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('Cantrips (at will): mage hand, minor illusion, prestidigitation');
-      done();
-    });
-  });
+      const level = element.shadowRoot.querySelector('#spell-level-0')
+      expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('Cantrips (at will): mage hand, minor illusion, prestidigitation')
+      done()
+    })
+  })
 
   test('displays spell and slots for creature with spellcasting', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const level = element.shadowRoot.querySelector('#spell-level-5');
-      expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('5th level (1 slot): legend lore');
-      done();
-    });
-  });
+      const level = element.shadowRoot.querySelector('#spell-level-5')
+      expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('5th level (1 slot): legend lore')
+      done()
+    })
+  })
 
   test('displays reactions', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const reactions = element.shadowRoot.querySelector('#reactions');
-      expect(trimAll(reactions.shadowRoot.textContent)).to.includeOnce('Reactions');
-      done();
-    });
-  });
+      const reactions = element.shadowRoot.querySelector('#reactions')
+      expect(trimAll(reactions.shadowRoot.textContent)).to.includeOnce('Reactions')
+      done()
+    })
+  })
 
   test('displays reaction name', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const reaction = element.shadowRoot.querySelector('#reaction-0');
-      expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('Parry');
-      done();
-    });
-  });
+      const reaction = element.shadowRoot.querySelector('#reaction-0')
+      expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('Parry')
+      done()
+    })
+  })
 
   test('displays reaction description', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const reaction = element.shadowRoot.querySelector('#reaction-0');
-      expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('The gynosphinx adds 3 to its AC against one melee attack that would hit it.');
-      done();
-    });
-  });
+      const reaction = element.shadowRoot.querySelector('#reaction-0')
+      expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('The gynosphinx adds 3 to its AC against one melee attack that would hit it.')
+      done()
+    })
+  })
 
   test('displays saving throws', (done) => {
-    const element = fixture('detailed-stat-block');
+    const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['saving-throws'].shadowRoot.textContent)).to.includeOnce('Strength +14');
-      done();
-    });
-  });
+      expect(trimAll(element.$['saving-throws'].shadowRoot.textContent)).to.includeOnce('Strength +14')
+      done()
+    })
+  })
 
   test('does not display saving throws for creature without saving throws', (done) => {
-    const element = fixture('simple-stat-block');
+    const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Saving Throws');
-      done();
-    });
-  });
+      assert.notInclude(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Saving Throws')
+      done()
+    })
+  })
 
   test('displays damage threshold for objects', (done) => {
-    const element = fixture('object-stat-block');
+    const element = fixture('object-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-threshold'].shadowRoot.textContent)).to.includeOnce('10');
-      done();
-    });
-  });
-});
+      expect(trimAll(element.$['damage-threshold'].shadowRoot.textContent)).to.includeOnce('10')
+      done()
+    })
+  })
+})
 </script>
 
   </body>

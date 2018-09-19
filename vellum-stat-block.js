@@ -1,8 +1,9 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js';
-import './vellum-stat-block-divider.js';
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
+import './vellum-stat-block-divider.js'
+import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 
 export class StatBlock extends PolymerElement {
+
   static get template() {
     return html`
     <style>
@@ -103,17 +104,17 @@ export class StatBlock extends PolymerElement {
       </div>
     </div>
 
-    <div class="bar"></div>`;
+    <div class="bar"></div>`
   }
 
-  static get is() { return 'vellum-stat-block'; }
+  static get is() { return 'vellum-stat-block' }
 
   static get properties() {
     return {
       name: String,
       description: String
-    };
+    }
   }
 }
 
-customElements.define(StatBlock.is, StatBlock);
+customElements.define(StatBlock.is, StatBlock)
