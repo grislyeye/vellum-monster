@@ -47,10 +47,7 @@ document.body.appendChild($_documentContainer.content);
 
   <body>
 
-    <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<section class="vertical-section-container centered">
+    <section class="vertical-section-container centered">
       <h2>Detailed Stat Block</h2>
 
       <demo-snippet>
@@ -328,15 +325,10 @@ $_documentContainer.innerHTML = `<section class="vertical-section-container cent
               <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
             </vellum-stat-block-section>
 
-          
-
         </vellum-stat-block></template>
       </demo-snippet>
 
-    </section>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+    </section>
 
   </body>
 
