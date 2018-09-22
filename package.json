@@ -36,6 +36,7 @@
     "polymer-microdata": "^0.3.0"
   },
   "scripts": {
+    "start": "polymer serve --open",
     "test": "yamllint .travis.yml && polymer lint && eslint *.js test/*.js test/*.html && polymer test -l chrome,firefox"
   }
 }

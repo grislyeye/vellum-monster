@@ -155,6 +155,10 @@ To set-up your environment execute:
 
     $ npm install
 
+To run demo page:
+
+    $ npm run start
+
 To run tests execute:
 
     $ npm test
