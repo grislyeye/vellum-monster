@@ -1,13 +1,8 @@
 sudo: required
 language: node_js
-node_js: 8
+node_js: 10
 addons:
   firefox: latest
   chrome: stable
-before_install:
-  - npm install -g polymer-cli
-  - polymer install
-script:
-  - npm run lint
-  - 'xvfb-run polymer test --module-resolution=node --npm -l firefox,chrome'
+script: xvfb-run npm test
 

@@ -20,6 +20,7 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "polymer-cli": "^1.8.0",
     "wct-browser-legacy": "^1.0.1"
   },
   "resolutions": {
@@ -34,6 +35,6 @@
     "polymer-microdata": "^0.3.0"
   },
   "scripts": {
-    "lint": "polymer lint && eslint *.js test/*.js test*.html"
+    "test": "polymer lint && eslint *.js test/*.js test/*.html && polymer test -l chrome,firefox"
   }
 }
