@@ -72,42 +72,26 @@ the same turn, that target must succeed on a DC 14 Strength saving throw or be k
 </vellum-monster >
 ```
 
-This module also includes a theme to give your stat blocks a more "official" look. Simply add the following lines to your HTML file `head` element:
+This module also includes a theme to give your stat blocks a more "official" look. Simply add the following to your HTML file `head` element:
 
 ```html
-<link rel="import" href="themes/official/official-theme.html">
-<style is="custom-style" include="official-theme"></style>
+<link rel="stylesheet" type="text/css" href="vellum-monster/themes/official/style.css">
 ```
 
 ## Custom Themes
 
-To create a custom theme for your own stat blocks create a file with the following content:
+To create a custom theme for your stat blocks using something like the following CSS:
 
-```html
-<link rel="import" href="../../../polymer/polymer-element.html">
+```css
+html vellum-monster.my-theme,
+html vellum-stat-block.my-theme {
 
-<dom-module id="my-stat-block-theme">
+  // custom styles here
 
-  <template>
-    <style>
-      html vellum-monster.my-stat-block, html vellum-stat-block.my-stat-block {
-        // CSS styles here
-      }
-    </style>
-  </template>
-
-  <script>
-    class MyTheme extends Polymer.Element {
-      static get is() { return 'my-stat-block-theme'; }
-    }
-  </script>
-
-</dom-module>
+}
 ```
 
-You can then add custom styles in the `style` element above as described the Polymer documentation for [Styling an element's shadow DOM](https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom#custom-style).
-
-Custom CSS properties for this component include:
+You can then add standard CSS. The `<vellum-monster>` and `<vellum-monster>` support the following custom CSS properties:
 
 | Property                               | Description
 | -------------------------------------- | ---
@@ -120,6 +104,8 @@ Custom CSS properties for this component include:
 | `--stat-block-divider-color`           | The [colour](https://developer.mozilla.org/en-US/docs/Web/CSS/color) of the divider between sections of the stat block.
 | `--stat-block-two-column-width`        | If the `two-column` class is applied to the stat block, this defines the width of the wider stat block.
 | `--stat-block-two-column-column-width` | If the `two-column` class is applied to the stat block, this defines the width of the width of the columns within the stat block.
+
+See the [official theme](https://github.com/grislyeye/vellum-monster/blob/master/themes/official/style.css) for an example of how to style your stat blocks
 
 ## Custom Stat Blocks
 

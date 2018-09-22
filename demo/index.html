@@ -13,36 +13,9 @@
     <script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
     <script type="module" src="../vellum-monster.js"></script>
     <script type="module" src="../vellum-stat.js"></script>
-    <script type="module" src="../themes/official/official-theme.js"></script>
-    <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
-    <script type="module">
-const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<custom-style>
-      <style is="custom-style" include="official-theme"></style>
-    </custom-style>`;
+    <link rel="stylesheet" type="text/css" href="../themes/official/style.css">
 
-document.body.appendChild($_documentContainer.content);
-</script>
-
-
-    <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
-    </custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
   </head>
 
   <body>
