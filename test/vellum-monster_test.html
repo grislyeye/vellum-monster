@@ -50,7 +50,6 @@
             <dt>Languages</dt><dd itemprop="languages">Common</dd>
             <dt>Languages</dt><dd itemprop="languages">Sphinx</dd>
             <dt>Challenge</dt><dd itemprop="cr">11</dd>
-            <dt>XP</dt><dd itemprop="xp">7200</dd>
           </dl>
 
           <ol>
@@ -498,12 +497,22 @@ suite('<vellum-monster>', () => {
     })
   })
 
-  test('displays challenge rating with XP', (done) => {
+  test('displays challenge rating', (done) => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (7200 XP)')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (')
+      done()
+    })
+  })
+
+  test('displays experience points', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      const challenge = element.shadowRoot.querySelector('#cr')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(7200 XP)')
       done()
     })
   })

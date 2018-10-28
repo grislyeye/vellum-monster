@@ -12,6 +12,7 @@ import '../@polymer/polymer/lib/elements/dom-if.js'
 import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
 import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 import '../@polymer/polymer/lib/elements/dom-module.js'
+import { calculateXpFromCr } from './lib/monster.js'
 
 let memoizedTemplate
 
@@ -209,7 +210,10 @@ class Monster extends MicrodataMixin(StatBlock) {
       senses: Array,
       languages: Array,
       cr: Number,
-      xp: Number,
+      xp: {
+        type: Number,
+        computed: '_calculateXpFromCr(cr)'
+      },
       specialTraits: Array,
       spellcasting: Object,
       spellcastingDescription: {
@@ -247,6 +251,11 @@ class Monster extends MicrodataMixin(StatBlock) {
         The ${lowerCaseName} has the following ${spellcasting.class} spells prepared:`
     }
   }
+
+  _calculateXpFromCr(cr) {
+    return calculateXpFromCr(cr)
+  }
+
 }
 
 window.customElements.define(Monster.is, Monster)

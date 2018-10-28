@@ -5,7 +5,7 @@
     "webcomponent"
   ],
   "name": "vellum-monster",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "polymer serve --open",
-    "build": "yamllint .travis.yml && polymer lint && eslint *.js test/*.js test/*.html",
+    "build": "yamllint .travis.yml && polymer lint && eslint *.js lib/*.js test/*.js test/*.html",
     "test": "npm run build && polymer test -l chrome,firefox"
   }
 }

@@ -52,8 +52,7 @@ A stat block is written as follows:
     <dt>Charisma</dt><dd itemprop="cha">7</dd>
 
     <dt>Senses</dt><dd itemprop="senses">passive Perception 11</dd>
-    <dt>Challenge</dt><dd itemprop="cr">1/2</dd>
-    <dt>XP</dt><dd itemprop="xp">100</dd>
+    <dt>Challenge</dt><dd itemprop="cr">½</dd>
   </dl>
 
   <ol>
