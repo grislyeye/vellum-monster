@@ -37,6 +37,7 @@
   },
   "scripts": {
     "start": "polymer serve --open",
-    "test": "yamllint .travis.yml && polymer lint && eslint *.js test/*.js test/*.html && polymer test -l chrome,firefox"
+    "build": "yamllint .travis.yml && polymer lint && eslint *.js test/*.js test/*.html",
+    "test": "npm run build && polymer test -l chrome,firefox"
   }
 }
