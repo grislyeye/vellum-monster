@@ -12,7 +12,7 @@ import '../@polymer/polymer/lib/elements/dom-if.js'
 import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
 import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 import '../@polymer/polymer/lib/elements/dom-module.js'
-import { calculateXpFromCr } from './lib/monster.js'
+import { calculateXpFromCr, averageDie } from './lib/monster.js'
 
 let memoizedTemplate
 
@@ -36,7 +36,7 @@ class Monster extends MicrodataMixin(StatBlock) {
 
         <dom-if if="{{hitDie}}">
           <template>
-            <vellum-stat id="hit-points-and-die" name="Hit Points" values\$="{{hp}} ({{hitDie}})"></vellum-stat>
+            <vellum-stat id="hit-points-and-die" name="Hit Points" values\$="{{displayHp}} ({{hitDie}})"></vellum-stat>
           </template>
         </dom-if>
 
@@ -185,10 +185,14 @@ class Monster extends MicrodataMixin(StatBlock) {
         computed: '_description(size, type, alignment)'
       },
       ac: Object,
-      hp: String,
       hitDie: {
         type: String,
         value: ''
+      },
+      hp: Number,
+      displayHp: {
+        type: String,
+        computed: '_displayHp(hitDie, hp)'
       },
       speeds: Array,
       str: Number,
@@ -254,6 +258,16 @@ class Monster extends MicrodataMixin(StatBlock) {
 
   _calculateXpFromCr(cr) {
     return calculateXpFromCr(cr)
+  }
+
+  _displayHp(hitDie, hp) {
+    if (!hp && hitDie) {
+      return averageDie(hitDie)
+    } else if (!hp) {
+      return hp
+    } else {
+      return ''
+    }
   }
 
 }

@@ -41,7 +41,7 @@ A stat block is written as follows:
     <dt>Alignment</dt><dd itemprop="alignment">unaligned</dd>
 
     <dt>Armor Class</dt><dd itemprop="ac">11</dd>
-    <dt>Hit Points</dt><dd><span itemprop="hp">19</span> (<span itemprop="hitDie">3d10 + 3</span>)</dd>
+    <dt>Hit Die</dt><dd><span itemprop="hitDie">3d10 + 3</span></dd>
     <dt>Speed</dt><dd itemprop="speeds">60 ft.</dd>
 
     <dt>Strength</dt><dd itemprop="str">18</dd>

@@ -12,12 +12,68 @@
   <body>
 
     <script type="module">
-      import { calculateXpFromCr } from '../lib/monster.js'
+      import { calculateXpFromCr, averageDie } from '../lib/monster.js'
 
-      suite('calculateXpFromCr should', () => {
+      suite('monster.js', () => {
 
-        test('calculate monster experience points from CR', () => {
+        test('calculateXpFromCr should calculate monster experience points from CR', () => {
           assert.equal(calculateXpFromCr('1'), 200)
+        })
+
+        suite('averageDie should', () => {
+
+          test('find average for d4', () => {
+            assert.equal(averageDie('1d4'), '3')
+          })
+
+          test('find average for d6', () => {
+            assert.equal(averageDie('1d6'), '4')
+          })
+
+          test('find average for d8', () => {
+            assert.equal(averageDie('1d8'), '5')
+          })
+
+          test('find average for d10', () => {
+            assert.equal(averageDie('1d10'), '6')
+          })
+
+          test('find average for d20', () => {
+            assert.equal(averageDie('1d20'), '11')
+          })
+
+          test('ignore whitespace', () => {
+            assert.equal(averageDie(' 1d6 '), '4')
+          })
+
+          test('find average for multiple dice', () => {
+            assert.equal(averageDie('2d6'), '7')
+          })
+
+          test('find average without number of die', () => {
+            assert.equal(averageDie('d6'), '4')
+          })
+
+          test('find average with positive modifier', () => {
+            assert.equal(averageDie('1d6 + 1'), '5')
+          })
+
+          test('find average with negative modifier', () => {
+            assert.equal(averageDie('1d6 - 1'), '3')
+          })
+
+          test('find average with modifier and no spaces', () => {
+            assert.equal(averageDie('1d6+1'), '5')
+          })
+
+          test('throws error on invalid die notation', () => {
+            assert.throws(() => averageDie('invalid die'), Error)
+          })
+
+          test('error contains invalid string on invalid die notation', () => {
+            assert.throws(() => averageDie('invalid die'), 'invalid die')
+          })
+
         })
 
       })
