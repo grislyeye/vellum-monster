@@ -1,0 +1,16 @@
+image: node:11
+
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - apt-get update -qq
+  - apt-get install xvfb firefox-esr default-jre -y -qq
+  - npm prune
+  - npm install
+
+test:
+  script:
+    - npm run build
+    - xvfb-run ./node_modules/polymer-cli/bin/polymer.js test -l firefox
