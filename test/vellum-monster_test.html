@@ -24,7 +24,8 @@
             <dt>Type</dt><dd itemprop="type">monstrosity</dd>
             <dt>Alignment</dt><dd itemprop="alignment">lawful neutral</dd>
 
-            <dt>Armor Class</dt><dd itemprop="ac">17 (natural armor)</dd>
+            <dt>Armor Class</dt><dd itemprop="ac">17</dd>
+            <dt>Armor</dt><dd itemprop="armor">natural armor</dd>
             <dt>Hit Die</dt><dd itemprop="hitDie">16d10 + 48</dd>
             <dt>Speed</dt><dd itemprop="speeds">40 ft.</dd>
             <dt>Speed</dt><dd itemprop="speeds">fly 60 ft.</dd>
@@ -49,7 +50,6 @@
             <dt>Senses</dt><dd itemprop="senses">passive Perception 18</dd>
             <dt>Languages</dt><dd itemprop="languages">Common</dd>
             <dt>Languages</dt><dd itemprop="languages">Sphinx</dd>
-            <dt>Challenge</dt><dd itemprop="cr">11</dd>
           </dl>
 
           <ol>
@@ -62,6 +62,7 @@
             <li itemprop="specialTraits" itemscope>
               <span itemprop="name">Magic Weapons</span>
               <span itemprop="description">The sphinx's weapon attacks are magical.</span>
+              <span itemprop="hpAdjustment">+68</span>
             </li>
 
             <dt>Spellcasting.</dt>
@@ -78,13 +79,17 @@
             </dd>
 
             <li itemprop="actions" itemscope>
-              <span itemprop="name">Multiattack</span>
+              <data itemprop="type" value="multiattack">Multiattack</data>
               <span itemprop="description">The sphinx makes two claw attacks.</span>
+
+              <ul>
+                <li itemscope itemprop="multiAttacks" itemref="claw-attack"><span itemprop="number">2</span></li>
+              </ul>
             </li>
 
-            <li itemprop="actions" itemscope>
+            <li id="claw-attack" itemprop="actions" itemscope>
               <span itemprop="name">Claw</span>
-              <span><data itemprop="type" value="melee-or-ranged-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5 ft.</span> or range <span itemprop="range">10ft./20ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">13 (2d8 + 4)</span> <span itemprop="damageType">slashing</span> damage <span itemprop="notes">. This is a magic weapon attack.</span></span>
+              <span><data itemprop="type" value="melee-or-ranged-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+9</span> to hit, reach <span itemprop="reach">5 ft.</span> or range <span itemprop="range">10ft./20ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">2d8 + 4</span> <span itemprop="damageType">slashing</span> damage <span itemprop="notes">. This is a magic weapon attack.</span></span>
 
               <ul>
                 <li itemscope itemprop="randomEffects"><strong itemprop="roll">1</strong> <span itemprop="name">Rabid</span> <span itemprop="effect">The target becomes rabid and uses any actions it has this turn to make melee attacks against its nearest ally.</span></li>
@@ -97,6 +102,7 @@
             <li itemprop="reactions" itemscope>
               <span itemprop="name">Parry</span>
               <span itemprop="description">The gynosphinx adds 3 to its AC against one melee attack that would hit it.</span>
+              <span itemprop="acAdjustment">+1</span>
             </li>
 
           </ol>
@@ -106,7 +112,7 @@
 
             <ol>
 
-              <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> (Costs <span itemprop="actions">1</span> Actions) <span itemprop="description">The sphinx makes one claw attack.</span></li>
+              <li itemscope itemprop="actions"><strong itemprop="name">Claw Attack</strong> (Costs <span itemprop="actions">1</span> Actions) <span itemprop="description">The sphinx makes one claw attack.</span> (effectively adjusts damage by <span itemprop="damageAdjustment">+39</span>)</li>
 
               <li itemscope itemprop="actions"><strong><span itemprop="name">Teleport</span> (Costs <span itemprop="actions">2</span> Actions).</strong> <span itemprop="description">The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</span></li>
 
@@ -143,7 +149,7 @@
 
             <dt>Senses</dt><dd itemprop="senses">passive Perception 11</dd>
             <dt>Challenge</dt><dd itemprop="cr">1/2</dd>
-            <dt>XP</dt><dd itemprop="xp">100</dd>
+            <dt>XP</dt><dd itemprop="xp">76</dd>
           </dl>
 
           <ol>
@@ -155,7 +161,7 @@
 
               <li itemprop="actions" itemscope>
                 <span itemprop="name">Hooves</span>
-                <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+4</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">11 (2d6 + 4)</span> <span itemprop="damageType">bludgeoning</span> damage.</span>
+                <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+4</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">2d6 + 4</span> <span itemprop="damageType">bludgeoning</span> damage.</span>
               </li>
           </ol>
 
@@ -271,6 +277,15 @@ suite('<vellum-monster>', () => {
     })
   })
 
+  test('do not display parenthesis for simple armour class', (done) => {
+    const element = fixture('simple-stat-block')
+
+    flush(() => {
+      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.not.include('11 ()')
+      done()
+    })
+  })
+
   test('displays average hit points', (done) => {
     const element = fixture('detailed-stat-block')
 
@@ -295,9 +310,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      console.log(element.shadowRoot)
       const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
-      console.log(hitPoints)
       expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('11')
       done()
     })
@@ -509,22 +522,42 @@ suite('<vellum-monster>', () => {
     })
   })
 
-  test('displays challenge rating', (done) => {
+  test('displays calculated challenge rating', (done) => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('12 (')
       done()
     })
   })
 
-  test('displays experience points', (done) => {
+  test('displays calculated experience points', (done) => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(7200 XP)')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(8400 XP)')
+      done()
+    })
+  })
+
+  test('displays default challenge rating', (done) => {
+    const element = fixture('simple-stat-block')
+
+    flush(() => {
+      const challenge = element.shadowRoot.querySelector('#cr')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('1/2 (')
+      done()
+    })
+  })
+
+  test('displays default experience points', (done) => {
+    const element = fixture('simple-stat-block')
+
+    flush(() => {
+      const challenge = element.shadowRoot.querySelector('#cr')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(76 XP)')
       done()
     })
   })
@@ -563,7 +596,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const action = element.shadowRoot.querySelector('#action-0')
+      const action = element.shadowRoot.querySelector('#multiattack-0')
       expect(trimAll(action.shadowRoot.textContent)).to.includeOnce('Multiattack. The sphinx makes two claw attacks.')
       done()
     })
@@ -582,7 +615,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-1')
+      const attack = element.shadowRoot.querySelector('#attack-1')
       expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee or Ranged Weapon Attack: +9 to hit, reach 5 ft. or range 10ft./20ft., one target. Hit: 13 (2d8 + 4) slashing damage')
       done()
     })
@@ -592,7 +625,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-1')
+      const attack = element.shadowRoot.querySelector('#attack-1')
       expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('. This is a magic weapon attack.')
       done()
     })
@@ -601,7 +634,7 @@ suite('<vellum-monster>', () => {
   test('displays random attack effects', (done) => {
     const element = fixture('detailed-stat-block')
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-1')
+      const attack = element.shadowRoot.querySelector('#attack-1')
       expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('2. Paralysed. The target becomes paralysed.')
       done()
     })
@@ -611,7 +644,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const attack = element.shadowRoot.querySelector('#action-0')
+      const attack = element.shadowRoot.querySelector('#attack-0')
       expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Hooves.')
       done()
     })

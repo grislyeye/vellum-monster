@@ -12,7 +12,7 @@ import '../@polymer/polymer/lib/elements/dom-if.js'
 import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
 import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 import '../@polymer/polymer/lib/elements/dom-module.js'
-import { calculateXpFromCr, averageDie } from './lib/monster.js'
+import { calculateXpFromCr, averageDie, calculateCr } from './lib/monster.js'
 
 let memoizedTemplate
 
@@ -32,7 +32,7 @@ class Monster extends MicrodataMixin(StatBlock) {
     <div id="monster-stats" class="main-stats">
 
       <div class="combat-stats">
-        <vellum-stat id="ac" name="Armor Class" values\$="{{ac}}"></vellum-stat>
+        <vellum-stat id="ac" name="Armor Class" values\$="{{displayArmor}}"></vellum-stat>
 
         <dom-if if="{{hitDie}}">
           <template>
@@ -70,9 +70,9 @@ class Monster extends MicrodataMixin(StatBlock) {
         <vellum-stat id="senses" name="Senses" values="{{senses}}"></vellum-stat>
         <vellum-stat id="languages" name="Languages" values="{{languages}}"></vellum-stat>
 
-        <dom-if if="{{cr}}">
+        <dom-if if="{{displayCr}}">
           <template>
-            <vellum-stat id="cr" name="Challenge" values="{{cr}} ({{xp}} XP)"></vellum-stat>
+            <vellum-stat id="cr" name="Challenge" values="{{displayCr}} ({{displayXp}} XP)"></vellum-stat>
           </template>
         </dom-if>
 
@@ -109,15 +109,21 @@ class Monster extends MicrodataMixin(StatBlock) {
             <dom-repeat items="{{actions}}">
               <template>
 
-                <dom-if if="{{!item.type}}">
+                <dom-if if="{{isNotAttack(item)}}">
                   <template>
                     <vellum-stat id\$="action-{{index}}" class="action" name="{{item.name}}." values="{{item.description}}"></vellum-stat>
                   </template>
                 </dom-if>
 
-                <dom-if if="{{item.type}}">
+                <dom-if if="{{isMultiAttack(item)}}">
                   <template>
-                    <vellum-attack id\$="action-{{index}}" name="{{item.name}}" type="{{item.type}}" bonus="{{item.bonus}}" reach="{{item.reach}}" range="{{item.range}}" target="{{item.target}}" damage="{{item.damage}}" damage-type="{{item.damageType}}" notes="{{item.notes}}" limited-usage="{{item.limitedUsage}}" effects="{{item.randomEffects}}"></vellum-attack>
+                    <vellum-stat id\$="multiattack-{{index}}" class="action" name="Multiattack." values="{{item.description}}"></vellum-stat>
+                  </template>
+                </dom-if>
+
+                <dom-if if="{{isAttack(item)}}">
+                  <template>
+                    <vellum-attack id\$="attack-{{index}}" name="{{item.name}}" type="{{item.type}}" bonus="{{item.bonus}}" reach="{{item.reach}}" range="{{item.range}}" target="{{item.target}}" damage="{{item.damage}}" damage-type="{{item.damageType}}" notes="{{item.notes}}" limited-usage="{{item.limitedUsage}}" effects="{{item.randomEffects}}"></vellum-attack>
                   </template>
                 </dom-if>
 
@@ -184,7 +190,12 @@ class Monster extends MicrodataMixin(StatBlock) {
         type: String,
         computed: '_description(size, type, alignment)'
       },
-      ac: Object,
+      ac: Number,
+      armor: String,
+      displayArmor: {
+        type: String,
+        computed: '_displayArmour(ac, armor)'
+      },
       hitDie: {
         type: String,
         value: ''
@@ -213,10 +224,15 @@ class Monster extends MicrodataMixin(StatBlock) {
       conditionImmunities: Array,
       senses: Array,
       languages: Array,
-      cr: Number,
-      xp: {
+      cr: String,
+      displayCr: {
         type: Number,
-        computed: '_calculateXpFromCr(cr)'
+        computed: '_calculateCr(cr, displayHp, ac, maxAttackBonus, maxDamagePerRound, specialTraits, actions, legendaryActions, reactions)'
+      },
+      xp: Number,
+      displayXp: {
+        type: Number,
+        computed: '_calculateXp(xp, displayCr)'
       },
       specialTraits: Array,
       spellcasting: Object,
@@ -226,7 +242,15 @@ class Monster extends MicrodataMixin(StatBlock) {
       },
       actions: Array,
       reactions: Array,
-      legendaryActions: Object
+      legendaryActions: Object,
+      maxAttackBonus: {
+        type: Number,
+        computed: '_calculateMaxAttackBonus(actions)'
+      },
+      maxDamagePerRound: {
+        type: Number,
+        computed: '_calculateMaxDamagePerRound(actions)'
+      }
     }
   }
 
@@ -256,8 +280,13 @@ class Monster extends MicrodataMixin(StatBlock) {
     }
   }
 
-  _calculateXpFromCr(cr) {
-    return calculateXpFromCr(cr)
+  _calculateXp(xp, cr) {
+    if (xp) return xp
+    else return calculateXpFromCr(cr)
+  }
+
+  _displayArmour(ac, armor) {
+    return armor ? `${ac} (${armor})` : ac
   }
 
   _displayHp(hitDie, hp) {
@@ -268,6 +297,97 @@ class Monster extends MicrodataMixin(StatBlock) {
     } else {
       return ''
     }
+  }
+
+  _calculateCr(cr, displayHp, ac, attackBonus, damagePerRound, specialTraits, actions, legendaryActions, reactions) {
+    if (cr) return cr
+
+    const allTraitsAndActions = []
+      .concat(specialTraits || [])
+      .concat(actions || [])
+      .concat(legendaryActions ? legendaryActions.actions : [])
+      .concat(reactions || [])
+
+    return calculateCr({
+      hp: parseInt(displayHp) + this.hpAdjustments(allTraitsAndActions),
+      ac: parseInt(ac) + this.acAdjustments(allTraitsAndActions),
+      attackBonus: attackBonus + this.attackAdjustments(allTraitsAndActions),
+      damagePerRound: damagePerRound + this.damageAdjustments(allTraitsAndActions)
+    })
+  }
+
+  _calculateMaxAttackBonus(actions) {
+    return Math.max(...actions
+      .filter(action => action.type)
+      .filter(this._calculateMultiattack)
+      .map(attack => attack.bonus)
+      .map(bonus => parseInt(bonus))
+    )
+  }
+
+  _calculateMaxDamagePerRound(actions) {
+    return Math.max(...actions
+      .filter(action => action.type)
+      .filter(this._calculateMultiattack)
+      .map(attack => attack.averageDamage ? attack.averageDamage : averageDie(attack.damage))
+    )
+  }
+
+  _calculateMultiattack(action) {
+    if (action.type && action.type === 'multiattack') {
+      action.averageDamage = action.multiAttacks.number * averageDie(action.multiAttacks.damage)
+      action.bonus = action.multiAttacks.bonus
+      return action
+    } else {
+      return action
+    }
+
+  }
+
+  hpAdjustments(actions) {
+    return actions
+      .filter(action => action.hpAdjustment)
+      .map(action => action.hpAdjustment)
+      .map(adjustment => parseInt(adjustment))
+      .reduce((a, b) => a + b, 0)
+  }
+
+  acAdjustments(actions) {
+    return actions
+      .filter(action => action.acAdjustment)
+      .map(action => action.acAdjustment)
+      .map(adjustment => parseInt(adjustment))
+      .reduce((a, b) => a + b, 0)
+  }
+
+  attackAdjustments(actions) {
+    return actions
+      .filter(action => action.attackAdjustment)
+      .map(action => action.attackAdjustment)
+      .map(adjustment => parseInt(adjustment))
+      .reduce((a, b) => a + b, 0)
+  }
+
+  damageAdjustments(actions) {
+    return actions
+      .filter(action => action.damageAdjustment)
+      .map(action => action.damageAdjustment)
+      .map(adjustment => parseInt(adjustment))
+      .reduce((a, b) => a + b, 0)
+  }
+
+  isNotAttack(action) {
+    return action.type === undefined
+  }
+
+  isAttack(action) {
+    return action.type === 'ranged-attack' ||
+      action.type === 'melee-attack' ||
+      action.type === 'melee-or-ranged-attack'
+  }
+
+  isMultiAttack(action) {
+    return action.type === 'multiattack'
   }
 
 }

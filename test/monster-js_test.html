@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>vellum-stat test</title>
+    <title>monster.js test</title>
 
     <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../wct-browser-legacy/browser.js"></script>
@@ -12,7 +12,7 @@
   <body>
 
     <script type="module">
-      import { calculateXpFromCr, averageDie } from '../lib/monster.js'
+      import { calculateXpFromCr, averageDie, calculateCr } from '../lib/monster.js'
 
       suite('monster.js', () => {
 
@@ -74,6 +74,335 @@
             assert.throws(() => averageDie('invalid die'), 'invalid die')
           })
 
+        })
+
+        suite('calculateCr() should', () => {
+
+          test('calculate correct CR for CR 0 monster', () => {
+            const monster = {
+              ac: 13,
+              hp: 5,
+              attackBonus: 3,
+              damagePerRound: 1
+            }
+
+            assert.equal(calculateCr(monster), '0')
+          })
+
+          test('calculate correct CR for CR 0 monster with AC < 13', () => {
+            const monster = {
+              ac: 11,
+              hp: 5,
+              attackBonus: 3,
+              damagePerRound: 1
+            }
+
+            assert.equal(calculateCr(monster), '0')
+          })
+
+          test('calculate correct CR for CR 0 monster with attack bonus < 3', () => {
+            const monster = {
+              ac: 11,
+              hp: 5,
+              attackBonus: 1,
+              damagePerRound: 1
+            }
+
+            assert.equal(calculateCr(monster), '0')
+          })
+
+          test('calculate CR for monster with unusually high hit points', () => {
+            const monster = {
+              ac: 13,
+              hp: 36,
+              attackBonus: 3,
+              damagePerRound: 1
+            }
+
+            assert.equal(calculateCr(monster), '⅛')
+          })
+
+          test('calculate CR for monster with unusually high armour class', () => {
+            const monster = {
+              ac: 14,
+              hp: 90,
+              attackBonus: 3,
+              damagePerRound: 17
+            }
+
+            assert.equal(calculateCr(monster), '3')
+          })
+
+          test('calculate CR for monster with unusually high damage per round', () => {
+            const monster = {
+              ac: 14,
+              hp: 120,
+              attackBonus: 5,
+              damagePerRound: 40
+            }
+
+            assert.equal(calculateCr(monster), '5')
+          })
+
+          test('calculate CR for monster with unusually high attack bonus', () => {
+            const monster = {
+              ac: 15,
+              hp: 140,
+              attackBonus: 7,
+              damagePerRound: 35
+            }
+
+            assert.equal(calculateCr(monster), '6')
+          })
+
+          test('calculate CR for monster with unusually low hit points', () => {
+            const monster = {
+              ac: 16,
+              hp: 135,
+              attackBonus: 7,
+              damagePerRound: 55
+            }
+
+            assert.equal(calculateCr(monster), '7')
+          })
+
+          test('calculate CR for monster with unusually low armour class', () => {
+            const monster = {
+              ac: 15,
+              hp: 245,
+              attackBonus: 8,
+              damagePerRound: 80
+            }
+
+            assert.equal(calculateCr(monster), '11')
+          })
+
+          test('calculate CR for monster with unusually low damage per round', () => {
+            const monster = {
+              ac: 19,
+              hp: 320,
+              attackBonus: 10,
+              damagePerRound: 90
+            }
+
+            assert.equal(calculateCr(monster), '16')
+          })
+
+          test('calculate CR for monster with unusually low attack bonus', () => {
+            const monster = {
+              ac: 19,
+              hp: 320,
+              attackBonus: 7,
+              damagePerRound: 109
+            }
+
+            assert.equal(calculateCr(monster), '16')
+          })
+
+          test('calculate CR for monster with slightly high hit points', () => {
+            const monster = {
+              ac: 14,
+              hp: 140,
+              attackBonus: 5,
+              damagePerRound: 30
+            }
+
+            assert.equal(calculateCr(monster), '5')
+          })
+
+          test('calculate CR for monster with slightly high armour class', () => {
+            const monster = {
+              ac: 15,
+              hp: 125,
+              attackBonus: 5,
+              damagePerRound: 30
+            }
+
+            assert.equal(calculateCr(monster), '4')
+          })
+
+          test('calculate CR for monster with slightly high damage per round', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              attackBonus: 5,
+              damagePerRound: 35
+            }
+
+            assert.equal(calculateCr(monster), '5')
+          })
+
+          test('calculate CR for monster with slightly high attack bonus', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              attackBonus: 6,
+              damagePerRound: 30
+            }
+
+            assert.equal(calculateCr(monster), '4')
+          })
+
+          test('calculate CR for monster with slightly low hit points', () => {
+            const monster = {
+              ac: 16,
+              hp: 155,
+              attackBonus: 7,
+              damagePerRound: 55
+            }
+
+            assert.equal(calculateCr(monster), '8')
+          })
+
+          test('calculate CR for monster with slightly low armour class', () => {
+            const monster = {
+              ac: 18,
+              hp: 320,
+              attackBonus: 10,
+              damagePerRound: 107
+            }
+
+            assert.equal(calculateCr(monster), '17')
+          })
+
+          test('calculate CR for monster with slightly low damage per round', () => {
+            const monster = {
+              ac: 19,
+              hp: 320,
+              attackBonus: 10,
+              damagePerRound: 100
+            }
+
+            assert.equal(calculateCr(monster), '17')
+          })
+
+          test('calculate CR for monster with slightly low attack bonus', () => {
+            const monster = {
+              ac: 19,
+              hp: 320,
+              attackBonus: 9,
+              damagePerRound: 109
+            }
+
+            assert.equal(calculateCr(monster), '17')
+          })
+
+          test('ignore armour class when calculating CR if it is equal to the expected value for monster\'s hit points', () => {
+            const monster = {
+              ac: 13,
+              hp: 110,
+              attackBonus: 4,
+              damagePerRound: 25
+            }
+
+            assert.equal(calculateCr(monster), '3')
+          })
+
+          test('ignore attack bonus when calculating CR if it is equal to the expected value for monster\'s damage per round', () => {
+            const monster = {
+              ac: 13,
+              hp: 90,
+              attackBonus: 3,
+              damagePerRound: 17
+            }
+
+            assert.equal(calculateCr(monster), '2')
+          })
+
+          test('use highest attack bonus CR when calculating CR for monster for low attack bonus', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              attackBonus: 3,
+              damagePerRound: 30
+            }
+
+            assert.equal(calculateCr(monster), '4')
+          })
+
+          test('return undefined for out-of-range armour class', () => {
+            const monster = {
+              ac: 20,
+              hp: 100,
+              attackBonus: 3,
+              damagePerRound: 30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined for out-of-range hit points', () => {
+            const monster = {
+              ac: 14,
+              hp: -1,
+              attackBonus: 3,
+              damagePerRound: 30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined for out-of-range attack bonus', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              attackBonus: -3,
+              damagePerRound: 30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined for out-of-range damage-per-round', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              attackBonus: 3,
+              damagePerRound: -30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined when armour class not provided', () => {
+            const monster = {
+              hp: 100,
+              attackBonus: 3,
+              damagePerRound: 30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined when hit points not provided', () => {
+            const monster = {
+              ac: 14,
+              attackBonus: 3,
+              damagePerRound: 30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined when attack bonus not provided', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              damagePerRound: 30
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
+
+          test('return undefined when damage-per-round not provided', () => {
+            const monster = {
+              ac: 14,
+              hp: 125,
+              attackBonus: 3
+            }
+
+            assert.isNotOk(calculateCr(monster))
+          })
         })
 
       })

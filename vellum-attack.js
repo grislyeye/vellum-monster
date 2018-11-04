@@ -2,6 +2,7 @@ import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
 import '../@polymer/polymer/lib/elements/dom-if.js'
 import '../@polymer/polymer/lib/elements/dom-repeat.js'
 import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
+import { averageDie } from './lib/monster.js'
 
 class Attack extends PolymerElement {
   static get template() {
@@ -39,7 +40,7 @@ class Attack extends PolymerElement {
         {{bonus}} to hit,
         {{reachOrRange}},
         {{target}}.
-        <em>Hit:</em> {{damage}} {{damageType}} damage{{notes}}.
+        <em>Hit:</em> {{averageDamage}} ({{damage}}) {{damageType}} damage{{notes}}.
       </span>
     </p>
 
@@ -71,6 +72,10 @@ class Attack extends PolymerElement {
       range: String,
       target: String,
       damage: String,
+      averageDamage: {
+        type: Number,
+        computed: '_calcAverageDamage(damage)'
+      },
       damageType: String,
       notes: String,
       limitedUsage: String,
@@ -108,6 +113,10 @@ class Attack extends PolymerElement {
     if (a.roll < b.roll) return -1
     if (a.roll > b.roll) return 1
     return 0
+  }
+
+  _calcAverageDamage(damage) {
+    return averageDie(damage)
   }
 }
 

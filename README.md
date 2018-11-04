@@ -5,6 +5,7 @@ Web component for displaying monster stat blocks for the fifth edition of the wo
   * Cross-browser support using Polymer and the Web Components polyfill
   * Simpler (just one import vs 5)
   * Theme-able
+  * Automatically calculate values (average hit points and challenge rating)
 
 To install:
 
@@ -76,6 +77,12 @@ This module also includes a theme to give your stat blocks a more "official" loo
 ```html
 <link rel="stylesheet" type="text/css" href="vellum-monster/themes/official/style.css">
 ```
+
+### Calculating Challenge Rating
+
+If you do not provide the challenge rating for your monster, `<vellum-monster>` will attempt to automatically calculate and fill this value in for you, based on armor class, hit points, damage and attack bonus.
+
+Traits, actions, reactions and legendary actions can adjust the effective value of these stats when calculating challenge rating. Each of these objects of can declare a `hpAdjustment`, `acAdjustment`, `damageAdjustment` or `attackAdjustment` which can increase or decrease the effective hit points, armor class, damage or attack bonus when calculating CR.
 
 ## Custom Themes
 
