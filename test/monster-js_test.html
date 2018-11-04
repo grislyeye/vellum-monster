@@ -16,11 +16,11 @@
 
       suite('monster.js', () => {
 
-        test('calculateXpFromCr should calculate monster experience points from CR', () => {
+        test('calculateXpFromCr() should calculate monster experience points from CR', () => {
           assert.equal(calculateXpFromCr('1'), 200)
         })
 
-        suite('averageDie should', () => {
+        suite('averageDie() should', () => {
 
           test('find average for d4', () => {
             assert.equal(averageDie('1d4'), '3')
@@ -66,11 +66,11 @@
             assert.equal(averageDie('1d6+1'), '5')
           })
 
-          test('throws error on invalid die notation', () => {
+          test('throw error on invalid die notation', () => {
             assert.throws(() => averageDie('invalid die'), Error)
           })
 
-          test('error contains invalid string on invalid die notation', () => {
+          test('throw error containing invalid die string on invalid die notation', () => {
             assert.throws(() => averageDie('invalid die'), 'invalid die')
           })
 
