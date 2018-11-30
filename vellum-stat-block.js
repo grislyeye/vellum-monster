@@ -11,7 +11,7 @@ export class StatBlock extends PolymerElement {
         display: block;
         overflow: hidden;
         font-family: sans-serif;
-        width: 350px;
+        width: var(--stat-block-width, 350px);
         font-size: 10pt;
         margin-bottom: 1em;
 
