@@ -10,7 +10,7 @@
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
   ],
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
     "eslint": "^5.6.0",
