@@ -263,7 +263,7 @@ class Monster extends MicrodataMixin(StatBlock) {
   _displayHp(hitDie, hp) {
     if (!hp && hitDie) {
       return averageDie(hitDie)
-    } else if (!hp) {
+    } else if (hp) {
       return hp
     } else {
       return ''

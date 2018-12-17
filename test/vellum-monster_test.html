@@ -131,7 +131,7 @@
             <dt>Alignment</dt><dd itemprop="alignment">unaligned</dd>
 
             <dt>Armor Class</dt><dd itemprop="ac">11</dd>
-            <dt>Hit Points</dt><dd><span itemprop="hp">19</span> (<span itemprop="hitDie">3d10 + 3</span>)</dd>
+            <dt>Hit Points</dt><dd><span itemprop="hp">11</span> (<span itemprop="hitDie">3d10 + 3</span>)</dd>
             <dt>Speed</dt><dd itemprop="speeds">60 ft.</dd>
 
             <dt>Strength</dt><dd itemprop="str">18</dd>
@@ -287,6 +287,18 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const hitPoints = element.shadowRoot.querySelector('#hit-points')
       expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('40')
+      done()
+    })
+  })
+
+  test('displays override hit points when hit die defined', (done) => {
+    const element = fixture('simple-stat-block')
+
+    flush(() => {
+      console.log(element.shadowRoot)
+      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
+      console.log(hitPoints)
+      expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('11')
       done()
     })
   })
