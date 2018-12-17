@@ -23,27 +23,27 @@
         suite('averageDie() should', () => {
 
           test('find average for d4', () => {
-            assert.equal(averageDie('1d4'), '3')
+            assert.equal(averageDie('1d4'), '2')
           })
 
           test('find average for d6', () => {
-            assert.equal(averageDie('1d6'), '4')
+            assert.equal(averageDie('1d6'), '3')
           })
 
           test('find average for d8', () => {
-            assert.equal(averageDie('1d8'), '5')
+            assert.equal(averageDie('1d8'), '4')
           })
 
           test('find average for d10', () => {
-            assert.equal(averageDie('1d10'), '6')
+            assert.equal(averageDie('1d10'), '5')
           })
 
           test('find average for d20', () => {
-            assert.equal(averageDie('1d20'), '11')
+            assert.equal(averageDie('1d20'), '10')
           })
 
           test('ignore whitespace', () => {
-            assert.equal(averageDie(' 1d6 '), '4')
+            assert.equal(averageDie(' 1d6 '), '3')
           })
 
           test('find average for multiple dice', () => {
@@ -51,19 +51,19 @@
           })
 
           test('find average without number of die', () => {
-            assert.equal(averageDie('d6'), '4')
+            assert.equal(averageDie('d6'), '3')
           })
 
           test('find average with positive modifier', () => {
-            assert.equal(averageDie('1d6 + 1'), '5')
+            assert.equal(averageDie('1d6 + 1'), '4')
           })
 
           test('find average with negative modifier', () => {
-            assert.equal(averageDie('1d6 - 1'), '3')
+            assert.equal(averageDie('1d6 - 1'), '2')
           })
 
           test('find average with modifier and no spaces', () => {
-            assert.equal(averageDie('1d6+1'), '5')
+            assert.equal(averageDie('1d6+1'), '4')
           })
 
           test('throw error on invalid die notation', () => {
