@@ -16,6 +16,7 @@
     "padded-blocks": 0
   },
   "plugins": [
-    "html"
+    "html",
+    "lit"
   ]
 }
