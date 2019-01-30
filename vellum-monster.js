@@ -12,8 +12,8 @@ import '../@polymer/polymer/lib/elements/dom-if.js'
 import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
 import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 import '../@polymer/polymer/lib/elements/dom-module.js'
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js'
 import { calculateXpFromCr, averageDie, calculateCr } from './lib/monster.js'
-
 let memoizedTemplate
 
 class Monster extends MicrodataMixin(StatBlock) {
@@ -191,6 +191,10 @@ class Monster extends MicrodataMixin(StatBlock) {
         computed: '_description(size, type, alignment)'
       },
       ac: Number,
+      effectiveAc: {
+        type: Number,
+        computed: '_calculateEffectiveAc(ac, allTraitsAndActions)'
+      },
       armor: String,
       displayArmor: {
         type: String,
@@ -202,8 +206,12 @@ class Monster extends MicrodataMixin(StatBlock) {
       },
       hp: Number,
       displayHp: {
-        type: String,
+        type: Number,
         computed: '_displayHp(hitDie, hp)'
+      },
+      effectiveHp: {
+        type: Number,
+        computed: '_calculateEffectiveHp(displayHp, allTraitsAndActions)'
       },
       speeds: Array,
       str: Number,
@@ -225,9 +233,13 @@ class Monster extends MicrodataMixin(StatBlock) {
       senses: Array,
       languages: Array,
       cr: String,
+      calculatedCr: {
+        type: Number,
+        computed: '_calculateCr(cr, effectiveHp, effectiveAc, effectiveAttackBonus, effectiveDamage)'
+      },
       displayCr: {
         type: Number,
-        computed: '_calculateCr(cr, displayHp, ac, maxAttackBonus, maxDamagePerRound, specialTraits, actions, legendaryActions, reactions)'
+        computed: '_displayCr(cr, calculatedCr)'
       },
       xp: Number,
       displayXp: {
@@ -250,8 +262,53 @@ class Monster extends MicrodataMixin(StatBlock) {
       maxDamagePerRound: {
         type: Number,
         computed: '_calculateMaxDamagePerRound(actions)'
+      },
+      allTraitsAndActions: {
+        type: Array,
+        computed: '_calculateAllTraitsAndActions(specialTraits, actions, legendaryActions, reactions)'
+      },
+      effectiveDamage: {
+        type: Number,
+        computed: '_calculateEffectiveDamage(maxAttackBonus, allTraitsAndActions)'
+      },
+      effectiveAttackBonus: {
+        type: Number,
+        computed: '_calculateEffectiveAttackBonus(maxAttackBonus, allTraitsAndActions)'
       }
     }
+  }
+
+  constructor() {
+    super()
+
+    afterNextRender(this, () => {
+      if (!this.cr) {
+        console.table({
+          name: {
+            effectiveValue: this.name
+          },
+          hitPoints: {
+            effectiveValue: this.effectiveHp,
+            cr: this.calculatedCr.hpCr
+          },
+          armourClass: {
+            effectiveValue: this.effectiveAc,
+            cr: this.calculatedCr.acCr
+          },
+          defensive: { cr: this.calculatedCr.defensiveCr },
+          damage: {
+            effectiveValue: this.effectiveDamage,
+            cr: this.calculatedCr.damageCr
+          },
+          attackBonus: {
+            effectiveValue: this.effectiveAttackBonus,
+            cr: this.calculatedCr.attackBonusCr
+          },
+          offensive: { cr: this.calculatedCr.offensiveCr },
+          effective: { cr: this.calculatedCr.effectiveCr }
+        })
+      }
+    })
   }
 
   _description(size, type, alignment) {
@@ -299,21 +356,28 @@ class Monster extends MicrodataMixin(StatBlock) {
     }
   }
 
-  _calculateCr(cr, displayHp, ac, attackBonus, damagePerRound, specialTraits, actions, legendaryActions, reactions) {
-    if (cr) return cr
-
-    const allTraitsAndActions = []
+  _calculateAllTraitsAndActions(specialTraits, actions, legendaryActions, reactions) {
+    return []
       .concat(specialTraits || [])
       .concat(actions || [])
       .concat(legendaryActions ? legendaryActions.actions : [])
       .concat(reactions || [])
+  }
+
+  _calculateCr(cr, effectiveHp, effectiveAc, effectiveAttackBonus, effectiveDamage) {
+    if (cr) return cr
 
     return calculateCr({
-      hp: parseInt(displayHp) + this.hpAdjustments(allTraitsAndActions),
-      ac: parseInt(ac) + this.acAdjustments(allTraitsAndActions),
-      attackBonus: attackBonus + this.attackAdjustments(allTraitsAndActions),
-      damagePerRound: damagePerRound + this.damageAdjustments(allTraitsAndActions)
+      hp: effectiveHp,
+      ac: effectiveAc,
+      attackBonus: effectiveAttackBonus,
+      damagePerRound: effectiveDamage
     })
+  }
+
+  _displayCr(cr, calculatedCr) {
+    if (cr) return cr
+    else return calculatedCr.effectiveCr
   }
 
   _calculateMaxAttackBonus(actions) {
@@ -341,39 +405,46 @@ class Monster extends MicrodataMixin(StatBlock) {
     } else {
       return action
     }
-
   }
 
-  hpAdjustments(actions) {
-    return actions
-      .filter(action => action.hpAdjustment)
-      .map(action => action.hpAdjustment)
-      .map(adjustment => parseInt(adjustment))
-      .reduce((a, b) => a + b, 0)
+  _calculateEffectiveAc(ac, allTraitsAndActions) {
+    if (allTraitsAndActions) {
+      return allTraitsAndActions
+        .filter(action => action.acAdjustment)
+        .map(action => action.acAdjustment)
+        .map(adjustment => parseInt(adjustment))
+        .reduce((a, b) => a + b, parseInt(ac))
+    }
   }
 
-  acAdjustments(actions) {
-    return actions
-      .filter(action => action.acAdjustment)
-      .map(action => action.acAdjustment)
-      .map(adjustment => parseInt(adjustment))
-      .reduce((a, b) => a + b, 0)
+  _calculateEffectiveHp(hp, allTraitsAndActions) {
+    if (allTraitsAndActions) {
+      return allTraitsAndActions
+        .filter(action => action.hpAdjustment)
+        .map(action => action.hpAdjustment)
+        .map(adjustment => parseInt(adjustment))
+        .reduce((a, b) => a + b, parseInt(hp))
+    }
   }
 
-  attackAdjustments(actions) {
-    return actions
-      .filter(action => action.attackAdjustment)
-      .map(action => action.attackAdjustment)
-      .map(adjustment => parseInt(adjustment))
-      .reduce((a, b) => a + b, 0)
+  _calculateEffectiveAttackBonus(maxAttackBonus, allTraitsAndActions) {
+    if (allTraitsAndActions) {
+      return allTraitsAndActions
+        .filter(action => action.attackAdjustment)
+        .map(action => action.attackAdjustment)
+        .map(adjustment => parseInt(adjustment))
+        .reduce((a, b) => a + b, maxAttackBonus)
+    }
   }
 
-  damageAdjustments(actions) {
-    return actions
-      .filter(action => action.damageAdjustment)
-      .map(action => action.damageAdjustment)
-      .map(adjustment => parseInt(adjustment))
-      .reduce((a, b) => a + b, 0)
+  _calculateEffectiveDamage(maxDamage, allTraitsAndActions) {
+    if (allTraitsAndActions) {
+      return allTraitsAndActions
+        .filter(action => action.damageAdjustment)
+        .map(action => action.damageAdjustment)
+        .map(adjustment => parseInt(adjustment))
+        .reduce((a, b) => a + b, maxDamage)
+    }
   }
 
   isNotAttack(action) {

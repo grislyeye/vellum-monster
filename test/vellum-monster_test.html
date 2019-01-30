@@ -527,7 +527,7 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('12 (')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (')
       done()
     })
   })
@@ -537,7 +537,7 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(8400 XP)')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(7200 XP)')
       done()
     })
   })

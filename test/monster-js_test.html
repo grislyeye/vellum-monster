@@ -86,7 +86,7 @@
               damagePerRound: 1
             }
 
-            assert.equal(calculateCr(monster), '0')
+            assert.equal(calculateCr(monster).effectiveCr, '0')
           })
 
           test('calculate correct CR for CR 0 monster with AC < 13', () => {
@@ -97,7 +97,7 @@
               damagePerRound: 1
             }
 
-            assert.equal(calculateCr(monster), '0')
+            assert.equal(calculateCr(monster).effectiveCr, '0')
           })
 
           test('calculate correct CR for CR 0 monster with attack bonus < 3', () => {
@@ -108,7 +108,7 @@
               damagePerRound: 1
             }
 
-            assert.equal(calculateCr(monster), '0')
+            assert.equal(calculateCr(monster).effectiveCr, '0')
           })
 
           test('calculate CR for monster with unusually high hit points', () => {
@@ -119,7 +119,7 @@
               damagePerRound: 1
             }
 
-            assert.equal(calculateCr(monster), '⅛')
+            assert.equal(calculateCr(monster).effectiveCr, '⅛')
           })
 
           test('calculate CR for monster with unusually high armour class', () => {
@@ -130,7 +130,7 @@
               damagePerRound: 17
             }
 
-            assert.equal(calculateCr(monster), '3')
+            assert.equal(calculateCr(monster).effectiveCr, '3')
           })
 
           test('calculate CR for monster with unusually high damage per round', () => {
@@ -141,7 +141,7 @@
               damagePerRound: 40
             }
 
-            assert.equal(calculateCr(monster), '5')
+            assert.equal(calculateCr(monster).effectiveCr, '5')
           })
 
           test('calculate CR for monster with unusually high attack bonus', () => {
@@ -152,7 +152,7 @@
               damagePerRound: 35
             }
 
-            assert.equal(calculateCr(monster), '6')
+            assert.equal(calculateCr(monster).effectiveCr, '6')
           })
 
           test('calculate CR for monster with unusually low hit points', () => {
@@ -163,7 +163,7 @@
               damagePerRound: 55
             }
 
-            assert.equal(calculateCr(monster), '7')
+            assert.equal(calculateCr(monster).effectiveCr, '7')
           })
 
           test('calculate CR for monster with unusually low armour class', () => {
@@ -174,7 +174,7 @@
               damagePerRound: 80
             }
 
-            assert.equal(calculateCr(monster), '11')
+            assert.equal(calculateCr(monster).effectiveCr, '11')
           })
 
           test('calculate CR for monster with unusually low damage per round', () => {
@@ -185,7 +185,7 @@
               damagePerRound: 90
             }
 
-            assert.equal(calculateCr(monster), '16')
+            assert.equal(calculateCr(monster).effectiveCr, '16')
           })
 
           test('calculate CR for monster with unusually low attack bonus', () => {
@@ -196,7 +196,7 @@
               damagePerRound: 109
             }
 
-            assert.equal(calculateCr(monster), '16')
+            assert.equal(calculateCr(monster).effectiveCr, '16')
           })
 
           test('calculate CR for monster with slightly high hit points', () => {
@@ -207,7 +207,7 @@
               damagePerRound: 30
             }
 
-            assert.equal(calculateCr(monster), '5')
+            assert.equal(calculateCr(monster).effectiveCr, '5')
           })
 
           test('calculate CR for monster with slightly high armour class', () => {
@@ -218,7 +218,7 @@
               damagePerRound: 30
             }
 
-            assert.equal(calculateCr(monster), '4')
+            assert.equal(calculateCr(monster).effectiveCr, '4')
           })
 
           test('calculate CR for monster with slightly high damage per round', () => {
@@ -229,7 +229,7 @@
               damagePerRound: 35
             }
 
-            assert.equal(calculateCr(monster), '5')
+            assert.equal(calculateCr(monster).effectiveCr, '5')
           })
 
           test('calculate CR for monster with slightly high attack bonus', () => {
@@ -240,7 +240,7 @@
               damagePerRound: 30
             }
 
-            assert.equal(calculateCr(monster), '4')
+            assert.equal(calculateCr(monster).effectiveCr, '4')
           })
 
           test('calculate CR for monster with slightly low hit points', () => {
@@ -251,7 +251,7 @@
               damagePerRound: 55
             }
 
-            assert.equal(calculateCr(monster), '8')
+            assert.equal(calculateCr(monster).effectiveCr, '8')
           })
 
           test('calculate CR for monster with slightly low armour class', () => {
@@ -262,7 +262,7 @@
               damagePerRound: 107
             }
 
-            assert.equal(calculateCr(monster), '17')
+            assert.equal(calculateCr(monster).effectiveCr, '17')
           })
 
           test('calculate CR for monster with slightly low damage per round', () => {
@@ -273,7 +273,7 @@
               damagePerRound: 100
             }
 
-            assert.equal(calculateCr(monster), '17')
+            assert.equal(calculateCr(monster).effectiveCr, '17')
           })
 
           test('calculate CR for monster with slightly low attack bonus', () => {
@@ -284,7 +284,7 @@
               damagePerRound: 109
             }
 
-            assert.equal(calculateCr(monster), '17')
+            assert.equal(calculateCr(monster).effectiveCr, '17')
           })
 
           test('ignore armour class when calculating CR if it is equal to the expected value for monster\'s hit points', () => {
@@ -295,7 +295,7 @@
               damagePerRound: 25
             }
 
-            assert.equal(calculateCr(monster), '3')
+            assert.equal(calculateCr(monster).effectiveCr, '3')
           })
 
           test('ignore attack bonus when calculating CR if it is equal to the expected value for monster\'s damage per round', () => {
@@ -306,7 +306,7 @@
               damagePerRound: 17
             }
 
-            assert.equal(calculateCr(monster), '2')
+            assert.equal(calculateCr(monster).effectiveCr, '2')
           })
 
           test('use highest attack bonus CR when calculating CR for monster for low attack bonus', () => {
@@ -317,7 +317,7 @@
               damagePerRound: 30
             }
 
-            assert.equal(calculateCr(monster), '4')
+            assert.equal(calculateCr(monster).effectiveCr, '4')
           })
 
           test('return undefined for out-of-range armour class', () => {
@@ -328,7 +328,7 @@
               damagePerRound: 30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined for out-of-range hit points', () => {
@@ -339,7 +339,7 @@
               damagePerRound: 30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined for out-of-range attack bonus', () => {
@@ -350,7 +350,7 @@
               damagePerRound: 30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined for out-of-range damage-per-round', () => {
@@ -361,7 +361,7 @@
               damagePerRound: -30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined when armour class not provided', () => {
@@ -371,7 +371,7 @@
               damagePerRound: 30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined when hit points not provided', () => {
@@ -381,7 +381,7 @@
               damagePerRound: 30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined when attack bonus not provided', () => {
@@ -391,7 +391,7 @@
               damagePerRound: 30
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
 
           test('return undefined when damage-per-round not provided', () => {
@@ -401,7 +401,7 @@
               attackBonus: 3
             }
 
-            assert.isNotOk(calculateCr(monster))
+            assert.isNotOk(calculateCr(monster).effectiveCr)
           })
         })
 
