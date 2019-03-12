@@ -103,6 +103,7 @@
               <span itemprop="name">Parry</span>
               <span itemprop="description">The gynosphinx adds 3 to its AC against one melee attack that would hit it.</span>
               <span itemprop="acAdjustment">+1</span>
+              <span itemprop="attackAdjustment">+1</span>
             </li>
 
           </ol>
@@ -851,6 +852,42 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       expect(trimAll(element.$['damage-threshold'].shadowRoot.textContent)).to.includeOnce('10')
+      done()
+    })
+  })
+
+  test('calculates effective hit points taking into account hit point adjustments', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(element.effectiveHp).to.equal(204)
+      done()
+    })
+  })
+
+  test('calculates effective AC taking into account AC adjustments', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(element.effectiveAc).to.equal(18)
+      done()
+    })
+  })
+
+  test('calculates max attack bonus', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(element.maxAttackBonus).to.equal(9)
+      done()
+    })
+  })
+
+  test('calculates effective attack bonus taking into account attack bonus adjustments', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(element.effectiveAttackBonus).to.equal(10)
       done()
     })
   })
