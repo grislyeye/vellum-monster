@@ -12,7 +12,7 @@ import '../@polymer/polymer/lib/elements/dom-if.js'
 import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
 import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
 import '../@polymer/polymer/lib/elements/dom-module.js'
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js'
+import { afterNextRender } from '../@polymer/polymer/lib/utils/render-status.js'
 import { calculateXpFromCr, averageDie, calculateCr } from './lib/monster.js'
 let memoizedTemplate
 
