@@ -269,7 +269,7 @@ class Monster extends MicrodataMixin(StatBlock) {
       },
       effectiveDamage: {
         type: Number,
-        computed: '_calculateEffectiveDamage(maxAttackBonus, allTraitsAndActions)'
+        computed: '_calculateEffectiveDamage(maxDamagePerRound, allTraitsAndActions)'
       },
       effectiveAttackBonus: {
         type: Number,

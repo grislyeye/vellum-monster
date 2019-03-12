@@ -527,7 +527,7 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('11 (')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('12 (')
       done()
     })
   })
@@ -537,7 +537,7 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
-      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(7200 XP)')
+      expect(trimAll(challenge.shadowRoot.textContent)).to.includeOnce('(8400 XP)')
       done()
     })
   })
@@ -851,6 +851,24 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       expect(trimAll(element.$['damage-threshold'].shadowRoot.textContent)).to.includeOnce('10')
+      done()
+    })
+  })
+
+  test('calculates max damage taking into account multiattacks', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(element.maxDamagePerRound).to.equal(26)
+      done()
+    })
+  })
+
+  test('calculates effective damage taking into account multiattacks and damage adjustments', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(element.effectiveDamage).to.equal(65)
       done()
     })
   })
