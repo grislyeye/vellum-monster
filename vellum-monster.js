@@ -63,6 +63,7 @@ class Monster extends MicrodataMixin(StatBlock) {
 
         <vellum-stat id="saving-throws" name="Saving Throws" values="{{savingThrows}}"></vellum-stat>
         <vellum-stat id="skills" name="Skills" values="{{skills}}"></vellum-stat>
+        <vellum-stat id="damage-vulnerabilities" name="Damage Vulnerabilities" values="{{damageVulnerabilities}}"></vellum-stat>
         <vellum-stat id="damage-resistances" name="Damage Resistances" values="{{damageResistances}}"></vellum-stat>
         <vellum-stat id="damage-immunities" name="Damage Immunities" values="{{damageImmunities}}"></vellum-stat>
         <vellum-stat id="damage-threshold" name="Damage Threshold" values="{{damageThreshold}}"></vellum-stat>
@@ -226,6 +227,7 @@ class Monster extends MicrodataMixin(StatBlock) {
       },
       savingThrows: Array,
       skills: Array,
+      damageVulnerabilities: String,
       damageResistances: String,
       damageImmunities: Array,
       damageThreshold: Number,

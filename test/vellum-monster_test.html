@@ -42,6 +42,7 @@
             <dt>Skills</dt><dd itemprop="skills">History +14</dd>
             <dt>Skills</dt><dd itemprop="skills">Perception +9</dd>
             <dt>Skills</dt><dd itemprop="skills">Religion +9</dd>
+            <dt>Damage Vulnerability</dt><dd itemprop="damageVulnerabilities">fire</dd>
             <dt>Damage Resistances</dt><dd itemprop="damageResistances">bludgeoning, piercing, and slashing from nonmagical items</dd>
             <dt>Damage Immunities</dt><dd itemprop="damageImmunities">psychic</dd>
             <dt>Condition Immunities</dt><dd itemprop="conditionImmunities">charmed</dd>
@@ -438,6 +439,15 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), 'Skills')
+      done()
+    })
+  })
+
+  test('displays damage vulnerabilities', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      expect(trimAll(element.$['damage-vulnerabilities'].shadowRoot.textContent)).to.includeOnce('fire')
       done()
     })
   })
