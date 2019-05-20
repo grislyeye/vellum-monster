@@ -11,8 +11,9 @@
 
     <script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
     <script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+    <script type="module" src="../vellum-stat-block.js"></script>
     <script type="module" src="../vellum-monster.js"></script>
-    <script type="module" src="../vellum-stat.js"></script>
+    <script type="module" src="../vellum-npc.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../themes/official/style.css">
 
@@ -307,24 +308,25 @@
       <demo-snippet>
         <template>
 
-          <vellum-stat-block
+          <vellum-npc
             class="official"
             name="Lyrum"
-            description="Elf archmage (lawful neutral, indifferent)"
-          >
-            <vellum-stat class="trait"><em>Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.</em></vellum-stat>
+            gender="male"
+            race="elf"
+            statblock="archmage"
+            alignment="lawful neutral"
+            attitude="indifferent"
+            description="Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.">
 
-            <vellum-stat-block-section name="Characteristics">
-              <vellum-stat class="trait" name="Brusque (Personality Trait).">Lyrum is often impatient and rude.</vellum-stat>
+            <vellum-stat class="trait" name="Brusque (Personality Trait).">Lyrum is often impatient and rude.</vellum-stat>
 
-              <vellum-stat class="trait" name="Ponderous (Personality Trait).">Lyrum always tries to think two steps ahead, making conversation with him ponderous</vellum-stat>
+            <vellum-stat class="trait" name="Ponderous (Personality Trait).">Lyrum always tries to think two steps ahead, making conversation with him ponderous</vellum-stat>
 
-              <vellum-stat class="trait" name="Greater Good (Ideal)."> The strong, not the good, must lead for humanity to prosper. (Lawful)</vellum-stat>
+            <vellum-stat class="trait" name="Greater Good (Ideal)."> The strong, not the good, must lead for humanity to prosper. (Lawful)</vellum-stat>
 
-             <vellum-stat class="trait" name="Advisor to King Jorl (Bond).">Through ruthless manipulation Lyrum maintains his position as chief advisor to the King.</vellum-stat>
+           <vellum-stat class="trait" name="Advisor to King Jorl (Bond).">Through ruthless manipulation Lyrum maintains his position as chief advisor to the King.</vellum-stat>
 
-              <vellum-stat class="trait" name="Pain (Flaw).">Lyrum suffers from incessant pain, causing him to lose sleep and often leading to poor judgement.</vellum-stat>
-            </vellum-stat-block-section>
+            <vellum-stat class="trait" name="Pain (Flaw).">Lyrum suffers from incessant pain, causing him to lose sleep and often leading to poor judgement.</vellum-stat>
 
             <vellum-stat-block-section name="Secrets">
               <vellum-stat class="trait" name="Plots to Overthrow the Throne.">Despite his obsequious manner, Lyrum believes King Jorl is weak and plots to replace him.</vellum-stat>
@@ -340,7 +342,7 @@
               <p class="trait"><input type="checkbox"/> Wandering alone at night while suffering insomnia.</p>
             </vellum-stat-block-section>
 
-          </vellum-stat-block>
+          </vellum-npc>
 
         </template>
 

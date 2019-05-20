@@ -138,6 +138,10 @@ For example:
 
 **Note:** Users are encouraged `<vellum-monster>` element for monster descriptions wherever possible, and [raise bugs](https://github.com/grislyeye/vellum-stat-block/issues/new) where it doesn't support what you want to do. Rather than fallback to the `<vellum-stat-block>`.
 
+## NPC Stat Blocks
+
+The `<vellum-npc>` element allows you to display a NPC in more roleplaying terms and is a work in progress.
+
 ## Hacking
 
 Requirements:

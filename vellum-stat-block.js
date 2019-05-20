@@ -70,6 +70,8 @@ export class StatBlock extends PolymerElement {
         margin-top: 1pt;
         margin-left: 0;
         margin-right: 0;
+        font-style: italic;
+        margin-bottom: 1pt;
       }
 
       header *:nth-child(2) {
@@ -89,6 +91,11 @@ export class StatBlock extends PolymerElement {
       ul {
         list-style-type: none;
       }
+
+      :host p.description {
+        font-style: italics;
+        margin-bottom: 0;
+      }
     </style>
 
     <div class="bar"></div>
@@ -96,7 +103,7 @@ export class StatBlock extends PolymerElement {
     <div class="stat-block">
       <div class="content-wrapper">
 
-        <header>
+        <header id="header">
           <h1>{{name}}</h1>
           <p>{{description}}</p>
         </header>

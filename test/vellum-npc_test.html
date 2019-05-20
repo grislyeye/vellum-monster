@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>vellum-attack test</title>
+
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
+
+    <script type="module" src="../vellum-npc.js"></script>
+  </head>
+  <body>
+
+    <test-fixture id="npc">
+      <template>
+        <vellum-npc
+          class="official"
+          name="Lyrum"
+          gender="male"
+          race="elf"
+          statblock="archmage"
+          alignment="lawful neutral"
+          attitude="indifferent"
+          description="Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.">
+        </vellum-npc>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+import '../vellum-attack.js'
+import { trimAll } from './test-util.js'
+
+suite('<vellum-npc>', () => {
+
+  test('displays NPC name', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'Lyrum')
+      done()
+    })
+  })
+
+  test('displays NPC gender', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'male')
+      done()
+    })
+  })
+
+  test('displays NPC race', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'elf')
+      done()
+    })
+  })
+
+  test('displays NPC stat-block', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'archmage')
+      done()
+    })
+  })
+
+  test('displays NPC alignment', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'lawful neutral')
+      done()
+    })
+  })
+
+  test('displays NPC attitude', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'indifferent')
+      done()
+    })
+  })
+
+  test('displays NPC description', (done) => {
+    const element = fixture('npc')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'Lyrum is a thin and pasty elf')
+      done()
+    })
+  })
+
+})
+</script>
+
+  </body>
+</html>
