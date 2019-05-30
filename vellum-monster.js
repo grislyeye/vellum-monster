@@ -284,33 +284,35 @@ class Monster extends MicrodataMixin(StatBlock) {
     super()
 
     afterNextRender(this, () => {
-      console.table({
-        name: {
-          value: this.name
-        },
-        hitPoints: {
-          value: this.effectiveHp,
-          effectiveCr: this.calculatedCr.hpCr
-        },
-        armourClass: {
-          value: this.effectiveAc,
-          effectiveCr: this.calculatedCr.acCr
-        },
-        defensive: { effectiveCr: this.calculatedCr.defensiveCr },
-        damage: {
-          value: this.effectiveDamage,
-          effectiveCr: this.calculatedCr.damageCr
-        },
-        attackBonus: {
-          value: this.effectiveAttackBonus,
-          effectiveCr: this.calculatedCr.attackBonusCr
-        },
-        offensive: { effectiveCr: this.calculatedCr.offensiveCr },
-        cr: {
-          value: this.cr,
-          effectiveCr: this.calculatedCr.effectiveCr
-        }
-      })
+      if (this.this.calculatedCr) {
+        console.table({
+          name: {
+            value: this.name
+          },
+          hitPoints: {
+            value: this.effectiveHp,
+            effectiveCr: this.calculatedCr.hpCr
+          },
+          armourClass: {
+            value: this.effectiveAc,
+            effectiveCr: this.calculatedCr.acCr
+          },
+          defensive: { effectiveCr: this.calculatedCr.defensiveCr },
+          damage: {
+            value: this.effectiveDamage,
+            effectiveCr: this.calculatedCr.damageCr
+          },
+          attackBonus: {
+            value: this.effectiveAttackBonus,
+            effectiveCr: this.calculatedCr.attackBonusCr
+          },
+          offensive: { effectiveCr: this.calculatedCr.offensiveCr },
+          cr: {
+            value: this.cr,
+            effectiveCr: this.calculatedCr.effectiveCr
+          }
+        })
+      }
     })
   }
 
