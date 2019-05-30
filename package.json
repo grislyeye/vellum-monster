@@ -5,7 +5,7 @@
     "webcomponent"
   ],
   "name": "vellum-monster",
-  "version": "0.12.5",
+  "version": "0.12.6",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
@@ -13,16 +13,16 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
-    "eslint": "^5.15.1",
+    "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-html": "^5.0.3",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-lit": "^0.6.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-html": "^5.0.5",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-lit": "^1.0.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "polymer-cli": "^1.9.7",
-    "wct-browser-legacy": "^1.0.1",
+    "polymer-cli": "^1.9.9",
+    "wct-browser-legacy": "^1.0.2",
     "yaml-lint": "^1.2.4"
   },
   "resolutions": {
@@ -33,7 +33,7 @@
   },
   "main": "vellum-monster.js",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0",
+    "@polymer/polymer": "^3.2.0",
     "microtesia.js": "^0.1.0",
     "polymer-microdata": "^0.3.0"
   },
