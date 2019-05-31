@@ -284,7 +284,7 @@ class Monster extends MicrodataMixin(StatBlock) {
     super()
 
     afterNextRender(this, () => {
-      if (this.this.calculatedCr) {
+      if (this.calculatedCr) {
         console.table({
           name: {
             value: this.name
