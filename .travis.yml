@@ -2,7 +2,7 @@ sudo: required
 language: node_js
 node_js: 10
 addons:
-  firefox: latest
+  firefox: "65.0"
   chrome: stable
 script: xvfb-run npm test
 
