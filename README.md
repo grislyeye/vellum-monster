@@ -156,6 +156,8 @@ To run tests execute:
 
     $ npm test
 
+To run the tests you need to have Java 8 installed.
+
 ## Rights
 
 This software is copyrighted by Ricardo Gladwell and Val Markovic 2014-2018. It is licensed under the [Apache License, Version 2.0](LICENSE.txt). All monster statistics are Open Game Content and licensed under the [Open Gaming License](OGL.txt).
