@@ -1,60 +1,33 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
-import '../@polymer/polymer/lib/elements/dom-if.js'
-import '../@polymer/polymer/lib/elements/dom-repeat.js'
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
+import { LitElement, html, css } from 'lit-element'
 import { averageDie } from './lib/monster.js'
 
-class Attack extends PolymerElement {
-  static get template() {
-    return html`
-    <style>
-      .attack-name {
-        font-weight: bold;
-        font-style: italic;
-      }
+class Attack extends LitElement {
 
-      .attack-type {
-        font-style: italic;
-      }
+  static get styles() {
+    return css`
+    .attack-name {
+      font-weight: bold;
+      font-style: italic;
+    }
 
-      ol.random-effects {
-        list-style: none;
-        padding: 0;
-        margin-bottom: 0;
-      }
+    .attack-type {
+      font-style: italic;
+    }
 
-      .random-effects li {
-        text-indent: 1em;
-        margin-bottom: 0;
-      }
+    ol.random-effects {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0;
+    }
 
-      .effect-title {
-        font-style: italic;
-      }
-    </style>
+    .random-effects li {
+      text-indent: 1em;
+      margin-bottom: 0;
+    }
 
-    <p class="attack">
-      <span class="attack-name">{{name}}<dom-if if="{{limitedUsage}}"><template> ({{limitedUsage}})</template></dom-if>.</span>
-      <span class="attack-description">
-        <span class="attack-type">{{attackType}}:</span>
-        {{bonus}} to hit,
-        {{reachOrRange}},
-        {{target}}.
-        <em>Hit:</em> {{averageDamage}} ({{damage}}) {{damageType}} damage{{notes}}.
-      </span>
-    </p>
-
-    <dom-if if="{{effects}}">
-      <template>
-        <ol class="random-effects">
-          <dom-repeat items="{{effects}}" sort="sortRandomEffects">
-            <template>
-              <li><span class="effect-title">{{item.roll}}. {{item.name}}.</span> {{item.effect}}</li>
-            </template>
-          </dom-repeat>
-        <ol>
-      </ol></ol></template>
-    </dom-if>`
+    .effect-title {
+      font-style: italic;
+    }`
   }
 
   static get is() { return 'vellum-attack' }
@@ -63,32 +36,64 @@ class Attack extends PolymerElement {
     return {
       name: String,
       type: String,
-      attackType: {
-        type: String,
-        computed: '_attackType(type)'
-      },
       bonus: String,
       reach: String,
       range: String,
       target: String,
       damage: String,
-      averageDamage: {
-        type: Number,
-        computed: '_calcAverageDamage(damage)'
-      },
       damageType: String,
       notes: String,
       limitedUsage: String,
-      effects: Array,
-      reachOrRange: {
-        type: String,
-        computed: '_reachOrRange(type, reach, range)'
-      }
+      effects: Array
     }
   }
 
-  _attackType(attackType) {
-    switch (attackType) {
+  static _attributeNameForProperty(name, options) {
+    const camel2Dash = name => name.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
+    return super._attributeNameForProperty(camel2Dash(name), options)
+  }
+
+  render() {
+    return html`
+    <p class="attack">
+      <span class="attack-name">${this.name}${this.limitedUsage ? html` (${this.limitedUsage})` : html``}.</span>
+      <span class="attack-description">
+        <span class="attack-type">${this.attackTypeDescription()}:</span>
+        ${this.bonus} to hit,
+        ${this.reachOrRange()},
+        ${this.target}.
+        <em>Hit:</em> ${this.averageDamage()} (${this.damage}) ${this.damageType} damage${this.notes}.
+      </span>
+    </p>
+
+    ${this.renderEffects()}`
+  }
+
+  renderEffects() {
+    let array = this.effects
+
+    if (array && !Array.isArray(array)) {
+      array = JSON.parse(this.effects)
+    }
+
+    return this.effects
+      ? html`
+      <ol class="random-effects">
+        ${array.sort(this.sortRandomEffects).map(effect => this.renderEffect(effect))}</li>
+      </ol>`
+      : html``
+  }
+
+  renderEffect(effect) {
+    return html`
+    <li>
+      <span class="effect-title">${effect.roll}. ${effect.name}.</span>
+      ${effect.effect}
+    </li>`
+  }
+
+  attackTypeDescription() {
+    switch (this.type) {
       case 'melee-attack':
         return 'Melee Weapon Attack'
       case 'ranged-attack':
@@ -98,14 +103,14 @@ class Attack extends PolymerElement {
     }
   }
 
-  _reachOrRange(attackType, reach, range) {
-    switch (attackType) {
+  reachOrRange() {
+    switch (this.type) {
       case 'melee-attack':
-        return 'reach ' + reach
+        return 'reach ' + this.reach
       case 'ranged-attack':
-        return 'range ' + range
+        return 'range ' + this.range
       case 'melee-or-ranged-attack':
-        return 'reach ' + reach + ' or range ' + range
+        return 'reach ' + this.reach + ' or range ' + this.range
     }
   }
 
@@ -115,8 +120,8 @@ class Attack extends PolymerElement {
     return 0
   }
 
-  _calcAverageDamage(damage) {
-    return averageDie(damage)
+  averageDamage() {
+    return averageDie(this.damage)
   }
 }
 
