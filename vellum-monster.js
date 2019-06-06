@@ -156,7 +156,7 @@ class Monster extends MicrodataMixin(StatBlock) {
             <ul>
               <dom-repeat items="{{legendaryActions.actions}}">
                 <template>
-                  <li><vellum-legendary-action id\$="legendary-action-{{index}}" action="{{item}}"></vellum-legendary-action></li>
+                  <li><vellum-legendary-action id\$="legendary-action-{{index}}" name="{{item.name}}" actions="{{item.actions}}" description="{{item.description}}"></vellum-legendary-action></li>
                 </template>
               </dom-repeat>
             </ul>

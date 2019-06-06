@@ -1,38 +1,34 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
-import '../@polymer/polymer/lib/elements/dom-if.js'
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
+import { LitElement, html, css } from 'lit-element'
 
-class LegendaryAction extends PolymerElement {
-  static get template() {
-    return html`
-    <style>
-      .action-name {
-        font-weight: bold;
-      }
-    </style>
-
-    <dom-if if="{{action}}">
-      <template>
-        <span class="action-name">{{action.name}}<dom-if if="{{costsMulipleActions()}}"><template> (Costs {{action.actions}} Actions)</template></dom-if>.</span>
-        {{action.description}}
-      </template>
-    </dom-if>`
-  }
+class LegendaryAction extends LitElement {
 
   static get is() { return 'vellum-legendary-action' }
 
+  static get styles() {
+    css`
+    .action-name {
+      font-weight: bold;
+    }`
+  }
+
   static get properties() {
     return {
-      // TODO replace object with attributess
-      action: {
-        type: Object
-      }
+      name: String,
+      actions: Number,
+      description: String
     }
   }
 
-  costsMulipleActions() {
-    return (this.action.actions > 1)
+  render() {
+    return html`
+    <span class="action-name">${this.name}${this.costsMulipleActions() ? html` (Costs ${this.actions} Actions)` : html``}.</span>
+    ${this.description}`
   }
+
+  costsMulipleActions() {
+    return (this.actions > 1)
+  }
+
 }
 
 customElements.define(LegendaryAction.is, LegendaryAction)
