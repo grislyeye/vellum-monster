@@ -43,6 +43,20 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="npc-without-attitude">
+      <template>
+        <vellum-npc
+          class="official"
+          name="Lyrum"
+          gender="male"
+          race="elf"
+          statblock="archmage"
+          alignment="lawful neutral"
+          description="Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.">
+        </vellum-npc>
+      </template>
+    </test-fixture>
+
     <script type="module">
 import '../vellum-attack.js'
 import { trimAll } from './test-util.js'
@@ -121,6 +135,17 @@ suite('<vellum-npc>', () => {
       done()
     })
   })
+
+  test('does not display separating comma for NPC without attitude', (done) => {
+    const element = fixture('npc-without-attitude')
+
+    flush(() => {
+      console.log(element.shadowRoot.innerHTML)
+      assert.include(trimAll(element.shadowRoot.textContent), '(lawful neutral)')
+      done()
+    })
+  })
+
 })
 </script>
 

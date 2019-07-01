@@ -8,6 +8,8 @@ import './vellum-spell-level.js'
 import './vellum-stat-block-section.js'
 import './vellum-attack.js'
 import './vellum-legendary-action.js'
+import '../@polymer/polymer/lib/elements/dom-if.js'
+
 let memoizedTemplate
 
 class NonPlayerCharacter extends StatBlock {
@@ -41,7 +43,11 @@ class NonPlayerCharacter extends StatBlock {
     const headerTemplate = html`
       <div id="npc-header">
         <h1>{{name}}</h1>
-        <p>{{gender}} {{race}} <strong>{{statblock}}</strong> ({{alignment}}, {{attitude}})</p>
+        <p>
+          {{gender}}
+          {{race}}
+          <strong>{{statblock}}</strong>
+          ({{alignment}}<dom-if if="{{attitude}}"><template>, {{attitude}}</template></dom-if>)</p>
       </div>`
 
     if (!memoizedTemplate) {
