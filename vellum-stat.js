@@ -20,7 +20,8 @@ class Stat extends PolymerElement {
         text-indent: -1em;
       }
 
-      :host(.trait) p, :host(.action) p {
+      :host(.trait) p,
+      :host(.action) p {
         margin-top: 0;
         margin-bottom: 1em;
         margin-left: 0;
@@ -29,7 +30,8 @@ class Stat extends PolymerElement {
         text-indent: 0;
       }
 
-      :host(.trait) .stat-name, :host(.action) .stat-name {
+      :host(.trait) .stat-name,
+      :host(.action) .stat-name {
         font-style: italic;
       }
     </style>
