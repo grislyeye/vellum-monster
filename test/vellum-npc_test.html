@@ -28,6 +28,21 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="npc-without-description">
+      <template>
+        <vellum-npc
+          class="official"
+          name="Lyrum"
+          gender="male"
+          race="elf"
+          statblock="archmage"
+          alignment="lawful neutral"
+          attitude="indifferent"
+        >
+        </vellum-npc>
+      </template>
+    </test-fixture>
+
     <script type="module">
 import '../vellum-attack.js'
 import { trimAll } from './test-util.js'
@@ -97,6 +112,15 @@ suite('<vellum-npc>', () => {
     })
   })
 
+  test('does not display description divider for NPC without description', (done) => {
+    const element = fixture('npc-without-description')
+
+    flush(() => {
+      console.log(element.shadowRoot.innerHTML)
+      assert.isNull(element.shadowRoot.querySelector('#description-divider'))
+      done()
+    })
+  })
 })
 </script>
 

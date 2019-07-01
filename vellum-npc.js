@@ -26,9 +26,14 @@ class NonPlayerCharacter extends StatBlock {
       </style>
 
       <div id="npc-stats">
-        <p id="description">{{description}}</p>
 
-        <vellum-stat-block-divider></vellum-stat-block-divider>
+        <dom-if if="{{description}}">
+          <template>
+            <p id="description">{{description}}</p>
+
+            <vellum-stat-block-divider id="description-divider"></vellum-stat-block-divider>
+          </template>
+        </dom-if>
 
         <slot></slot>
       </div>`
