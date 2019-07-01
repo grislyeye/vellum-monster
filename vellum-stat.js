@@ -30,6 +30,11 @@ class Stat extends PolymerElement {
         text-indent: 0;
       }
 
+      :host(.table-row) p {
+        padding-left: 0;
+        text-indent: 1em;
+      }
+
       :host(.trait) .stat-name,
       :host(.action) .stat-name {
         font-style: italic;
