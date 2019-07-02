@@ -1,8 +1,12 @@
-sudo: required
+sudo: true
 language: node_js
 node_js: 10
 addons:
   firefox: "65.0"
   chrome: stable
-script: xvfb-run npm test
-
+before_script:
+  - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+  - jabba install zulu@1.8
+script:
+  - java -version
+  - xvfb-run npm test
