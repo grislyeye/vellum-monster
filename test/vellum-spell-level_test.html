@@ -27,7 +27,7 @@
 
     <test-fixture id="5th-level-spells">
       <template>
-        <vellum-spell-level level='1st' slots='1' spells='legend lore'></vellum-spell-level>
+        <vellum-spell-level level='5th' slots='1' spells='legend lore'></vellum-spell-level>
       </template>
     </test-fixture>
 
@@ -36,6 +36,15 @@ import '../vellum-spell-level.js'
 import { trimAll } from './test-util.js'
 
 suite('<vellum-spell-level>', () => {
+
+  test('displays spell level', (done) => {
+    const element = fixture('5th-level-spells')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '5th level (1 slot): legend lore')
+      done()
+    })
+  })
 
   test('displays spell level', (done) => {
     const element = fixture('1st-level-spells')
