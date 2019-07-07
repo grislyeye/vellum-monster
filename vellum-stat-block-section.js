@@ -1,32 +1,24 @@
-import { PolymerElement } from '../@polymer/polymer/polymer-element.js'
-import { html } from '../@polymer/polymer/lib/utils/html-tag.js'
+import { LitElement, html, css } from 'lit-element'
 
-class StatBlockSection extends PolymerElement {
-  static get template() {
-    return html`
-    <style>
-      :host {
-        display: block;
-      }
+class StatBlockSection extends LitElement {
 
-      h2 {
-        font-family: var(--stat-block-heading-font-family, serif);
-        border-bottom: 1px solid;
-        font-variant: small-caps;
-        color: var(--stat-block-header-color, black);
-        break-inside: avoid-column;
-        break-after: avoid-column;
-        font-size: 1.5em;
-        margin-top: 0.6em;
-        margin-bottom: 0.4em;
-      }
-    </style>
+  static get styles() {
+    return css`
+    :host {
+      display: block;
+    }
 
-    <section>
-      <h2>{{name}}</h2>
-
-      <slot></slot>
-    </section>`
+    h2 {
+      font-family: var(--stat-block-heading-font-family, serif);
+      border-bottom: 1px solid;
+      font-variant: small-caps;
+      color: var(--stat-block-header-color, black);
+      break-inside: avoid-column;
+      break-after: avoid-column;
+      font-size: 1.5em;
+      margin-top: 0.6em;
+      margin-bottom: 0.4em;
+    }`
   }
 
   static get is() { return 'vellum-stat-block-section' }
@@ -35,6 +27,15 @@ class StatBlockSection extends PolymerElement {
     return {
       name: String
     }
+  }
+
+  render() {
+    return html`
+    <section>
+      <h2>${this.name}</h2>
+
+      <slot></slot>
+    </section>`
   }
 }
 
