@@ -256,7 +256,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('Armor Class')
+      const ac = element.shadowRoot.getElementById('ac')
+      expect(trimAll(ac.shadowRoot.textContent)).to.includeOnce('Armor Class')
       done()
     })
   })
@@ -265,7 +266,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('17 (natural armor)')
+      const ac = element.shadowRoot.getElementById('ac')
+      expect(trimAll(ac.shadowRoot.textContent)).to.includeOnce('17 (natural armor)')
       done()
     })
   })
@@ -274,7 +276,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.includeOnce('11')
+      const ac = element.shadowRoot.getElementById('ac')
+      expect(trimAll(ac.shadowRoot.textContent)).to.includeOnce('11')
       done()
     })
   })
@@ -283,7 +286,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.ac.shadowRoot.textContent)).to.not.include('11 ()')
+      const ac = element.shadowRoot.getElementById('ac')
+      expect(trimAll(ac.shadowRoot.textContent)).to.not.include('11 ()')
       done()
     })
   })
@@ -292,7 +296,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
+      const hitPoints = element.shadowRoot.getElementById('hp')
       expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce(136)
       done()
     })
@@ -302,7 +306,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('object-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points')
+      const hitPoints = element.shadowRoot.getElementById('hp')
       expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('40')
       done()
     })
@@ -312,7 +316,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
+      const hitPoints = element.shadowRoot.getElementById('hp')
       expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('11')
       done()
     })
@@ -322,7 +326,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points-and-die')
+      const hitPoints = element.shadowRoot.getElementById('hp')
       expect(trimAll(hitPoints.shadowRoot.textContent)).to.includeOnce('16d10 + 48')
       done()
     })
@@ -332,7 +336,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('object-stat-block')
 
     flush(() => {
-      const hitPoints = element.shadowRoot.querySelector('#hit-points')
+      const hitPoints = element.shadowRoot.getElementById('hp')
       assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), '()')
       done()
     })
@@ -342,7 +346,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('40 ft., fly 60 ft.')
+      const speed = element.shadowRoot.getElementById('speed')
+      expect(trimAll(speed.shadowRoot.textContent)).to.includeOnce('40 ft., fly 60 ft.')
       done()
     })
   })
@@ -351,7 +356,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.speed.shadowRoot.textContent)).to.includeOnce('60 ft.')
+      const speed = element.shadowRoot.getElementById('speed')
+      expect(trimAll(speed.shadowRoot.textContent)).to.includeOnce('60 ft.')
       done()
     })
   })
@@ -429,7 +435,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.skills.shadowRoot.textContent)).to.includeOnce('Arcana +14, History +14, Perception +9, Religion +9')
+      const skills = element.shadowRoot.getElementById('skills')
+      expect(trimAll(skills.shadowRoot.textContent)).to.includeOnce('Arcana +14, History +14, Perception +9, Religion +9')
       done()
     })
   })
@@ -438,7 +445,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$.skills.shadowRoot.textContent), 'Skills')
+      const skills = element.shadowRoot.getElementById('skills')
+      assert.notInclude(trimAll(skills.shadowRoot.textContent), 'Skills')
       done()
     })
   })
@@ -447,7 +455,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-vulnerabilities'].shadowRoot.textContent)).to.includeOnce('fire')
+      const vulnerabilities = element.shadowRoot.getElementById('damage-vulnerabilities')
+      expect(trimAll(vulnerabilities.shadowRoot.textContent)).to.includeOnce('fire')
       done()
     })
   })
@@ -456,7 +465,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-resistances'].shadowRoot.textContent)).to.includeOnce('bludgeoning, piercing, and slashing from nonmagical items')
+      const resistances = element.shadowRoot.getElementById('damage-resistances')
+      expect(trimAll(resistances.shadowRoot.textContent)).to.includeOnce('bludgeoning, piercing, and slashing from nonmagical items')
       done()
     })
   })
@@ -465,7 +475,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['damage-resistances'].shadowRoot.textContent), 'Damage Resistances')
+      const resistances = element.shadowRoot.getElementById('damage-resistances')
+      expect(trimAll(resistances.shadowRoot.textContent), 'Damage Resistances')
       done()
     })
   })
@@ -474,7 +485,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-immunities'].shadowRoot.textContent)).to.includeOnce('psychic')
+      const immunities = element.shadowRoot.getElementById('damage-immunities')
+      expect(trimAll(immunities.shadowRoot.textContent)).to.includeOnce('psychic')
       done()
     })
   })
@@ -483,7 +495,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['damage-immunities'].shadowRoot.textContent), 'Damage Immunities')
+      const immunities = element.shadowRoot.getElementById('damage-immunities')
+      expect(trimAll(immunities.shadowRoot.textContent), 'Damage Immunities')
       done()
     })
   })
@@ -492,7 +505,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['condition-immunities'].shadowRoot.textContent)).to.includeOnce('charmed, frightened')
+      const immunities = element.shadowRoot.getElementById('condition-immunities')
+      expect(trimAll(immunities.shadowRoot.textContent)).to.includeOnce('charmed, frightened')
       done()
     })
   })
@@ -501,7 +515,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['condition-immunities'].shadowRoot.textContent), 'Condition Immunities')
+      const immunities = element.shadowRoot.getElementById('condition-immunities')
+      expect(trimAll(immunities.shadowRoot.textContent), 'Condition Immunities')
       done()
     })
   })
@@ -510,7 +525,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.senses.shadowRoot.textContent)).to.includeOnce('truesight 120 ft., passive Perception 18')
+      const senses = element.shadowRoot.getElementById('senses')
+      expect(trimAll(senses.shadowRoot.textContent)).to.includeOnce('truesight 120 ft., passive Perception 18')
       done()
     })
   })
@@ -519,7 +535,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$.languages.shadowRoot.textContent)).to.includeOnce('Common, Sphinx')
+      const languages = element.shadowRoot.getElementById('languages')
+      expect(trimAll(languages.shadowRoot.textContent)).to.includeOnce('Common, Sphinx')
       done()
     })
   })
@@ -528,7 +545,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$.languages.shadowRoot.textContent), 'Languages')
+      const languages = element.shadowRoot.getElementById('languages')
+      expect(trimAll(languages.shadowRoot.textContent), 'Languages')
       done()
     })
   })
@@ -843,7 +861,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('detailed-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['saving-throws'].shadowRoot.textContent)).to.includeOnce('Strength +14')
+      const savingThrows = element.shadowRoot.getElementById('saving-throws')
+      expect(trimAll(savingThrows.shadowRoot.textContent)).to.includeOnce('Strength +14')
       done()
     })
   })
@@ -852,7 +871,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      assert.notInclude(trimAll(element.$['saving-throws'].shadowRoot.textContent), 'Saving Throws')
+      const savingThrows = element.shadowRoot.getElementById('saving-throws')
+      expect(trimAll(savingThrows.shadowRoot.textContent), 'Saving Throws')
       done()
     })
   })
@@ -861,7 +881,8 @@ suite('<vellum-monster>', () => {
     const element = fixture('object-stat-block')
 
     flush(() => {
-      expect(trimAll(element.$['damage-threshold'].shadowRoot.textContent)).to.includeOnce('10')
+      const threshold = element.shadowRoot.getElementById('damage-threshold')
+      expect(trimAll(threshold.shadowRoot.textContent)).to.includeOnce('10')
       done()
     })
   })
