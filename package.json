@@ -33,8 +33,7 @@
   "main": "vellum-monster.js",
   "dependencies": {
     "lit-element": "^2.1.0",
-    "microtesia.js": "^0.1.2",
-    "polymer-microdata": "^0.3.0"
+    "wcs-microdata": "^0.4.0"
   },
   "scripts": {
     "start": "polymer serve --open",

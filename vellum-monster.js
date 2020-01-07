@@ -7,7 +7,7 @@ import './vellum-spell-level.js'
 import './vellum-stat-block-section.js'
 import './vellum-attack.js'
 import './vellum-legendary-action.js'
-import { MicrodataMixin } from '../polymer-microdata/polymer-microdata.js'
+import { MicrodataMixin } from '../wcs-microdata/wcs-microdata.js'
 import { calculateXpFromCr, averageDie, calculateCr } from './lib/monster.js'
 
 class Monster extends MicrodataMixin(StatBlock) {
