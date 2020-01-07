@@ -12,13 +12,6 @@ To install:
 npm install --save vellum-monster
 ```
 
-Add the following lines to your HTML `head` element:
-
-```html
-<script src="@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script type="module" src="vellum-monster.js"></script>
-```
-
 A stat block is written as follows:
 
 <!--
