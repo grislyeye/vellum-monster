@@ -2,7 +2,6 @@
 
 Web component for displaying monster stat blocks for the fifth edition of the world's most popular table-top roleplaying game. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
-  * Cross-browser support using Polymer and the Web Components polyfill
   * Simpler (just one import vs 5)
   * Theme-able
   * Automatically calculate values (average hit points and challenge rating)
