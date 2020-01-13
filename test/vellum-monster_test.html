@@ -201,6 +201,15 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="empty-stat-block">
+      <template>
+
+       <vellum-monster id="empty" itemscope itemtype="https://grislyeye.com//vellum-schemas/monster.html">
+       </vellum-monster>
+
+      </template>
+    </test-fixture>
+
     <script type="module">
 import '../vellum-monster.js'
 import { trimAll } from './test-util.js'
@@ -338,6 +347,16 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const hitPoints = element.shadowRoot.getElementById('hp')
       assert.notInclude(trimAll(hitPoints.shadowRoot.textContent), '()')
+      done()
+    })
+  })
+
+  test('does not display hit die for empty stat blocks', (done) => {
+    const element = fixture('empty-stat-block')
+
+    flush(() => {
+      const ac = element.shadowRoot.getElementById('hp')
+      expect(trimAll(ac.shadowRoot.textContent)).to.not.include('Hit Points')
       done()
     })
   })

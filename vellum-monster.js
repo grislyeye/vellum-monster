@@ -111,7 +111,7 @@ class Monster extends MicrodataMixin(StatBlock) {
 
         <div class="combat-stats">
           <vellum-stat id="ac" name="Armor Class" .values=${this.armor ? `${this.ac} (${this.armor})` : this.ac}></vellum-stat>
-          <vellum-stat id="hp" name="Hit Points" .values=${this.hitDie ? `${this.displayHp} (${this.hitDie})` : `${this.hp}`}></vellum-stat>
+          <vellum-stat id="hp" name="Hit Points" .values=${this.hitDie ? `${this.displayHp} (${this.hitDie})` : this.hp}></vellum-stat>
           <vellum-stat id="speed" name="Speed" .values=${this.speeds}></vellum-stat>
         </div>
 
