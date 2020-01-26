@@ -7,10 +7,9 @@ import './vellum-spell-level.js'
 import './vellum-stat-block-section.js'
 import './vellum-attack.js'
 import './vellum-legendary-action.js'
-import { MicrodataMixin } from '../wcs-microdata/wcs-microdata.js'
 import { calculateXpFromCr, averageDie, calculateCr } from './lib/monster.js'
 
-class Monster extends MicrodataMixin(StatBlock) {
+class Monster extends StatBlock {
 
   static get styles() {
     return css`
@@ -27,70 +26,70 @@ class Monster extends MicrodataMixin(StatBlock) {
 
   static get properties() {
     return {
-      name: String,
-      size: String,
-      type: String,
-      alignment: String,
-      ac: Number,
-      armor: String,
-      displayArmor: String,
-      hitDie: String,
-      hp: Number,
-      speeds: Array,
-      str: Number,
-      dex: Number,
-      con: Number,
-      int: Number,
-      wis: Number,
-      cha: Number,
-      savingThrows: Array,
-      skills: Array,
-      damageVulnerabilities: String,
-      damageResistances: String,
-      damageImmunities: Array,
-      damageThreshold: Number,
-      conditionImmunities: Array,
-      senses: Array,
-      languages: Array,
-      cr: String,
-      xp: Number,
-      specialTraits: Array,
-      spellcasting: Object,
-      actions: Array,
-      reactions: Array,
-      legendaryActions: Object
+      name: { type: String },
+      size: { type: String },
+      type: { type: String },
+      alignment: { type: String },
+      ac: { type: Number },
+      armor: { type: String },
+      displayArmor: { type: String },
+      hitDie: { type: String },
+      hp: { type: Number },
+      speeds: { type: Array },
+      str: { type: Number },
+      dex: { type: Number },
+      con: { type: Number },
+      int: { type: Number },
+      wis: { type: Number },
+      cha: { type: Number },
+      'saving-throws': { type: Array },
+      skills: { type: Array },
+      vulnerabilities: { type: String },
+      resistances: { type: String },
+      immunities: { type: Array },
+      threshold: { type: Number },
+      'condition-immunities': { type: Array },
+      senses: { type: Array },
+      languages: { type: Array },
+      cr: { type: String },
+      xp: { type: Number },
+      traits: { type: Array },
+      spellcasting: { type: Object },
+      actions: { type: Array },
+      reactions: { type: Array },
+      'legendary-actions': { type: Array }
     }
   }
 
   connectedCallback() {
     super.connectedCallback()
 
-    if (this.calculatedCr) {
+    if (this.calculatedCrs) {
       console.table({
         name: {
           value: this.name
         },
         hitPoints: {
           value: this.effectiveHp,
-          effectiveCr: this.calculatedCr.hpCr
+          effectiveCr: this.calculatedCrs.hpCr
         },
         armourClass: {
           value: this.effectiveAc,
-          effectiveCr: this.calculatedCr.acCr
+          effectiveCr: this.calculatedCrs.acCr
         },
-        defensive: { effectiveCr: this.calculatedCr.defensiveCr },
+        defensive: { effectiveCr: this.calculatedCrs.defensiveCr },
         damage: {
           value: this.effectiveDamage,
-          effectiveCr: this.calculatedCr.damageCr
+          effectiveCr: this.calculatedCrs.damageCr
         },
         attackBonus: {
           value: this.effectiveAttackBonus,
-          effectiveCr: this.calculatedCr.attackBonusCr
+          effectiveCr: this.calculatedCrs.attackBonusCr
         },
-        offensive: { effectiveCr: this.calculatedCr.offensiveCr },
+        offensive: { effectiveCr: this.calculatedCrs.offensiveCr },
         cr: {
           value: this.cr,
-          effectiveCr: this.calculatedCr.effectiveCr
+          effectiveCr: this.calculatedCrs.effectiveCr
         }
       })
     }
@@ -119,17 +118,19 @@ class Monster extends MicrodataMixin(StatBlock) {
 
         <div>
 
-          <vellum-stat id="saving-throws" name="Saving Throws" .values=${this.savingThrows}></vellum-stat>
+          <vellum-stat id="saving-throws" name="Saving Throws" .values=${this['saving-throws']}></vellum-stat>
           <vellum-stat id="skills" name="Skills" .values=${this.skills}></vellum-stat>
-          <vellum-stat id="damage-vulnerabilities" name="Damage Vulnerabilities" .values=${this.damageVulnerabilities}></vellum-stat>
-          <vellum-stat id="damage-resistances" name="Damage Resistances" .values=${this.damageResistances}></vellum-stat>
-          <vellum-stat id="damage-immunities" name="Damage Immunities" .values=${this.damageImmunities}></vellum-stat>
-          <vellum-stat id="damage-threshold" name="Damage Threshold" .values=${this.damageThreshold}></vellum-stat>
-          <vellum-stat id="condition-immunities" name="Condition Immunities" .values=${this.conditionImmunities}></vellum-stat>
+          <vellum-stat id="damage-vulnerabilities" name="Damage Vulnerabilities" .values=${this.vulnerabilities}></vellum-stat>
+          <vellum-stat id="damage-resistances" name="Damage Resistances" .values=${this.resistances}></vellum-stat>
+          <vellum-stat id="damage-immunities" name="Damage Immunities" .values=${this.immunities}></vellum-stat>
+          <vellum-stat id="damage-threshold" name="Damage Threshold" .values=${this.threshold}></vellum-stat>
+          <vellum-stat id="condition-immunities" name="Condition Immunities" .values=${this['condition-immunities']}></vellum-stat>
           <vellum-stat id="senses" name="Senses" .values=${this.senses}></vellum-stat>
           <vellum-stat id="languages" name="Languages" .values=${this.languages}></vellum-stat>
 
-          ${this.effectiveCr ? html`<vellum-stat id="cr" name="Challenge" .values="${this.effectiveCr} (${this.displayXp} XP)"></vellum-stat>` : html``}
+          ${this.calculatedCrs.effectiveCr || this.cr
+            ? html`<vellum-stat id="cr" name="Challenge" .values="${this.calculatedCrs.effectiveCr ? this.calculatedCrs.effectiveCr : this.cr} (${this.displayXp} XP)"></vellum-stat>`
+            : html``}
 
         </div>
       </div>
@@ -137,15 +138,15 @@ class Monster extends MicrodataMixin(StatBlock) {
       <vellum-stat-block-divider></vellum-stat-block-divider>
 
       <div id="traits-and-actions">
-        ${this.specialTraits ? this.renderSpecialTraits() : html``}
+        ${this.traits ? this.renderSpecialTraits() : html``}
 
-        ${this.spellcasting ? this.renderSpellcasting() : html``}
+        ${this.spellcasting && this.spellcasting.levels ? this.renderSpellcasting() : html``}
 
         ${this.actions ? this.renderActions() : html``}
 
         ${this.reactions ? this.renderReactions() : html``}
 
-        ${this.legendaryActions ? this.renderLegendaryActions() : html``}
+        ${this['legendary-actions'] && this['legendary-actions'].actions ? this.renderLegendaryActions() : html``}
       </div>`
   }
 
@@ -167,7 +168,17 @@ class Monster extends MicrodataMixin(StatBlock) {
   }
 
   renderSpecialTraits() {
-    return html`${this.specialTraits.map((trait, i) => html`<vellum-stat id="special-trait-${i}" class="trait" name="${trait.name}." .values="${trait.description}"></vellum-stat>`)}`
+    return html`${
+      this.traits.map((trait, i) =>
+        html`
+          <vellum-stat
+            id="special-trait-${i}"
+            class="trait"
+            name="${trait.name}."
+            .values="${trait.description}"
+          ></vellum-stat>`
+      )
+    }`
   }
 
   renderSpellcasting() {
@@ -194,13 +205,13 @@ class Monster extends MicrodataMixin(StatBlock) {
     } else if (this._isAttack(action)) {
       return html`<vellum-attack
         id="attack-${index}"
-        name="${action.name}"
-        type="${action.type}"
-        bonus="${action.bonus}"
-        reach="${action.reach}"
-        range="${action.range}"
-        target="${action.target}"
-        damage="${action.damage}"
+        .name="${action.name}"
+        .type="${action.type}"
+        .bonus="${action.bonus}"
+        .reach="${action.reach}"
+        .range="${action.range}"
+        .target="${action.target}"
+        .damage="${action.damage}"
         damage-type="${action.damageType}"
         notes="${action.notes}"
         .limited-usage="${action.limitedUsage}"
@@ -220,10 +231,10 @@ class Monster extends MicrodataMixin(StatBlock) {
     return html`
       <vellum-stat-block-section id="legendary-actions" name="Legendary Actions">
 
-        <p>The ${this.lowerCaseName} can take ${this.legendaryActions.number} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
+        <p>The ${this.lowerCaseName} can take ${this['legendary-actions'].number} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
 
         <ul>
-          ${this.legendaryActions.actions.map((action, i) => html`<li><vellum-legendary-action id="legendary-action-${i}" name="${action.name}" actions="${action.actions}" description="${action.description}"></vellum-legendary-action></li>`)}
+          ${this['legendary-actions'].actions.map((action, i) => html`<li><vellum-legendary-action id="legendary-action-${i}" name="${action.name}" actions="${action.actions}" description="${action.description}"></vellum-legendary-action></li>`)}
         </ul>
       </vellum-stat-block-section>`
   }
@@ -247,7 +258,7 @@ class Monster extends MicrodataMixin(StatBlock) {
 
   get displayXp() {
     if (this.xp) return this.xp
-    else return calculateXpFromCr(this.effectiveCr)
+    else return calculateXpFromCr(this.calculatedCrs.effectiveCr)
   }
 
   get displayHp() {
@@ -262,22 +273,19 @@ class Monster extends MicrodataMixin(StatBlock) {
 
   get allTraitsAndActions() {
     return []
-      .concat(this.specialTraits || [])
+      .concat(this.traits || [])
       .concat(this.actions || [])
-      .concat(this.legendaryActions ? this.legendaryActions.actions : [])
+      .concat(this['legendary-actions'] ? this['legendary-actions'].actions : [])
       .concat(this.reactions || [])
   }
 
-  get effectiveCr() {
-    if (this.cr) return this.cr
-    else {
-      return calculateCr({
-        hp: this.effectiveHp,
-        ac: this.effectiveAc,
-        attackBonus: this.effectiveAttackBonus,
-        damagePerRound: this.effectiveDamage
-      }).effectiveCr
-    }
+  get calculatedCrs() {
+    return calculateCr({
+      hp: this.effectiveHp,
+      ac: this.effectiveAc,
+      attackBonus: this.effectiveAttackBonus,
+      damagePerRound: this.effectiveDamage
+    })
   }
 
   get effectiveHp() {
@@ -315,7 +323,7 @@ class Monster extends MicrodataMixin(StatBlock) {
   get maxAttackBonus() {
     return Math.max(...(this.actions || [])
       .filter(action => action.type)
-      .filter(this._calculateMultiattack)
+      .map(this._calculateMultiattack(this.actions))
       .map(attack => attack.bonus)
       .map(bonus => parseInt(bonus))
     )
@@ -324,18 +332,21 @@ class Monster extends MicrodataMixin(StatBlock) {
   get maxDamagePerRound() {
     return Math.max(...(this.actions || [])
       .filter(action => action.type)
-      .filter(this._calculateMultiattack)
+      .map(this._calculateMultiattack(this.actions))
       .map(attack => attack.averageDamage ? attack.averageDamage : averageDie(attack.damage))
     )
   }
 
-  _calculateMultiattack(action) {
-    if (action.type && action.type === 'multiattack') {
-      action.averageDamage = action.multiAttacks.number * averageDie(action.multiAttacks.damage)
-      action.bonus = action.multiAttacks.bonus
-      return action
-    } else {
-      return action
+  _calculateMultiattack(actions) {
+    return (action) => {
+      if (action.type && action.type === 'multiattack') {
+        const attack = actions.filter((a) => a.id === action.multiAttacks.id)[0]
+        action.averageDamage = action.multiAttacks.number * averageDie(attack.damage)
+        action.bonus = attack.bonus
+        return action
+      } else {
+        return action
+      }
     }
   }
 

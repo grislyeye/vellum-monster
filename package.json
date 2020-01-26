@@ -5,7 +5,7 @@
     "webcomponent"
   ],
   "name": "vellum-monster",
-  "version": "0.14.1",
+  "version": "0.15.0",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
@@ -32,8 +32,7 @@
   },
   "main": "vellum-monster.js",
   "dependencies": {
-    "lit-element": "^2.1.0",
-    "wcs-microdata": "^0.4.0"
+    "lit-element": "^2.1.0"
   },
   "scripts": {
     "start": "polymer serve --open",
