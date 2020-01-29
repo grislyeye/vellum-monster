@@ -25,43 +25,47 @@ A stat block is written as follows:
 ```
 -->
 ```html
-<vellum-monster class="official" id="warhorse" itemscope itemtype="https://grislyeye.com/vellum-schemas/monster.html">
+<vellum-monster
+  id="warhorse"
+  class="official"
+  name="Warhorse"
+  size="Large"
+  type="beast"
+  alignment="unaligned"
+  ac="11"
+  armor="natural armor"
+  hp="20"
+  hitDie="16d10 + 48"
+  speeds='["60 ft."]'
+  cr="½"
 
-  <dl>
-    <dt>Name</dt><dd itemprop="name">Warhorse</dd>
-    <dt>Size</dt><dd itemprop="size">Large</dd>
-    <dt>Type</dt><dd itemprop="type">beast</dd>
-    <dt>Alignment</dt><dd itemprop="alignment">unaligned</dd>
+  str="18"
+  dex="12"
+  con="13"
+  int="2"
+  wis="12"
+  cha="7"
 
-    <dt>Armor Class</dt><dd itemprop="ac">11</dd>
-    <dt>Hit Die</dt><dd><span itemprop="hitDie">3d10 + 3</span></dd>
-    <dt>Speed</dt><dd itemprop="speeds">60 ft.</dd>
-
-    <dt>Strength</dt><dd itemprop="str">18</dd>
-    <dt>Dexterity</dt><dd itemprop="dex">12</dd>
-    <dt>Constitution</dt><dd itemprop="con">13</dd>
-    <dt>Intelligence</dt><dd itemprop="int">2</dd>
-    <dt>Wisdom</dt><dd itemprop="wis">12</dd>
-    <dt>Charisma</dt><dd itemprop="cha">7</dd>
-
-    <dt>Senses</dt><dd itemprop="senses">passive Perception 11</dd>
-    <dt>Challenge</dt><dd itemprop="cr">½</dd>
-  </dl>
-
-  <ol>
-    <li itemprop="specialTraits" itemscope>
-      <span itemprop="name">Trampling Charge</span>
-      <span itemprop="description">If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on
-the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action.</span>
-    </li>
-
-      <li itemprop="actions" itemscope>
-        <span itemprop="name">Hooves</span>
-        <span><data itemprop="type" value="melee-attack">Melee Weapon Attack</data>: <span itemprop="bonus">+4</span> to hit, reach <span itemprop="reach">5 ft.</span>, <span itemprop="target">one target</span>. Hit: <span itemprop="damage">11 (2d6 + 4)</span> <span itemprop="damageType">bludgeoning</span> damage.</span>
-      </li>
-  </ol>
-
-</vellum-monster >
+  senses='["passive Perception 11"]'
+  traits='[
+    {
+      "name": "Trampling Charge",
+      "description": "If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action."
+    }
+  ]'
+  actions='[
+    {
+      "name": "Hooves",
+      "type": "melee-attack",
+      "bonus": "+4",
+      "reach": "5ft.",
+      "target": "one target",
+      "damage": "2d6 + 4",
+      "damageType": "bludgeoning"
+    }
+  ]'
+>
+</vellum-monster>
 ```
 
 This module also includes a theme to give your stat blocks a more "official" look. Simply add the following to your HTML file `head` element:
