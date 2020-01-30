@@ -33,7 +33,7 @@ class Monster extends StatBlock {
       ac: { type: Number },
       armor: { type: String },
       displayArmor: { type: String },
-      hitDie: { type: String },
+      'hit-die': { type: String },
       hp: { type: Number },
       speeds: { type: Array },
       str: { type: Number },
@@ -110,7 +110,7 @@ class Monster extends StatBlock {
 
         <div class="combat-stats">
           <vellum-stat id="ac" name="Armor Class" .values=${this.armor ? `${this.ac} (${this.armor})` : this.ac}></vellum-stat>
-          <vellum-stat id="hp" name="Hit Points" .values=${this.hitDie ? `${this.displayHp} (${this.hitDie})` : this.hp}></vellum-stat>
+          <vellum-stat id="hp" name="Hit Points" .values=${this['hit-die'] ? `${this.displayHp} (${this['hit-die']})` : this.hp}></vellum-stat>
           <vellum-stat id="speed" name="Speed" .values=${this.speeds}></vellum-stat>
         </div>
 
@@ -262,8 +262,9 @@ class Monster extends StatBlock {
   }
 
   get displayHp() {
-    if (!this.hp && this.hitDie) {
-      return averageDie(this.hitDie)
+    const hitDie = this['hit-die']
+    if (!this.hp && hitDie) {
+      return averageDie(hitDie)
     } else if (this.hp) {
       return this.hp
     } else {

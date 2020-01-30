@@ -35,7 +35,7 @@ A stat block is written as follows:
   ac="11"
   armor="natural armor"
   hp="20"
-  hitDie="16d10 + 48"
+  hit-die="16d10 + 48"
   speeds='["60 ft."]'
   cr="½"
 
