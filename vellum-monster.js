@@ -128,7 +128,7 @@ class Monster extends StatBlock {
           <vellum-stat id="senses" name="Senses" .values=${this.senses}></vellum-stat>
           <vellum-stat id="languages" name="Languages" .values=${this.languages}></vellum-stat>
 
-          ${this.calculatedCrs.effectiveCr || this.cr
+          ${(this.calculatedCrs.effectiveCr || this.cr) && this.type !== 'object'
             ? html`<vellum-stat id="cr" name="Challenge" .values="${this.calculatedCrs.effectiveCr ? this.calculatedCrs.effectiveCr : this.cr} (${this.displayXp} XP)"></vellum-stat>`
             : html``}
 
@@ -322,20 +322,30 @@ class Monster extends StatBlock {
   }
 
   get maxAttackBonus() {
-    return Math.max(...(this.actions || [])
+    const attackBonuses = (this.actions || [])
       .filter(action => action.type)
       .map(this._calculateMultiattack(this.actions))
       .map(attack => attack.bonus)
       .map(bonus => parseInt(bonus))
-    )
+
+    if (attackBonuses.length < 1) {
+      return 0
+    } else {
+      return Math.max(...attackBonuses)
+    }
   }
 
   get maxDamagePerRound() {
-    return Math.max(...(this.actions || [])
+    const damages = (this.actions || [])
       .filter(action => action.type)
       .map(this._calculateMultiattack(this.actions))
       .map(attack => attack.averageDamage ? attack.averageDamage : averageDie(attack.damage))
-    )
+
+    if (damages.length < 1) {
+      return 0
+    } else {
+      return Math.max(...damages)
+    }
   }
 
   _calculateMultiattack(actions) {

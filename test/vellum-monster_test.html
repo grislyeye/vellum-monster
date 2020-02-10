@@ -254,6 +254,62 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="pixie-stat-block">
+      <template>
+
+        <vellum-monster
+          id="pixie"
+          name="Pixie"
+          size="Tiny"
+          type="fey"
+          alignment="neutral good"
+          ac="15"
+          hp="1"
+          hit-die="1d4 - 1"
+          speeds='["10 ft.","fly 30 ft."]'
+
+          str="2"
+          dex="20"
+          con="8"
+          int="10"
+          wis="14"
+          cha="15"
+
+          skills='["Perception +4","Stealth +7"]'
+          senses='["passive Perception 11"]'
+          traits='[
+            {
+              "name": "Magic Resistance",
+              "description": " The pixie has advantage on saving throws against spells and other magical effects."
+            }
+          ]'
+          spellcasting='{
+            "ability": "Charisma",
+            "save": 12,
+            "notes": "It can innately cast the following spells, requiring only its pixie dust as a component:",
+            "levels": [
+              {
+                "level": "At will",
+                "spells": ["druidcraft"]
+              },
+              {
+                "level": "1/day each",
+                "spells": ["confusion", "dancing lights", "detect evil and good"]
+              }
+            ]
+          }'
+          actions='[
+            {
+              "name": "Superior Invisibility",
+              "description": "The pixie magically turns invisible until its concentration ends (as if concentrating on a spell). Any equipment the pixie wears or carries is invisible with it."
+            }
+          ]'
+        >
+        </vellum-monster>
+
+      </template>
+    </test-fixture>
+
     <script type="module">
 import '../vellum-monster.js'
 import { trimAll } from './test-util.js'
@@ -660,6 +716,16 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
       assert.isNotOk(challenge)
+      done()
+    })
+  })
+
+  test('can calculate CR without an attack', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const challenge = element.shadowRoot.querySelector('#cr')
+      assert.isOk(challenge)
       done()
     })
   })
