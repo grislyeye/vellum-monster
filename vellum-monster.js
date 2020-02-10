@@ -250,9 +250,11 @@ class Monster extends StatBlock {
   get spellcastingDescription() {
     if (this.spellcasting) {
       return `
-        The ${this.lowerCaseName} is a ${this.spellcasting.level}-level spellcaster.
-        Its spellcasting ability is ${this.spellcasting.ability} (spell save DC ${this.spellcasting.save}, ${this.spellcasting.attackBonus} to hit with spell attacks), and ${this.spellcasting.notes}.
-        The ${this.lowerCaseName} has the following ${this.spellcasting.class} spells prepared:`
+        ${this.spellcasting.innate ? '' : `The ${this.lowerCaseName} is a ${this.spellcasting.level}-level spellcaster.`}
+        ${this.spellcasting.innate ? `The ${this.lowerCaseName}'s innate` : 'Its'}
+        spellcasting ability is ${this.spellcasting.ability} (spell save DC
+        ${this.spellcasting.save}${this.spellcasting.attackBonus ? ',' : ')'}${this.spellcasting.attackBonus ? `${this.spellcasting.attackBonus} to hit with spell attacks)` : ''}${this.spellcasting.notes}
+        ${this.spellcasting.innate ? '' : `The ${this.lowerCaseName} has the following ${this.spellcasting.class} spells prepared:`}`
     }
   }
 

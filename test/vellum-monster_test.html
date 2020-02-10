@@ -59,7 +59,7 @@
             "ability": "Intelligence",
             "save": 17,
             "attackBonus": "+9",
-            "notes": "it requires no material components to cast its spells",
+            "notes": " and it requires no material components to cast its spells.",
             "class": "wizard",
             "levels": [
               {
@@ -286,7 +286,8 @@
           spellcasting='{
             "ability": "Charisma",
             "save": 12,
-            "notes": "It can innately cast the following spells, requiring only its pixie dust as a component:",
+            "innate": true,
+            "notes": ". It can innately cast the following spells, requiring only its pixie dust as a component:",
             "levels": [
               {
                 "level": "At will",
@@ -952,6 +953,46 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const level = element.shadowRoot.querySelector('#spell-level-5')
       expect(trimAll(level.shadowRoot.textContent)).to.includeOnce('5th level (1 slot): legend lore')
+      done()
+    })
+  })
+
+  test('does display spellcasting for creature with innate spellcasting', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.includeOnce('The pixie\'s innate spellcasting ability is Charisma (spell save DC 12). It can innately cast the following spells, requiring only its pixie dust as a component:')
+      done()
+    })
+  })
+
+  test('does not display spellcasting level for creature with innate spellcasting', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      assert.notInclude(trimAll(spellcasting.shadowRoot.textContent), '-level spellcaster.')
+      done()
+    })
+  })
+
+  test('does not display spellcasting attack bonus for creature without spellcasting attack bonus', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      assert.notInclude(spellcasting.shadowRoot.textContent, 'to hit with spell attacks')
+      done()
+    })
+  })
+
+  test('does not display spellcasting spells prepared note for innate spellcasters', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      assert.notInclude(spellcasting.shadowRoot.textContent, 'spells prepared:')
       done()
     })
   })
