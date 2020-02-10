@@ -3,7 +3,7 @@ import { LitElement, html, css } from 'lit-element'
 class StatBlockDivider extends LitElement {
 
   static get styles() {
-    css`
+    return css`
     svg {
       fill: var(--stat-block-divider-color, lightgrey);
       /* Stroke is necessary for good antialiasing in Chrome. */
