@@ -32,7 +32,7 @@
   },
   "main": "vellum-monster.js",
   "dependencies": {
-    "lit-element": "^2.1.0"
+    "lit-element": "^2.2.1"
   },
   "scripts": {
     "start": "polymer serve --open",
