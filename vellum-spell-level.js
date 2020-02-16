@@ -23,16 +23,25 @@ class SpellLevel extends LitElement {
     return html`
     <span class="spell-level">
       <span class="level">
-        ${this.hasCantrips(this.level) ? html`Cantrips` : html`${this.level} level`}
-        ${this.slots > 0 ? this.renderSlots() : html`(at will):`}
+        ${this.displayTitle() ? this.displayTitle() : html`${this.level} level`}
+        ${this.slots > 0 ? this.renderSlots() : ''}
       </span>
 
       <span class="spells">${this.renderSpells()}</span>
     </span>`
   }
 
-  hasCantrips(level) {
-    return level.toLowerCase() === 'cantrips'
+  displayTitle() {
+    switch (this.level.toLowerCase()) {
+      case 'cantrips':
+        return 'Cantrips (at will):'
+      case 'at-will':
+        return 'At will:'
+      case '1/day':
+        return '1/day each:'
+      default:
+        return false
+    }
   }
 
   renderSlots() {

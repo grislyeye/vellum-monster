@@ -290,11 +290,11 @@
             "notes": ". It can innately cast the following spells, requiring only its pixie dust as a component:",
             "levels": [
               {
-                "level": "At will",
+                "level": "at-will",
                 "spells": ["druidcraft"]
               },
               {
-                "level": "1/day each",
+                "level": "1/day",
                 "spells": ["confusion", "dancing lights", "detect evil and good"]
               }
             ]
@@ -993,6 +993,26 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const spellcasting = element.shadowRoot.querySelector('#spellcasting')
       assert.notInclude(spellcasting.shadowRoot.textContent, 'spells prepared:')
+      done()
+    })
+  })
+
+  test('displays at-will spellcasting level', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const level = element.shadowRoot.querySelector('#spell-level-0')
+      expect(level.shadowRoot.textContent).to.includeOnce('At will:')
+      done()
+    })
+  })
+
+  test('displays once-per-day each spellcasting level', (done) => {
+    const element = fixture('pixie-stat-block')
+
+    flush(() => {
+      const level = element.shadowRoot.querySelector('#spell-level-1')
+      expect(level.shadowRoot.textContent).to.includeOnce('1/day each:')
       done()
     })
   })

@@ -31,6 +31,18 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="at-will">
+      <template>
+        <vellum-spell-level level='at-will' spells='["mage hand", "minor illusion"]'></vellum-spell-level>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="once-per-day">
+      <template>
+        <vellum-spell-level level='1/day' spells='["mage hand", "minor illusion"]'></vellum-spell-level>
+      </template>
+    </test-fixture>
+
     <script type="module">
 import '../vellum-spell-level.js'
 import { trimAll } from './test-util.js'
@@ -106,6 +118,24 @@ suite('<vellum-spell-level>', () => {
 
     flush(() => {
       assert.include(trimAll(element.shadowRoot.textContent), 'at will')
+      done()
+    })
+  })
+
+  test('displays at will spell level', (done) => {
+    const element = fixture('at-will')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), 'At will:')
+      done()
+    })
+  })
+
+  test('displays once-per-day spell level', (done) => {
+    const element = fixture('once-per-day')
+
+    flush(() => {
+      assert.include(trimAll(element.shadowRoot.textContent), '1/day each:')
       done()
     })
   })
