@@ -214,7 +214,7 @@ class Monster extends StatBlock {
         .target="${action.target}"
         .damage="${action.damage}"
         damage-type="${action.damageType}"
-        notes="${action.notes}"
+        .notes="${action.notes}"
         .limited-usage="${action.limitedUsage}"
         .effects="${action.randomEffects}"
       ></vellum-attack>`

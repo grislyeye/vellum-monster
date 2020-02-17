@@ -866,6 +866,16 @@ suite('<vellum-monster>', () => {
     })
   })
 
+  test('attack without notes does not display "undefined"', (done) => {
+    const element = fixture('simple-stat-block')
+
+    flush(() => {
+      const attack = element.shadowRoot.querySelector('#attack-0')
+      assert.notInclude(trimAll(attack.shadowRoot.textContent), 'undefined.')
+      done()
+    })
+  })
+
   test('displays legendary actions for creature with legendary actions', (done) => {
     const element = fixture('detailed-stat-block')
 
