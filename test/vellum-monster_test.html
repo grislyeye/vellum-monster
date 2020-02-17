@@ -311,6 +311,63 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="named-stat-block">
+      <template>
+
+        <vellum-monster
+          id="pixie"
+          name="Florence the Pixie"
+          named="true"
+          size="Tiny"
+          type="fey"
+          alignment="neutral good"
+          ac="15"
+          hp="1"
+          hit-die="1d4 - 1"
+          speeds='["10 ft.","fly 30 ft."]'
+
+          str="2"
+          dex="20"
+          con="8"
+          int="10"
+          wis="14"
+          cha="15"
+
+          skills='["Perception +4","Stealth +7"]'
+          senses='["passive Perception 11"]'
+
+          spellcasting='{
+            "ability": "Charisma",
+            "save": 12,
+            "innate": true,
+            "notes": ". It can innately cast the following spells, requiring only its pixie dust as a component:",
+            "levels": [
+              {
+                "level": "at-will",
+                "spells": ["druidcraft"]
+              },
+              {
+                "level": "1/day",
+                "spells": ["confusion", "dancing lights", "detect evil and good"]
+              }
+            ]
+          }'
+          legendary-actions='{
+            "number": 3,
+            "actions": [
+              {
+                "name": "Claw Attack",
+                "description": "The sphinx makes one claw attack.",
+                "damageAdjustment": "+39"
+              }
+            ]
+          }'
+        >
+        </vellum-monster>
+
+      </template>
+    </test-fixture>
+
     <script type="module">
 import '../vellum-monster.js'
 import { trimAll } from './test-util.js'
@@ -858,6 +915,26 @@ suite('<vellum-monster>', () => {
     })
   })
 
+  test('does not displays "the" in legendary actions for named monster', (done) => {
+    const element = fixture('named-stat-block')
+
+    flush(() => {
+      const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions')
+      assert.notInclude(trimAll(lengendaryActions.textContent), 'The')
+      done()
+    })
+  })
+
+  test('does not lower-case name in legendary actions for named monster', (done) => {
+    const element = fixture('named-stat-block')
+
+    flush(() => {
+      const lengendaryActions = element.shadowRoot.querySelector('#legendary-actions')
+      expect(trimAll(lengendaryActions.textContent)).to.include('Florence the Pixie')
+      done()
+    })
+  })
+
   test('displays spellcasting for creature with spellcasting', (done) => {
     const element = fixture('detailed-stat-block')
 
@@ -1013,6 +1090,26 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const level = element.shadowRoot.querySelector('#spell-level-1')
       expect(level.shadowRoot.textContent).to.includeOnce('1/day each:')
+      done()
+    })
+  })
+
+  test('does not display "the" in spellcasting for named monsters', (done) => {
+    const element = fixture('named-stat-block')
+
+    flush(() => {
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      assert.notInclude(trimAll(spellcasting.shadowRoot.textContent), 'The')
+      done()
+    })
+  })
+
+  test('does not lower-case name in spellcasting for named monsters', (done) => {
+    const element = fixture('named-stat-block')
+
+    flush(() => {
+      const spellcasting = element.shadowRoot.querySelector('#spellcasting')
+      expect(trimAll(spellcasting.shadowRoot.textContent)).to.include('Florence the Pixie')
       done()
     })
   })

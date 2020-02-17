@@ -27,6 +27,7 @@ class Monster extends StatBlock {
   static get properties() {
     return {
       name: { type: String },
+      named: { type: Boolean },
       size: { type: String },
       type: { type: String },
       alignment: { type: String },
@@ -231,7 +232,7 @@ class Monster extends StatBlock {
     return html`
       <vellum-stat-block-section id="legendary-actions" name="Legendary Actions">
 
-        <p>The ${this.lowerCaseName} can take ${this['legendary-actions'].number} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
+        <p>${this.subjectLabel} can take ${this['legendary-actions'].number} legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>
 
         <ul>
           ${this['legendary-actions'].actions.map((action, i) => html`<li><vellum-legendary-action id="legendary-action-${i}" name="${action.name}" actions="${action.actions}" description="${action.description}"></vellum-legendary-action></li>`)}
@@ -243,18 +244,22 @@ class Monster extends StatBlock {
     return (this.str !== undefined && this.dex !== undefined && this.con !== undefined && this.int !== undefined && this.wis !== undefined && this.cha !== undefined)
   }
 
-  get lowerCaseName() {
-    return this.name.toLowerCase()
+  get subjectLabel() {
+    if (this.named) {
+      return this.name
+    } else {
+      return `The ${this.name.toLowerCase()}`
+    }
   }
 
   get spellcastingDescription() {
     if (this.spellcasting) {
       return `
-        ${this.spellcasting.innate ? '' : `The ${this.lowerCaseName} is a ${this.spellcasting.level}-level spellcaster.`}
-        ${this.spellcasting.innate ? `The ${this.lowerCaseName}'s innate` : 'Its'}
+        ${this.spellcasting.innate ? '' : `${this.subjectLabel} is a ${this.spellcasting.level}-level spellcaster.`}
+        ${this.spellcasting.innate ? `${this.subjectLabel}'s innate` : 'Its'}
         spellcasting ability is ${this.spellcasting.ability} (spell save DC
         ${this.spellcasting.save}${this.spellcasting.attackBonus ? ',' : ')'}${this.spellcasting.attackBonus ? `${this.spellcasting.attackBonus} to hit with spell attacks)` : ''}${this.spellcasting.notes}
-        ${this.spellcasting.innate ? '' : `The ${this.lowerCaseName} has the following ${this.spellcasting.class} spells prepared:`}`
+        ${this.spellcasting.innate ? '' : `${this.subjectLabel} has the following ${this.spellcasting.class} spells prepared:`}`
     }
   }
 
