@@ -254,7 +254,7 @@
       </template>
     </test-fixture>
 
-    <test-fixture id="pixie-stat-block">
+    <test-fixture id="innate-spellcaster-stat-block">
       <template>
 
         <vellum-monster
@@ -722,7 +722,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('can calculate CR without an attack', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const challenge = element.shadowRoot.querySelector('#cr')
@@ -958,7 +958,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('does display spellcasting for creature with innate spellcasting', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const spellcasting = element.shadowRoot.querySelector('#spellcasting')
@@ -968,7 +968,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('does not display spellcasting level for creature with innate spellcasting', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const spellcasting = element.shadowRoot.querySelector('#spellcasting')
@@ -978,7 +978,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('does not display spellcasting attack bonus for creature without spellcasting attack bonus', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const spellcasting = element.shadowRoot.querySelector('#spellcasting')
@@ -988,7 +988,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('does not display spellcasting spells prepared note for innate spellcasters', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const spellcasting = element.shadowRoot.querySelector('#spellcasting')
@@ -998,7 +998,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('displays at-will spellcasting level', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const level = element.shadowRoot.querySelector('#spell-level-0')
@@ -1008,7 +1008,7 @@ suite('<vellum-monster>', () => {
   })
 
   test('displays once-per-day each spellcasting level', (done) => {
-    const element = fixture('pixie-stat-block')
+    const element = fixture('innate-spellcaster-stat-block')
 
     flush(() => {
       const level = element.shadowRoot.querySelector('#spell-level-1')
