@@ -1,6 +1,6 @@
 sudo: true
 language: node_js
-node_js: 10
+node_js: 13
 addons:
   firefox: "65.0"
   chrome: stable
