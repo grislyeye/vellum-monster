@@ -5,7 +5,7 @@ class LegendaryAction extends LitElement {
   static get is() { return 'vellum-legendary-action' }
 
   static get styles() {
-    css`
+    return css`
     .action-name {
       font-weight: bold;
     }`
