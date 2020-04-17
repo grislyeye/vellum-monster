@@ -237,6 +237,7 @@ class Monster extends StatBlock {
         <ul>
           ${this['legendary-actions'].actions.map((action, i) => html`<li><vellum-legendary-action id="legendary-action-${i}" name="${action.name}" actions="${action.actions}" description="${action.description}"></vellum-legendary-action></li>`)}
         </ul>
+
       </vellum-stat-block-section>`
   }
 
