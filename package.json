@@ -5,7 +5,7 @@
     "webcomponent"
   ],
   "name": "vellum-monster",
-  "version": "0.15.2",
+  "version": "0.15.3",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
@@ -13,11 +13,11 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-lit": "^1.2.0",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "polymer-cli": "^1.9.11",
@@ -32,7 +32,7 @@
   },
   "main": "vellum-monster.js",
   "dependencies": {
-    "lit-element": "^2.2.1"
+    "lit-element": "^2.3.1"
   },
   "scripts": {
     "start": "polymer serve --open",
