@@ -68,7 +68,6 @@ export class StatBlock extends LitElement {
       margin-top: 1pt;
       margin-left: 0;
       margin-right: 0;
-      font-style: italic;
       margin-bottom: 1pt;
     }
 
