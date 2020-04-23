@@ -76,7 +76,7 @@ class Monster extends StatBlock {
         },
         armourClass: {
           value: this.effectiveAc,
-          effectiveCr: this.calculatedCrs.acCr
+          crAdjustment: this.calculatedCrs.acCrAdjustment
         },
         defensive: { effectiveCr: this.calculatedCrs.defensiveCr },
         damage: {
@@ -85,7 +85,7 @@ class Monster extends StatBlock {
         },
         attackBonus: {
           value: this.effectiveAttackBonus,
-          effectiveCr: this.calculatedCrs.attackBonusCr
+          crAdjustment: this.calculatedCrs.attackBonusCrAdjustment
         },
         offensive: { effectiveCr: this.calculatedCrs.offensiveCr },
         cr: {
