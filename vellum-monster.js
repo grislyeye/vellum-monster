@@ -66,6 +66,8 @@ class Monster extends StatBlock {
     super.connectedCallback()
 
     if (this.calculatedCrs) {
+      const displayAdjustment = (number) => number > 0 ? `+${number}` : number
+
       console.table({
         name: {
           value: this.name
@@ -76,7 +78,7 @@ class Monster extends StatBlock {
         },
         armourClass: {
           value: this.effectiveAc,
-          effectiveCr: this.calculatedCrs.acAdjustment > 0 ? `+${this.calculatedCrs.acAdjustment}` : this.calculatedCrs.acAdjustment
+          effectiveCr: displayAdjustment(this.calculatedCrs.acAdjustment)
         },
         defensive: { effectiveCr: this.calculatedCrs.defensiveCr },
         damage: {
@@ -85,7 +87,7 @@ class Monster extends StatBlock {
         },
         attackBonus: {
           value: this.effectiveAttackBonus,
-          effectiveCr: this.calculatedCrs.attackBonusAdjustment > 0 ? `+${this.calculatedCrs.attackBonusAdjustment}` : this.calculatedCrs.attackBonusAdjustment
+          effectiveCr: displayAdjustment(this.calculatedCrs.attackBonusAdjustment)
         },
         offensive: { effectiveCr: this.calculatedCrs.offensiveCr },
         cr: {
