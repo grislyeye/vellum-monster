@@ -132,7 +132,7 @@ class Monster extends StatBlock {
           <vellum-stat id="languages" name="Languages" .values=${this.languages}></vellum-stat>
 
           ${(this.calculatedCrs.effectiveCr || this.cr) && this.type !== 'object'
-            ? html`<vellum-stat id="cr" name="Challenge" .values="${this.calculatedCrs.effectiveCr ? this.calculatedCrs.effectiveCr : this.cr} (${this.displayXp} XP)"></vellum-stat>`
+            ? html`<vellum-stat id="cr" name="Challenge" .values="${this.cr ? this.cr : this.calculatedCrs.effectiveCr} (${this.displayXp} XP)"></vellum-stat>`
             : html``}
 
         </div>
@@ -268,7 +268,7 @@ class Monster extends StatBlock {
 
   get displayXp() {
     if (this.xp) return this.xp
-    else return calculateXpFromCr(this.calculatedCrs.effectiveCr)
+    else return this.cr ? calculateXpFromCr(this.cr) : calculateXpFromCr(this.calculatedCrs.effectiveCr)
   }
 
   get displayHp() {

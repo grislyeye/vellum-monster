@@ -251,7 +251,7 @@
             const calculation = calculateCr(monster)
             console.log(calculation)
 
-            assert.equal(calculation.effectiveCr, '4')
+            assert.equal(calculation.effectiveCr, '5')
           })
 
           test('calculate CR for monster with slightly high armour class', () => {
@@ -281,7 +281,7 @@
             const calculation = calculateCr(monster)
             console.log(calculation)
 
-            assert.equal(calculation.effectiveCr, '4')
+            assert.equal(calculation.effectiveCr, '5')
           })
 
           test('calculate CR for monster with slightly high attack bonus', () => {
@@ -357,6 +357,36 @@
             console.log(calculation)
 
             assert.equal(calculation.effectiveCr, '17')
+          })
+
+          test('calculate CR for monster with AC lower than 13', () => {
+            const monster = {
+              ac: 6,
+              hp: 90,
+              attackBonus: 2,
+              damagePerRound: 28
+            }
+            console.log(monster)
+
+            const calculation = calculateCr(monster)
+            console.log(calculation)
+
+            assert.equal(calculation.effectiveCr, '1')
+          })
+
+          test('calculate CR for monster with attack bonus lower than +3', () => {
+            const monster = {
+              ac: 15,
+              hp: 140,
+              attackBonus: 1,
+              damagePerRound: 34
+            }
+            console.log(monster)
+
+            const calculation = calculateCr(monster)
+            console.log(calculation)
+
+            assert.equal(calculation.effectiveCr, '4')
           })
 
           test('return undefined for out-of-range hit points', () => {
