@@ -130,7 +130,6 @@ suite('<vellum-npc>', () => {
     const element = fixture('npc-without-description')
 
     flush(() => {
-      console.log(element.shadowRoot.innerHTML)
       assert.isNull(element.shadowRoot.querySelector('#description-divider'))
       done()
     })
@@ -140,7 +139,6 @@ suite('<vellum-npc>', () => {
     const element = fixture('npc-without-attitude')
 
     flush(() => {
-      console.log(element.shadowRoot.innerHTML)
       assert.include(trimAll(element.shadowRoot.textContent), '(lawful neutral)')
       done()
     })
