@@ -12,18 +12,10 @@ To install:
 npm install --save vellum-monster
 ```
 
-A stat block is written as follows:
+![Simple Screenshot](demo/warhorse-screenshot.png)
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <link rel="import" href="vellum-monster.html">
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+The above stat block is written as follows:
+
 ```html
 <vellum-monster
   id="warhorse"
