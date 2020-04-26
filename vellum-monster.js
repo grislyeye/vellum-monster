@@ -1,4 +1,5 @@
 import { html, css } from 'lit-element'
+import { ifDefined } from 'lit-html/directives/if-defined'
 import { StatBlock } from './vellum-stat-block.js'
 import './vellum-stat-block-divider.js'
 import './vellum-stat.js'
@@ -217,7 +218,7 @@ class Monster extends StatBlock {
         .damage="${action.damage}"
         damage-type="${action.damageType}"
         .notes="${action.notes}"
-        .limited-usage="${action.limitedUsage}"
+        limited-usage=${ifDefined(action.limitedUsage)}
         .effects="${action.randomEffects}"
       ></vellum-attack>`
     }

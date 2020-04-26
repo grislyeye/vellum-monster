@@ -114,6 +114,7 @@
               "damage": "2d8 + 4",
               "damageType": "slashing",
               "notes": ". This is a magic weapon attack",
+              "limitedUsage": "3/Day",
               "randomEffects": [
                 {
                   "roll": "1",
@@ -832,7 +833,7 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       const attack = element.shadowRoot.querySelector('#attack-1')
-      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw. Melee or Ranged Weapon Attack: +9 to hit, reach 5 ft. or range 10ft./20ft., one target. Hit: 13 (2d8 + 4) slashing damage')
+      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Claw (3/Day). Melee or Ranged Weapon Attack: +9 to hit, reach 5 ft. or range 10ft./20ft., one target. Hit: 13 (2d8 + 4) slashing damage')
       done()
     })
   })
