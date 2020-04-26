@@ -137,6 +137,11 @@
                   "effect": "The target becomes blinded."
                 }
               ]
+            },
+            {
+              "name": "Limited Simple Action",
+              "limitedUsage": "1/Day",
+              "description": "The sphinx makes one claw attack."
             }
           ]'
           reactions='[
@@ -853,6 +858,16 @@ suite('<vellum-monster>', () => {
     flush(() => {
       const attack = element.shadowRoot.querySelector('#attack-1')
       expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('2. Paralysed. The target becomes paralysed.')
+      done()
+    })
+  })
+
+  test('displays limited usage for simple action', (done) => {
+    const element = fixture('detailed-stat-block')
+
+    flush(() => {
+      const attack = element.shadowRoot.querySelector('#action-2')
+      expect(trimAll(attack.shadowRoot.textContent)).to.includeOnce('Limited Simple Action (1/Day).')
       done()
     })
   })

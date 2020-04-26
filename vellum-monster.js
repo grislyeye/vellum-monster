@@ -203,24 +203,30 @@ class Monster extends StatBlock {
 
   renderAction(action, index) {
     if (this._isNotAttack(action)) {
-      return html`<vellum-stat id="action-${index}" class="action" name="${action.name}." values="${action.description}"></vellum-stat>`
+      return html`
+        <vellum-stat
+          id="action-${index}"
+          class="action" name="${action.name}${action.limitedUsage ? ` (${action.limitedUsage})` : ''}."
+          values="${action.description}"
+        ></vellum-stat>`
     } else if (this._isMultiAttack(action)) {
       return html`<vellum-stat id="multiattack-${index}" class="action" name="Multiattack." values="${action.description}"></vellum-stat>`
     } else if (this._isAttack(action)) {
-      return html`<vellum-attack
-        id="attack-${index}"
-        .name="${action.name}"
-        .type="${action.type}"
-        .bonus="${action.bonus}"
-        .reach="${action.reach}"
-        .range="${action.range}"
-        .target="${action.target}"
-        .damage="${action.damage}"
-        damage-type="${action.damageType}"
-        .notes="${action.notes}"
-        limited-usage=${ifDefined(action.limitedUsage)}
-        .effects="${action.randomEffects}"
-      ></vellum-attack>`
+      return html`
+        <vellum-attack
+          id="attack-${index}"
+          .name="${action.name}"
+          .type="${action.type}"
+          .bonus="${action.bonus}"
+          .reach="${action.reach}"
+          .range="${action.range}"
+          .target="${action.target}"
+          .damage="${action.damage}"
+          damage-type="${action.damageType}"
+          .notes="${action.notes}"
+          limited-usage=${ifDefined(action.limitedUsage)}
+          .effects="${action.randomEffects}"
+        ></vellum-attack>`
     }
   }
 
