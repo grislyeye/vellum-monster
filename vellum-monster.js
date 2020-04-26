@@ -226,7 +226,7 @@ class Monster extends StatBlock {
   renderReactions() {
     return html`
       <vellum-stat-block-section id="reactions" name="Reactions">
-        ${this.reactions.map((reaction, i) => html`<vellum-stat id="reaction-${i}" class="action" name="${reaction.name}" values="${reaction.description}"></vellum-stat>`)}
+        ${this.reactions.map((reaction, i) => html`<vellum-stat id="reaction-${i}" class="action" name="${reaction.name}." values="${reaction.description}"></vellum-stat>`)}
       </vellum-stat-block-section>`
   }
 

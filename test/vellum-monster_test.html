@@ -1139,7 +1139,7 @@ suite('<vellum-monster>', () => {
 
     flush(() => {
       const reaction = element.shadowRoot.querySelector('#reaction-0')
-      expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('Parry')
+      expect(trimAll(reaction.shadowRoot.textContent)).to.includeOnce('Parry.')
       done()
     })
   })
