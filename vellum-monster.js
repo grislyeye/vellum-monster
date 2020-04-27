@@ -13,14 +13,14 @@ import { calculateXpFromCr, averageDie, calculateCr } from './lib/monster.js'
 class Monster extends StatBlock {
 
   static get styles() {
-    return css`
-      ${StatBlock.styles}
-
-      #legendary-actions ul li {
+    return [
+      super.styles,
+      css`#legendary-actions ul li {
         margin: 0;
         padding-left: 1em;
         text-indent: -1em;
       }`
+    ]
   }
 
   static get is() { return 'vellum-monster' }
