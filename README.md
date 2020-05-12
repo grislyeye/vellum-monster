@@ -89,7 +89,7 @@ You can then add standard CSS. The `<vellum-monster>` and `<vellum-monster>` sup
 
 | Property                               | Description
 | -------------------------------------- | ---
-| ` --stat-width`                        | Describes the width property for the stat block, as per the [CSS `width` property](https://developer.mozilla.org/en/docs/Web/CSS/width).
+| `--stat-block-width`                   | Describes the width property for the stat block, as per the [CSS `width` property](https://developer.mozilla.org/en/docs/Web/CSS/width).
 | ` --stat-block-background`             | Describes the background property for the stat block body, as per the [CSS `background` property](https://developer.mozilla.org/en/docs/Web/CSS/background).
 | `--stat-block-bar-border`              | Describes the border property for top and bottom stat block bars, as per the [CSS `border` property](https://developer.mozilla.org/en/docs/Web/CSS/border).
 | ` --stat-block-bar-background`         | Describes the background property for top and bottom stat block bars, as per the [CSS `background` property](https://developer.mozilla.org/en/docs/Web/CSS/background).
