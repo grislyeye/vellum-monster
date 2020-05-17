@@ -36,7 +36,7 @@ export class StatBlock extends LitElement {
       border-left: 1px var(--stat-block-border-color, black) solid;
       border-right: 1px var(--stat-block-border-color, black) solid;
       padding: 0.5em;
-      box-shadow: 0.1em 0 0.1em lightgray, -0.1em 0 0.1em lightgray;
+      box-shadow: 0.1em 0 0.1em rgba(0, 0, 0, 0.3), -0.1em 0 0.1em rgba(0, 0, 0, 0.3);
     }
 
     :host(.two-column) {
