@@ -40,7 +40,7 @@ export class StatBlock extends LitElement {
     }
 
     :host(.two-column) {
-      width: var(--stat-block-two-column-width, 840px);
+      width: var(--stat-block-two-column-width, 840px)
     }
 
     :host(.two-column) .content-wrapper {
