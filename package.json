@@ -5,14 +5,14 @@
     "webcomponent"
   ],
   "name": "vellum-monster",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-html": "^6.0.2",
     "eslint-plugin-import": "^2.20.2",
