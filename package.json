@@ -20,7 +20,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "polymer-cli": "^1.9.11",
     "wct-browser-legacy": "^1.0.2",
     "web-component-tester": "^6.9.2",
     "yaml-lint": "^1.2.4"
@@ -37,7 +36,7 @@
   },
   "scripts": {
     "start": "polymer serve --open",
-    "build": "yamllint .travis.yml && polymer lint && eslint *.js lib/*.js test/*.js test/*.html",
+    "build": "yamllint .travis.yml && eslint *.js lib/*.js test/*.js test/*.html",
     "test": "npm run build && wct --npm -l chrome,firefox"
   }
 }
