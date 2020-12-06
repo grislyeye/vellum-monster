@@ -12,6 +12,12 @@ To install:
 npm install --save vellum-monster
 ```
 
+You can also use the CDN:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vellum-monster@1.0.2/vellum.min.js"></script>
+```
+
 ![Simple Screenshot](demo/warhorse-screenshot.png)
 
 The above stat block is written as follows:
