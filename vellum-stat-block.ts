@@ -1,10 +1,10 @@
-import { LitElement, html, css } from 'lit-element'
+import { LitElement, TemplateResult, html, css, customElement, property } from 'lit-element'
 import './vellum-stat-block-divider.js'
 
+@customElement('vellum-stat-block')
 export class StatBlock extends LitElement {
 
-  static get styles() {
-    return css`
+  static styles = css`
     :host {
       display: block;
       overflow: hidden;
@@ -93,18 +93,12 @@ export class StatBlock extends LitElement {
       font-style: italics;
       margin-bottom: 0;
     }`
-  }
 
-  static get is() { return 'vellum-stat-block' }
+  @property({ type: String }) name!: string;
 
-  static get properties() {
-    return {
-      name: String,
-      description: String
-    }
-  }
+  @property({ type: String }) description!: string;
 
-  render() {
+  render(): TemplateResult | void {
     return html`
     <div class="bar"></div>
 
@@ -125,16 +119,14 @@ export class StatBlock extends LitElement {
     <div class="bar"></div>`
   }
 
-  renderHeader() {
+  private renderHeader(): TemplateResult {
     return html`
       <h1>${this.name}</h1>
       <p>${this.description}</p>`
   }
 
-  renderStats() {
+  private renderStats(): TemplateResult {
     return html`<slot></slot>`
   }
 
 }
-
-customElements.define(StatBlock.is, StatBlock)
