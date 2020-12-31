@@ -9,7 +9,9 @@
     "flush": true,
     "assert": true,
     "expect": true,
-    "fixture": true
+    "fixture": true,
+    "describe": true,
+    "it": true
   },
   "rules": {
     "space-before-function-paren": ["error", "never"],

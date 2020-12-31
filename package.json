@@ -12,6 +12,8 @@
   ],
   "license": "Apache-2.0",
   "devDependencies": {
+    "@open-wc/testing": "^2.5.32",
+    "@web/test-runner": "^0.10.0",
     "bl": ">=4.0.3",
     "diff": ">=5.0.0",
     "es-dev-server": "^1.60.1",
@@ -28,8 +30,6 @@
     "rollup": "^2.34.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2",
-    "wct-browser-legacy": "^1.0.2",
-    "web-component-tester": "^6.9.2",
     "yaml-lint": "^1.2.4"
   },
   "resolutions": {
@@ -46,7 +46,7 @@
   "scripts": {
     "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
     "build": "yamllint .travis.yml && eslint *.js lib/*.js test/*.js test/*.html && rollup -c",
-    "test": "npm run build && wct --npm -l chrome,firefox",
+    "test": "npm run build && web-test-runner",
     "clean": "rimraf dist"
   }
 }
