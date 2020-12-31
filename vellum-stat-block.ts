@@ -119,13 +119,13 @@ export class StatBlock extends LitElement {
     <div class="bar"></div>`
   }
 
-  renderHeader(): TemplateResult {
+  private renderHeader(): TemplateResult {
     return html`
       <h1>${this.name}</h1>
       <p>${this.description}</p>`
   }
 
-  renderStats(): TemplateResult {
+  private renderStats(): TemplateResult {
     return html`<slot></slot>`
   }
 
