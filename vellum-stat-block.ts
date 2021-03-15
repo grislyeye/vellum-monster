@@ -1,4 +1,4 @@
-import { LitElement, TemplateResult, html, css, customElement, property } from 'lit-element'
+import { LitElement, html, css, customElement, property } from 'lit-element'
 import './vellum-stat-block-divider.js'
 
 @customElement('vellum-stat-block')
@@ -98,7 +98,7 @@ export class StatBlock extends LitElement {
 
   @property({ type: String }) description!: string;
 
-  render(): TemplateResult | void {
+  render() {
     return html`
     <div class="bar"></div>
 
@@ -119,13 +119,13 @@ export class StatBlock extends LitElement {
     <div class="bar"></div>`
   }
 
-  private renderHeader(): TemplateResult {
+  protected renderHeader() {
     return html`
       <h1>${this.name}</h1>
       <p>${this.description}</p>`
   }
 
-  private renderStats(): TemplateResult {
+  protected renderStats() {
     return html`<slot></slot>`
   }
 
