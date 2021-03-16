@@ -113,24 +113,24 @@ class Monster extends StatBlock {
       <div id="monster-stats" class="main-stats">
 
         <div class="combat-stats">
-          <vellum-stat id="ac" name="Armor Class" .values=${this.armor ? `${this.ac} (${this.armor})` : this.ac}></vellum-stat>
-          <vellum-stat id="hp" name="Hit Points" .values=${this['hit-die'] ? `${this.displayHp} (${this['hit-die']})` : this.hp}></vellum-stat>
-          <vellum-stat id="speed" name="Speed" .values=${this.speeds}></vellum-stat>
+          ${this.renderStat('ac', 'Armor Class', this.armor ? `${this.ac} (${this.armor})` : this.ac)}
+          ${this.renderStat('hp', 'Hit Points', this['hit-die'] ? `${this.displayHp} (${this['hit-die']})` : this.hp)}
+          ${this.renderStat('speed', 'Speed', this.speeds)}
         </div>
 
         ${this.hasAbilities ? this.renderAbilities() : html``}
 
         <div>
 
-          <vellum-stat id="saving-throws" name="Saving Throws" .values=${this['saving-throws']}></vellum-stat>
-          <vellum-stat id="skills" name="Skills" .values=${this.skills}></vellum-stat>
-          <vellum-stat id="damage-vulnerabilities" name="Damage Vulnerabilities" .values=${this.vulnerabilities}></vellum-stat>
-          <vellum-stat id="damage-resistances" name="Damage Resistances" .values=${this.resistances}></vellum-stat>
-          <vellum-stat id="damage-immunities" name="Damage Immunities" .values=${this.immunities}></vellum-stat>
-          <vellum-stat id="damage-threshold" name="Damage Threshold" .values=${this.threshold}></vellum-stat>
-          <vellum-stat id="condition-immunities" name="Condition Immunities" .values=${this['condition-immunities']}></vellum-stat>
-          <vellum-stat id="senses" name="Senses" .values=${this.senses}></vellum-stat>
-          <vellum-stat id="languages" name="Languages" .values=${this.languages}></vellum-stat>
+          ${this.renderStat('saving-throws', 'Saving Throws', this['saving-throws'])}
+          ${this.renderStat('skills', 'Skills', this.skills)}
+          ${this.renderStat('damage-vulnerabilities', 'Damage Vulnerabilities', this.vulnerabilities)}
+          ${this.renderStat('damage-resistances', 'Damage Resistances', this.resistances)}
+          ${this.renderStat('damage-immunities', 'Damage Immunities', this.immunities)}
+          ${this.renderStat('damage-threshold', 'Damage Threshold', this.threshold)}
+          ${this.renderStat('condition-immunities', 'Condition Immunities', this['condition-immunities'])}
+          ${this.renderStat('senses', 'Senses', this.senses)}
+          ${this.renderStat('languages', 'Languages', this.languages)}
 
           ${(this.calculatedCrs.effectiveCr || this.cr) && this.type !== 'object'
             ? html`<vellum-stat id="cr" name="Challenge" .values="${this.cr ? this.cr : this.calculatedCrs.effectiveCr} (${this.displayXp} XP)"></vellum-stat>`
@@ -169,6 +169,14 @@ class Monster extends StatBlock {
       ></vellum-stat-block-ability-scores>
 
       <vellum-stat-block-divider></vellum-stat-block-divider>`
+  }
+
+  renderStat(id, name, value) {
+    console.log(`renderStat(${id}, ${name}, ${typeof value})`)
+    console.log(`value !== undefined || value !== '' == ${value !== undefined || value !== ''}`)
+    if (value !== undefined && value !== '') {
+      return html`<vellum-stat id="${id}" name="${name}" .values=${value}></vellum-stat>`
+    } else return html``
   }
 
   renderSpecialTraits() {

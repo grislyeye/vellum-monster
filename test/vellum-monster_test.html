@@ -519,8 +519,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('empty-stat-block')
 
     flush(() => {
-      const ac = element.shadowRoot.getElementById('hp')
-      expect(trimAll(ac.shadowRoot.textContent)).to.not.include('Hit Points')
+      expect(element.shadowRoot.getElementById('hp')).to.equal(null)
       done()
     })
   })
@@ -628,8 +627,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const skills = element.shadowRoot.getElementById('skills')
-      assert.notInclude(trimAll(skills.shadowRoot.textContent), 'Skills')
+      expect(element.shadowRoot.getElementById('skills')).to.equal(null)
       done()
     })
   })
@@ -658,8 +656,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const resistances = element.shadowRoot.getElementById('damage-resistances')
-      expect(trimAll(resistances.shadowRoot.textContent), 'Damage Resistances')
+      expect(element.shadowRoot.getElementById('damage-resistances')).to.equal(null)
       done()
     })
   })
@@ -678,8 +675,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const immunities = element.shadowRoot.getElementById('damage-immunities')
-      expect(trimAll(immunities.shadowRoot.textContent), 'Damage Immunities')
+      expect(element.shadowRoot.getElementById('damage-immunities')).to.equal(null)
       done()
     })
   })
@@ -698,8 +694,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const immunities = element.shadowRoot.getElementById('condition-immunities')
-      expect(trimAll(immunities.shadowRoot.textContent), 'Condition Immunities')
+      expect(element.shadowRoot.getElementById('condition-immunities')).to.equal(null)
       done()
     })
   })
@@ -728,8 +723,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const languages = element.shadowRoot.getElementById('languages')
-      expect(trimAll(languages.shadowRoot.textContent), 'Languages')
+      expect(element.shadowRoot.getElementById('languages')).to.equal(null)
       done()
     })
   })
@@ -1184,8 +1178,7 @@ suite('<vellum-monster>', () => {
     const element = fixture('simple-stat-block')
 
     flush(() => {
-      const savingThrows = element.shadowRoot.getElementById('saving-throws')
-      expect(trimAll(savingThrows.shadowRoot.textContent), 'Saving Throws')
+      expect(element.shadowRoot.getElementById('saving-throws')).to.equal(null)
       done()
     })
   })

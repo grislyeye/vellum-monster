@@ -51,17 +51,10 @@ class Stat extends LitElement {
   }
 
   render() {
-    if (this.hasValues()) {
-      return html`<p>
-        <span class="stat-name">${this.name}</span>
-        <span class="stat-values">${this.renderValues()}</span>
-      </p>`
-    }
-  }
-
-  hasValues() {
-    const innerValues = this.innerHTML.trim()
-    return (this.values || innerValues !== '')
+    return html`<p>
+      <span class="stat-name">${this.name}</span>
+      <span class="stat-values">${this.renderValues()}</span>
+    </p>`
   }
 
   renderValues() {

@@ -14,12 +14,6 @@
   </head>
   <body>
 
-    <test-fixture id="empty-stat">
-      <template>
-        <vellum-stat name="Empty Stat Name"></vellum-stat>
-      </template>
-    </test-fixture>
-
     <test-fixture id="single-value-stat">
       <template>
         <vellum-stat name="Armor Class" values="17 (natural armor)"></vellum-stat>
@@ -48,15 +42,6 @@
 import '../dist/vellum-stat.js'
 
 suite('<vellum-stat>', () => {
-
-  test('does not display stat name for empty values', (done) => {
-    const element = fixture('empty-stat')
-
-    flush(() => {
-      assert.notInclude(element.shadowRoot.textContent.trim(), 'Empty Stat Name')
-      done()
-    })
-  })
 
   test('displays stat name for single value', (done) => {
     const element = fixture('single-value-stat')
