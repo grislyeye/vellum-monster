@@ -25,6 +25,8 @@ export class NonPlayerCharacter extends StatBlock {
 
   @property({ type: String }) gender = '';
 
+  @property({ type: String }) pronouns = '';
+
   static get styles() {
     return css`
       ${StatBlock.styles}
@@ -40,6 +42,11 @@ export class NonPlayerCharacter extends StatBlock {
   }
 
   protected renderHeader() {
+    const paranthesis =
+      [this.gender, this.pronouns, this.alignment, this.attitude]
+        .filter(e => e !== undefined)
+        .filter(s => s !== '')
+
     return html`
       <div id="npc-header">
         <h1>${this.name}</h1>
@@ -47,7 +54,7 @@ export class NonPlayerCharacter extends StatBlock {
           ${this.gender}
           ${this.race}
           <strong>${this.statblock}</strong>
-          (${this.alignment}${this.attitude ? html`, ${this.attitude}` : html``})</p>
+          (${paranthesis.join(', ')})</p>
       </div>`
   }
 
