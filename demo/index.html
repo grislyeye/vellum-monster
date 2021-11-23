@@ -18,377 +18,322 @@
   <body>
 
     <section class="vertical-section-container centered">
-      <h2>Detailed Stat Block</h2>
-
-        <vellum-monster
-          id="gynosphinx"
-          name="Gynosphinx"
-          size="large"
-          type="monstrosity"
-          alignment="lawful neutral"
-          ac="17"
-          armor="natural armor"
-          hit-die="16d10 + 48"
-          speeds='["40 ft.", "fly 60 ft."]'
-
-          str="18"
-          dex="17"
-          con="16"
-          int="14"
-          wis="11"
-          cha="8"
-
-          skills='["Arcana +14", "History +14", "Perception +9", "Religion +9"]'
-          vulnerabilities='["fire"]'
-          resistances="bludgeoning, piercing, and slashing from nonmagical items"
-          immunities='["psychic"]'
-          condition-immunities='["charmed", "frightened"]'
-          senses='["truesight 120 ft.", "passive Perception 18"]'
-          languages='["Common", "Sphinx"]'
-          traits='[
-            {
-              "name": "Inscrutable",
-              "description": "The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx&apos;s intentions or sincerity have disadvantage."
-            },
-            {
-              "name": "Magic Weapons",
-              "description": "The sphinx&apos;s weapon attacks are magical.",
-              "hpAdjustment": "+68"
-            }
-          ]'
-          spellcasting='{
-            "level": "9th",
-            "ability": "Intelligence",
-            "save": 17,
-            "attackBonus": "+9",
-            "notes": "it requires no material components to cast its spells",
-            "class": "wizard",
-            "levels": [
-              {
-                "level": "Cantrips",
-                "spells": ["mage hand", "minor illusion", "prestidigitation"]
-              },
-              {
-                "level": "1st",
-                "slots": 4,
-                "spells": ["detect magic", "identify", "shield"]
-              },
-              {
-                "level": "2nd",
-                "slots": 3,
-                "spells": ["darkness", "locate object", "suggestion"]
-              },
-              {
-                "level": "3rd",
-                "slots": 3,
-                "spells": ["dispel magic", "remove curse", "tongues"]
-              },
-              {
-                "level": "4th",
-                "slots": 2,
-                "spells": ["banishment", "greater invisibility"]
-              },
-              {
-                "level": "5th",
-                "slots": 1,
-                "spells": ["legend lore"]
-              }
-            ]
-          }'
-          actions='[
-            {
-              "name": "Multiattack",
-              "type": "multiattack",
-              "description": "The sphinx makes two claw attacks.",
-              "multiAttacks": {
-                "id": "claw",
-                "number": 2
-              }
-            },
-            {
-              "id": "claw",
-              "name": "Claw",
-              "type": "melee-attack",
-              "bonus": "+9",
-              "reach": "5ft.",
-              "target": "one target",
-              "damage": "2d8 + 4",
-              "damageType": "slashing"
-            }
-          ]'
-          reactions='[
-            {
-              "name": "Parry",
-              "description": "The gynosphinx adds 3 to its AC against one melee attack that would hit it.",
-              "acAdjustment": "+1",
-              "attackAdjustment": "+1"
-            }
-          ]'
-          legendary-actions='{
-            "number": 3,
-            "actions": [
-              {
-                "name": "Claw Attack",
-                "description": "The sphinx makes one claw attack.",
-                "damageAdjustment": "+39"
-              },
-              {
-                "name": "Teleport",
-                "actions": 2,
-                "description": "The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see."
-              },
-              {
-                "name": "Cast a Spell",
-                "actions": 3,
-                "description": "The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal."
-              }
-            ]
-          }'
-        >
-        </vellum-monster>
-
-      <h2>Themed Stat Block</h2>
 
       <vellum-monster
-        id="warhorse"
-        class="official"
-        name="Warhorse"
-        size="Large"
-        type="beast"
-        alignment="unaligned"
-        ac="11"
-        armor="natural armor"
-        hp="20"
-        hit-die="16d10 + 48"
-        speeds='["60 ft."]'
-        cr="½"
-
-        str="18"
-        dex="12"
-        con="13"
-        int="2"
-        wis="12"
-        cha="7"
-
-        senses='["passive Perception 11"]'
-        traits='[
-          {
-            "name": "Trampling Charge",
-            "description": "If the horse moves at least 20 feet straight toward a creature and then hits it with a hooves attack on the same turn, that target must succeed on a DC 14 Strength saving throw or be knocked prone. If the target is prone, the horse can make another attack with its hooves against it as a bonus action."
-          }
-        ]'
-        actions='[
-          {
-            "name": "Hooves",
-            "type": "melee-attack",
-            "bonus": "+4",
-            "reach": "5ft.",
-            "target": "one target",
-            "damage": "2d6 + 4",
-            "damageType": "bludgeoning"
-          }
-        ]'
-      >
-      </vellum-monster>
-
-      <h3>Object Stat Block</h3>
-
-      <vellum-monster
-        id="trench"
-        name="Trench"
-        size="Huge"
-        type="object"
-        ac="11"
-        hp="40"
-        immunities='["poison", "psychic"]'
-        threshold="10"
-
-        reactions='[
-          {
-            "name": "Mire",
-            "description": "The trench can grapple anyone attempting to cross it."
-          }
-        ]'
-      >
-      </vellum-monster>
-
-      <h3>Two-column Stat Block</h3>
-
-      <vellum-monster
-        id="gynosphinx-two-column"
         class="two-column"
-        name="Gynosphinx"
-        size="large"
-        type="monstrosity"
-        alignment="lawful neutral"
-        ac="17"
-        armor="natural armor"
-        hit-dies="16d10 + 48"
-        speeds='["40 ft.", "fly 60 ft."]'
+        named="true"
+        name="Baron of Yessingwood"
+        size="Medium"
+        type="antagonist"
+        ac="13"
+        armor="padded armor"
+        hit-die="12d8 + 12"
+        speeds='["30 ft."]'
 
-        str="18"
-        dex="15"
-        con="16"
-        int="18"
-        wis="18"
-        cha="18"
+        str="14"
+        dex="10"
+        con="12"
+        int="10"
+        wis="14"
+        cha="10"
 
-        skills='["Arcana +14", "History +14", "Perception +9", "Religion +9"]'
-        vulnerabilities='["fire"]'
-        resistances="bludgeoning, piercing, and slashing from nonmagical items"
-        immunities='["psychic"]'
-        condition-immunities='["charmed", "frightened"]'
-        senses='["truesight 120 ft.", "passive Perception 18"]'
-        languages='["Common", "Sphinx"]'
+        skills='["Intimidation +4", "Perception +4", "Sleight of Hand +2"]'
+        senses='["passive Perception 14"]'
+        resistances='["humiliation"]'
         traits='[
           {
-            "name": "Inscrutable",
-            "description": "The sphinx is immune to any effect that would sense its emotions or read its thoughts, as well as any Divination spell that it refuses. Wisdom (Insight) checks made to ascertain the sphinx&apos;s intentions or sincerity have disadvantage."
-          },
-          {
-            "name": "Magic Weapons",
-            "description": "The sphinx&apos;s weapon attacks are magical.",
-            "hpAdjustment": "+68"
+            "name": "Bully",
+            "description": "The Baron has advantage on attack rolls against a creature if at least one of the his allies are within a 5 feet of the creature and the ally is not incapacitated."
           }
         ]'
-        spellcasting='{
-          "level": "9th",
-          "ability": "Intelligence",
-          "save": 17,
-          "attackBonus": "+9",
-          "notes": "it requires no material components to cast its spells",
-          "class": "wizard",
-          "levels": [
-            {
-              "level": "Cantrips",
-              "spells": ["mage hand", "minor illusion", "prestidigitation"]
-            },
-            {
-              "level": "1st",
-              "slots": 4,
-              "spells": ["detect magic", "identify", "shield"]
-            },
-            {
-              "level": "2nd",
-              "slots": 3,
-              "spells": ["darkness", "locate object", "suggestion"]
-            },
-            {
-              "level": "3rd",
-              "slots": 3,
-              "spells": ["dispel magic", "remove curse", "tongues"]
-            },
-            {
-              "level": "4th",
-              "slots": 2,
-              "spells": ["banishment", "greater invisibility"]
-            },
-            {
-              "level": "5th",
-              "slots": 1,
-              "spells": ["legend lore"]
-            }
-          ]
-        }'
         actions='[
           {
             "name": "Multiattack",
             "type": "multiattack",
-            "description": "The sphinx makes two claw attacks.",
+            "description": "The Baron makes two commander attacks.",
             "multiAttacks": {
-              "id": "claw",
+              "id": "commander",
               "number": 2
             }
           },
           {
-            "id": "claw",
-            "name": "Claw",
+            "name": "Commandeer",
+            "id": "commander",
             "type": "melee-attack",
-            "bonus": "+9",
+            "bonus": "+4",
             "reach": "5ft.",
             "target": "one target",
-            "damage": "2d8 + 4",
+            "damage": "1d6 + 4",
+            "damageType": "humiliation"
+          }
+        ]'
+        reactions='[
+          {
+            "name": "Snide Remark",
+            "description": "If an attack misses the Baron, he ripostes with a cutting remark. Take 1d4 humiliation damage."
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Boar Guards"
+        size="Medium"
+        type="minion"
+        ac="13"
+        armor="armor"
+        hit-die="2d8 + 6"
+        speeds='["30 ft."]'
+
+        str="16"
+        dex="12"
+        con="16"
+        int="7"
+        wis="11"
+        cha="10"
+
+        skills='["Intimidation +2"]'
+        senses='["passive Perception 10"]'
+        traits='[
+          {
+            "name": "Charge",
+            "description": "As a bonus action, the boar soldier can move up to its speed toward a hostile creature that it can see. It has advantage on its next attack."
+          }
+        ]'
+        actions='[
+          {
+            "name": "Intimidate",
+            "type": "melee-or-ranged-attack",
+            "bonus": "+5",
+            "reach": "5ft.",
+            "range": "30/120ft.",
+            "target": "one target",
+            "damage": "1d6 + 3",
+            "damageType": "humiliation"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Craven Crow"
+        size="Small"
+        type="minion"
+        ac="17"
+        armor="chain shirt"
+        hit-die="6d6"
+        speeds='["30 ft."]'
+
+        str="10"
+        dex="14"
+        con="10"
+        int="10"
+        wis="8"
+        cha="10"
+
+        skills='["Stealth +6"]'
+        senses='[" Darkvision 60 ft.", "passive Perception 9"]'
+        traits='[
+          {
+            "name": "Flighty",
+            "description": "The crow can take the Disengage or Hide action as a bonus action on each of its turns."
+          }
+        ]'
+        actions='[
+          {
+            "name": "Multiattack",
+            "type": "multiattack",
+            "description": "The crow makes two snark attacks, or two crossbow attacks.",
+            "multiAttacks": {
+              "id": "snark",
+              "number": 2
+            }
+          },
+          {
+            "name": "Snark",
+            "id": "snark",
+            "type": "melee-or-ranged-attack",
+            "bonus": "+4",
+            "range": "30/120ft.",
+            "target": "one target",
+            "damage": "1d6 + 2",
+            "damageType": "humiliation"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Hound Guard"
+        size="Medium"
+        type="minion"
+        ac="15"
+        armor="leather armor"
+        hit-die="5d8"
+        speeds='["30 ft."]'
+
+        str="14"
+        dex="12"
+        con="11"
+        int="8"
+        wis="10"
+        cha="10"
+
+        skills='["Intimidation +4"]'
+        senses='["passive Perception 10"]'
+        traits='[
+          {
+            "name": "Pack Tactics",
+            "description": "The hound guard has advantage on an attack roll against a creature if at least one of the the hound guards allies is within 5 feet of the creature and the ally is not incapacitated.",
+            "attackAdjustment": "+1"
+          }
+        ]'
+        actions='[
+          {
+            "name": "Intimidate",
+            "type": "melee-or-ranged-attack",
+            "bonus": "+3",
+            "range": "30/120ft.",
+            "target": "one target",
+            "damage": "1d8 + 1",
+            "damageType": "piercing"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        named="true"
+        name="Lord Caw"
+        size="Medium"
+        type="antagonist"
+        ac="15"
+        hit-die="5d8"
+        speeds='["30 ft.", "fly 60 ft."]'
+        cr="2"
+
+        str="7"
+        dex="14"
+        con="11"
+        int="17"
+        wis="12"
+        cha="14"
+
+        skills='["Persuasion +5"]'
+        senses='["passive Perception 14"]'
+        traits='[
+          {
+            "name": "Flighty",
+            "description": "Lord Caw can take the Disengage or Hide action as a bonus action on each of his turns."
+          }
+        ]'
+        actions='[
+          {
+            "name": "Cutting Remark",
+            "type": "melee-ranged-attack",
+            "bonus": "+4",
+            "range": "30/60ft.",
+            "target": "one target",
+            "damage": "1d10 + 2",
+            "damageType": "psychic"
+          },
+          {
+            "name": "Flattery (2/day)",
+            "description": "You make a flaterring remark, making the target forget why he was angry with you in the first place. The target must make a DC 13 Wisdom saving throw or become charmed."
+          }
+        ]'
+        reactions='[
+          {
+            "name": "What About Them?",
+            "description": "When a creature Lord Caw can see targets it with an attack, he chooses one of his craven crows within 5 feet of him. The two swap places, and the chosen craven crow becomes the target instead."
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        class="two-column"
+        named="true"
+        name="Princess Janet"
+        size="Medium"
+        type="antagonist"
+        ac="12"
+        armor="natural armor"
+        hit-die="17d8 + 34"
+        speeds='["30 ft."]'
+
+        str="12"
+        dex="15"
+        con="14"
+        int="12"
+        wis="10"
+        cha="18"
+
+        skills='["Deception +7", "Persuasion +7"]'
+        senses='["passive Perception 10"]'
+        traits='[
+          {
+            "name": "Oversized Crown",
+            "description": "While wearing the crown, the princess has immunity to humiliation damage."
+          },
+          {
+            "name": "Regency",
+            "description": "The princess can choose a creature that is within 30 feet of her and aware of. It must succeed on a DC 15 Wisdom saving throw or become frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creatures saving throw is successful or the effect ends for it, the creature is immune to her Regency for the next 24 hours."
+          },
+          {
+            "name": "Seize Him! (1/day)",
+            "description": "The princess ecognises a hostile creature in disguise. That creature no longer benefits from the disguise."
+          }
+        ]'
+        actions='[
+          {
+            "name": "Multiattack",
+            "type": "multiattack",
+            "description": "The princess makes two command attacks.",
+            "multiAttacks": {
+              "id": "command",
+              "number": 2
+            }
+          },
+          {
+            "name": "Command",
+            "id": "command",
+            "type": "ranged-or-melee-attack",
+            "bonus": "+5",
+            "reach": "5ft.",
+            "range": "60ft.",
+            "target": "one target",
+            "damage": "1d8 + 5",
             "damageType": "slashing"
+          }
+        ]'
+        reactions='[
+          {
+            "name": "Help! ",
+            "description": "When the princess is attacked, she chooses a nonhostile creature within 5 feet to become the target of the attack instead."
           }
         ]'
         legendary-actions='{
           "number": 3,
           "actions": [
             {
-              "name": "Claw Attack",
-              "description": "The sphinx makes one claw attack.",
-              "damageAdjustment": "+39"
+              "name": "Tyrant",
+              "description": "While wearing the crown, a boar guard within 60 feet of the princess may use its Charge action twice in a single turn."
             },
             {
-              "name": "Teleport",
+              "name": "You Fools!",
               "actions": 2,
-              "description": "The sphinx magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see."
+              "description": "While wearing the crown, the princess shouts when a nonhostile creature within 30 feet is making an attack. That creature may add 1d4 to its attack roll."
             },
             {
-              "name": "Cast a Spell",
+              "name": "Off With His Head!",
               "actions": 3,
-              "description": "The sphinx casts a spell from its list of prepared Spells, using a spell slot as normal."
+              "description": "While wearing the crown, the princess points at a creature and cries. The creature must make a DC 15 Wisdom saving throw or take 6 (1d8 + 1) humiliation damage. Two Rhinoceros guards appear."
             }
           ]
         }'
       >
       </vellum-monster>
-
-      <h2>Custom Stat Block</h2>
-
-      <vellum-stat-block class="official" name="Custom Stat Block" description="Demonstration of custom stat blocks">
-        <vellum-stat name="Test Stat 1">Test Stat Value 1</vellum-stat>
-
-        <vellum-stat-block-divider></vellum-stat-block-divider>
-
-        <vellum-stat-block-ability-scores id="ability-scores" str="18" dex="16" con="14" int="12" wis="10" cha="8"></vellum-stat-block-ability-scores>
-
-        <vellum-stat-block-divider></vellum-stat-block-divider>
-
-        <vellum-stat-block-section name="Custom Stats Section">
-          <vellum-stat name="Test Stat 2">Test Stat Value 2</vellum-stat>
-        </vellum-stat-block-section>
-      </vellum-stat-block>
-
-      </section>
-
-      <h2>NPC Stat Block</h2>
-
-      <vellum-npc
-        class="official"
-        name="Lyrum"
-        pronouns="he/him"
-        race="elf"
-        statblock="archmage"
-        alignment="lawful neutral"
-        attitude="indifferent"
-        description="Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.">
-
-        <vellum-stat class="trait" name="Brusque (Personality Trait).">Lyrum is often impatient and rude.</vellum-stat>
-
-        <vellum-stat class="trait" name="Ponderous (Personality Trait).">Lyrum always tries to think two steps ahead, making conversation with him ponderous</vellum-stat>
-
-        <vellum-stat class="trait" name="Greater Good (Ideal)."> The strong, not the good, must lead for humanity to prosper. (Lawful)</vellum-stat>
-
-       <vellum-stat class="trait" name="Advisor to King Jorl (Bond).">Through ruthless manipulation Lyrum maintains his position as chief advisor to the King.</vellum-stat>
-
-        <vellum-stat class="trait" name="Pain (Flaw).">Lyrum suffers from incessant pain, causing him to lose sleep and often leading to poor judgement.</vellum-stat>
-
-        <vellum-stat-block-section name="Secrets">
-          <vellum-stat class="trait" name="Plots to Overthrow the Throne.">Despite his obsequious manner, Lyrum believes King Jorl is weak and plots to replace him.</vellum-stat>
-
-          <vellum-stat class="trait" name="Magi of the Order.">Lyrum is a member of the Order of the Magi. <em>Tell.</em> Creatures making a DC 15 Wisdom (Perception) check will notice a strange tattoo Lyrum bears on his right wrist. A creature making a DC 20 Intelligence (Arcana) check will recall this is the secret symbol of the Order of the Magi.</vellum-stat>
-        </vellum-stat-block-section>
-
-        <vellum-stat-block-section name="Activities">
-          <p class="trait"><input type="checkbox"/> Painfully struggling with something, i.e. climbing stairs, picking papers off the floor, etc.</p>
-
-          <p class="trait"><input type="checkbox"/> Interrogating and torturing an enemy of the king.</p>
-
-          <p class="trait"><input type="checkbox"/> Wandering alone at night while suffering insomnia.</p>
-        </vellum-stat-block-section>
-
-      </vellum-npc>
 
     </section>
 
