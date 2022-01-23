@@ -1,4 +1,4 @@
-# &lt;vellum-monster&gt; [![Build Status](https://travis-ci.org/grislyeye/vellum-monster.svg?branch=master)](https://travis-ci.org/grislyeye/vellum-monster) [![Known Vulnerabilities](https://snyk.io/test/github/grislyeye/vellum-monster/badge.svg?targetFile=package.json)](https://snyk.io/test/github/grislyeye/vellum-monster?targetFile=package.json)
+# &lt;vellum-monster&gt; [![Build Status](https://github.com/grislyeye/vellum-monster/actions/workflows/node.js.yml/badge.svg)](https://github.com/grislyeye/vellum-monster/actions/workflows/node.js.yml) [![Known Vulnerabilities](https://snyk.io/test/github/grislyeye/vellum-monster/badge.svg?targetFile=package.json)](https://snyk.io/test/github/grislyeye/vellum-monster?targetFile=package.json)
 
 Web component for displaying monster stat blocks for the fifth edition of the world's most popular table-top roleplaying game. Based on [Val Markovic's Statblock5e](https://valloric.github.io/statblock5e/) but with the following, additional features:
 
