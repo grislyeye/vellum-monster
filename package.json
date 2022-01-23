@@ -6,12 +6,12 @@
   ],
   "name": "vellum-monster",
   "version": "1.2.0",
-  "type": "module",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
   ],
   "license": "Apache-2.0",
+  "type": "module",
   "devDependencies": {
     "@open-wc/testing": "^3.0.3",
     "@web/dev-server-legacy": "^0.1.7",
