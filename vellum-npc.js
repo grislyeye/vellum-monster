@@ -39,6 +39,11 @@ class NonPlayerCharacter extends StatBlock {
   }
 
   renderHeader() {
+    const paranthesis =
+      [this.gender, this.pronouns, this.alignment, this.attitude]
+        .filter(e => e !== undefined)
+        .filter(s => s !== '')
+
     return html`
       <div id="npc-header">
         <h1>${this.name}</h1>
@@ -46,7 +51,7 @@ class NonPlayerCharacter extends StatBlock {
           ${this.gender}
           ${this.race}
           <strong>${this.statblock}</strong>
-          (${this.alignment}${this.attitude ? html`, ${this.attitude}` : html``})</p>
+          (${paranthesis.join(', ')})</p>
       </div>`
   }
 
