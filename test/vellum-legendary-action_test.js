@@ -1,6 +1,6 @@
 import { fixture, assert } from '@open-wc/testing'
 import { html } from 'lit/static-html.js'
-import '../vellum-legendary-action.js'
+import '../dist/vellum-legendary-action.js'
 
 suite('<vellum-legendary-action>', () => {
 
