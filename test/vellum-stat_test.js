@@ -1,7 +1,7 @@
 import { fixture, assert, expect } from '@open-wc/testing'
 import { html } from 'lit/static-html.js'
 import './custom-assertions.js'
-import '../dist/vellum-stat.js'
+import '../vellum-stat.js'
 
 suite('<vellum-stat>', () => {
 

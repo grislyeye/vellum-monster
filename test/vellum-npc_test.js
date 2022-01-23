@@ -1,6 +1,6 @@
 import { fixture, assert } from '@open-wc/testing'
 import { html } from 'lit/static-html.js'
-import '../dist/vellum-npc.js'
+import '../vellum-npc.js'
 import { trimAll } from './test-util.js'
 
 suite('<vellum-npc>', () => {
