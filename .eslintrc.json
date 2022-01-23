@@ -2,21 +2,15 @@
   "extends": "standard",
   "globals": {
     "customElements": true,
-    "WCT": true,
     "chai": true,
     "suite": true,
-    "test": true,
-    "flush": true,
-    "assert": true,
-    "expect": true,
-    "fixture": true
+    "test": true
   },
   "rules": {
     "space-before-function-paren": ["error", "never"],
     "padded-blocks": 0
   },
   "plugins": [
-    "html",
     "lit"
   ]
 }

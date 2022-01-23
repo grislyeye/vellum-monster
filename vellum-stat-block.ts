@@ -94,9 +94,9 @@ export class StatBlock extends LitElement {
       margin-bottom: 0;
     }`
 
-  @property({ type: String }) name!: string;
+  @property({ type: String }) name!: string
 
-  @property({ type: String }) description!: string;
+  @property({ type: String }) description!: string
 
   render() {
     return html`
