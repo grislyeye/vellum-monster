@@ -1,3 +1,5 @@
+import { chai } from '@open-wc/testing'
+
 const includeOnceAssert = function(chai, utils) {
 
   const Assertion = chai.Assertion

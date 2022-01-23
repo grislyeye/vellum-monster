@@ -17,5 +17,7 @@
     "allowJs": true,
     "declaration": true
   },
-  "include": ["**/*.ts", "**/*.js"]
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["**/*.config.js", "**/*.conf.js", "node_modules/**/*", "test/**/*"],
+
 }

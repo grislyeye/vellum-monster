@@ -11,21 +11,21 @@ import './vellum-legendary-action.js'
 @customElement('vellum-npc')
 export class NonPlayerCharacter extends StatBlock {
 
-  @property({ type: String }) name = '';
+  @property({ type: String }) name = ''
 
-  @property({ type: String }) description = '';
+  @property({ type: String }) description = ''
 
-  @property({ type: String }) race = '';
+  @property({ type: String }) race = ''
 
-  @property({ type: String }) statblock = '';
+  @property({ type: String }) statblock = ''
 
-  @property({ type: String }) alignment = '';
+  @property({ type: String }) alignment = ''
 
-  @property({ type: String }) attitude = '';
+  @property({ type: String }) attitude = ''
 
-  @property({ type: String }) gender = '';
+  @property({ type: String }) gender = ''
 
-  @property({ type: String }) pronouns = '';
+  @property({ type: String }) pronouns = ''
 
   static get styles() {
     return css`
