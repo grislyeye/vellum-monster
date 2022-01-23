@@ -6,6 +6,7 @@
   ],
   "name": "vellum-monster",
   "version": "1.2.0",
+  "type": "module",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
@@ -13,10 +14,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@open-wc/testing": "^3.0.3",
-    "@types/node": "17.0.10",
-    "@types/qs": "^6.9.6",
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
     "@web/dev-server-legacy": "^0.1.7",
     "@web/test-runner": "^0.13.25",
     "@web/test-runner-playwright": "^0.8.8",
@@ -50,7 +47,7 @@
   },
   "scripts": {
     "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
-    "build": "yamllint .travis.yml && eslint *.js lib/*.js test/*.js && rimraf dist && tsc",
+    "build": "yamllint .travis.yml && eslint *.js lib/*.js test/*.js && rimraf dist && rollup -c",
     "test": "npm run build && wtr",
     "clean": "rimraf dist"
   }

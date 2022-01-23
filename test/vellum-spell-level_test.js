@@ -1,6 +1,6 @@
 import { fixture, assert } from '@open-wc/testing'
 import { html } from 'lit/static-html.js'
-import '../dist/vellum-spell-level.js'
+import '../vellum-spell-level.js'
 import { trimAll } from './test-util.js'
 
 suite('<vellum-spell-level>', () => {
