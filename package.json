@@ -47,7 +47,7 @@
   },
   "scripts": {
     "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
-    "build": "yamllint .travis.yml && eslint *.js lib/*.js test/*.js && rimraf dist && rollup -c",
+    "build": "yamllint .github/workflows/node.js.yml && eslint *.js lib/*.js test/*.js && rimraf dist && rollup -c",
     "test": "npm run build && wtr",
     "clean": "rimraf dist"
   }
