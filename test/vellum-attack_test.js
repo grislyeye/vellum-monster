@@ -1,7 +1,7 @@
 import { fixture, assert } from '@open-wc/testing'
 import { html } from 'lit/static-html.js'
 import './custom-assertions.js'
-import '../vellum-attack.js'
+import '../dist/vellum-attack.js'
 import { trimAll } from './test-util.js'
 
 suite('<vellum-attack>', () => {

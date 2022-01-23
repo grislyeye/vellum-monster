@@ -1,5 +1,5 @@
 import { fixture, assert, expect } from '@open-wc/testing'
-import '../vellum-monster.js'
+import '../dist/vellum-monster.js'
 import { trimAll } from './test-util.js'
 import './custom-assertions.js'
 import * as fixtures from './monster-fixtures.js'

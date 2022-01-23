@@ -1,6 +1,6 @@
 import { fixture, assert } from '@open-wc/testing'
 import { html } from 'lit/static-html.js'
-import '../vellum-stat-block.js'
+import '../dist/vellum-stat-block.js'
 import { trimAll } from './test-util.js'
 
 suite('<vellum-stat-block>', () => {

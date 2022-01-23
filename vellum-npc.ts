@@ -1,5 +1,5 @@
 import { StatBlock } from './vellum-stat-block.js'
-import { html, css } from 'lit-element'
+import { html, css, customElement, property } from 'lit-element'
 import './vellum-stat-block-divider.js'
 import './vellum-stat.js'
 import './vellum-stat-block-ability-scores.js'
@@ -8,7 +8,24 @@ import './vellum-stat-block-section.js'
 import './vellum-attack.js'
 import './vellum-legendary-action.js'
 
-class NonPlayerCharacter extends StatBlock {
+@customElement('vellum-npc')
+export class NonPlayerCharacter extends StatBlock {
+
+  @property({ type: String }) name = ''
+
+  @property({ type: String }) description = ''
+
+  @property({ type: String }) race = ''
+
+  @property({ type: String }) statblock = ''
+
+  @property({ type: String }) alignment = ''
+
+  @property({ type: String }) attitude = ''
+
+  @property({ type: String }) gender = ''
+
+  @property({ type: String }) pronouns = ''
 
   static get styles() {
     return css`
@@ -24,21 +41,7 @@ class NonPlayerCharacter extends StatBlock {
       }`
   }
 
-  static get is() { return 'vellum-npc' }
-
-  static get properties() {
-    return {
-      name: String,
-      description: String,
-      race: String,
-      statblock: String,
-      alignment: String,
-      attitude: String,
-      gender: String
-    }
-  }
-
-  renderHeader() {
+  protected renderHeader() {
     const paranthesis =
       [this.gender, this.pronouns, this.alignment, this.attitude]
         .filter(e => e !== undefined)
@@ -55,7 +58,7 @@ class NonPlayerCharacter extends StatBlock {
       </div>`
   }
 
-  renderStats() {
+  protected renderStats() {
     const descriptionTemplate = html`
       <p id="description">${this.description}</p>
       <vellum-stat-block-divider id="description-divider"></vellum-stat-block-divider>`
@@ -70,5 +73,3 @@ class NonPlayerCharacter extends StatBlock {
   }
 
 }
-
-customElements.define(NonPlayerCharacter.is, NonPlayerCharacter)
