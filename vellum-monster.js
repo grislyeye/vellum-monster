@@ -172,8 +172,6 @@ class Monster extends StatBlock {
   }
 
   renderStat(id, name, value) {
-    console.log(`renderStat(${id}, ${name}, ${typeof value})`)
-    console.log(`value !== undefined || value !== '' == ${value !== undefined || value !== ''}`)
     if (value !== undefined && value !== '') {
       return html`<vellum-stat id="${id}" name="${name}" .values=${value}></vellum-stat>`
     } else return html``
