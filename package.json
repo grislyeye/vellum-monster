@@ -5,7 +5,7 @@
     "webcomponent"
   ],
   "name": "vellum-monster",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "R.G. Wood <ric@grislyeye.com> (https://grislyeye.com)",
   "contributors": [
     "Val Markovic <val@markovic.io> (http://val.markovic.io)"
@@ -15,9 +15,9 @@
   "devDependencies": {
     "@open-wc/testing": "^3.0.3",
     "@web/dev-server-legacy": "^0.1.7",
-    "@web/test-runner": "^0.13.25",
+    "@web/test-runner": "^0.13.26",
     "@web/test-runner-playwright": "^0.8.8",
-    "bl": ">=4.1.0",
+    "bl": ">=5.0.0",
     "diff": ">=5.0.0",
     "es-dev-server": "^2.1.0",
     "eslint": "^8.7.0",
@@ -29,7 +29,7 @@
     "eslint-plugin-standard": "^4.1.0",
     "growl": ">=1.10.5",
     "rimraf": "^3.0.2",
-    "rollup": "^2.34.2",
+    "rollup": "^2.66.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2",
     "yaml-lint": "^1.2.4"
