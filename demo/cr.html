@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>vellum-monster demo</title>
+
+    <script type="module" src="../vellum-stat-block.js"></script>
+    <script type="module" src="../vellum-monster.js"></script>
+    <script type="module" src="../vellum-npc.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../themes/official/style.css">
+
+  </head>
+
+  <body>
+
+    <section class="vertical-section-container centered">
+
+      <vellum-monster
+        name="Baron of Yessingwood"
+        ac="13"
+        armor="natural armor"
+        hit-die="6d8+6"
+
+        traits='[
+          {
+            "name": "Bully",
+            "damageAdjustment": "+2"
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Multiattack",
+            "type": "multiattack",
+            "multiAttacks": {
+              "id": "commandeer",
+              "number": 2
+            }
+          },
+          {
+            "name": "Commandeer",
+            "id": "commandeer",
+            "type": "melee-attack",
+            "bonus": "+4",
+            "reach": "5ft.",
+            "target": "one target",
+            "damage": "1d6 + 3",
+            "damageType": "bludgeoning"
+          }
+        ]'
+
+        reactions='[
+          {
+            "name": "Snide Remark",
+            "damageAdjustment": "+1"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Boar Guard"
+        ac="13"
+        armor="natural armor"
+        hit-die="1d8 + 2"
+
+        traits='[
+          {
+            "name": "Charge",
+            "damageAdjustment": "+2"
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Intimidate",
+            "type": "melee-attack",
+            "bonus": "+5",
+            "reach": "5ft.",
+            "target": "one target",
+            "damage": "1d6 + 3",
+            "damageType": "bludgeoning"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Craven Crow"
+        ac="12"
+        hit-die="1d6"
+
+        traits='[
+          {
+            "name": "Flighty",
+            "acAdjustment": "+4"
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Snark",
+            "id": "snark",
+            "type": "ranged-attack",
+            "bonus": "+4",
+            "range": "60ft.",
+            "target": "one target",
+            "damage": "1d6 + 3",
+            "damageType": "bludgeoning"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Hound Guard"
+        ac="14"
+        hit-die="2d8"
+
+        traits='[
+          {
+            "name": "Pack Tactics",
+            "damageAdjustment": "+2"
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Intimidate",
+            "type": "melee-attack",
+            "bonus": "+3",
+            "reach": "5ft.",
+            "target": "one target",
+            "damage": "1d8 + 1",
+            "damageType": "bludgeoning"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Lord Caw"
+        ac="15"
+        hit-die="2d8"
+
+        traits='[
+          {
+            "name": "Flighty",
+            "acAdjustment": "+4"
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Withering Remark",
+            "type": "melee-attack",
+            "bonus": "+4",
+            "reach": "5ft.",
+            "target": "one target",
+            "damage": "1d6 + 4",
+            "damageType": "bludgeoning"
+          }
+        ]'
+      >
+      </vellum-monster>
+
+      <vellum-monster
+        name="Princess Janet"
+        ac="14"
+        hit-die="7d8 + 14"
+
+        traits='[
+          {
+            "name": "Oversized Crown",
+            "hpAdjustment": "+45"
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Command",
+            "type": "ranged-attack",
+            "bonus": "+5",
+            "range": "30ft.",
+            "target": "one target",
+            "damage": "1d8 + 4",
+            "damageType": "bludgeoning"
+          }
+        ]'
+
+        legendary-actions='{
+          "number": 3,
+          "actions": [
+            {
+              "name": "Tyrant"
+            },
+            {
+              "name": "You Fools!",
+              "actions": 2
+            },
+            {
+              "name": "Off With His Head!",
+              "actions": 3,
+              "damageAdjustment": "+6"
+            }
+          ]
+        }'
+      >
+      </vellum-monster>
+
+    </section>
+
+  </body>
+
+</html>
