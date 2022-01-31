@@ -22,7 +22,13 @@ class NonPlayerCharacter extends StatBlock {
 
       #npc-header p::first-letter {
         text-transform: capitalize;
-      }`
+      }
+
+      a {
+        color: var(--stat-block-header-color, black);
+        text-decoration: none;
+      }
+    `
   }
 
   static get is() { return 'vellum-npc' }
@@ -33,6 +39,8 @@ class NonPlayerCharacter extends StatBlock {
       description: String,
       race: String,
       statblock: String,
+      statblockref: String,
+      dndbeyond: Boolean,
       alignment: String,
       attitude: String,
       gender: String
@@ -45,15 +53,21 @@ class NonPlayerCharacter extends StatBlock {
         .filter(e => e !== undefined)
         .filter(s => s !== '')
 
+    const ref = this.dndbeyond ? `https://www.dndbeyond.com/monsters/${this.statblock}` : this.statblockref
+
     return html`
       <div id="npc-header">
         <h1>${this.name}</h1>
         <p>
           ${capitalise(this.gender)}
           ${!this.gender ? capitalise(this.race) : this.race}
-          <strong>${!this.gender && !this.race ? capitalise(this.statblock) : this.statblock}</strong>
+          <strong id="statblock">${this.renderStatblock(!this.gender && !this.race ? capitalise(this.statblock) : this.statblock, ref)}</strong>
           (${paranthesis.join(', ')})</p>
       </div>`
+  }
+
+  renderStatblock(statblock, link) {
+    return link ? html`<a href="${link}" alt="${statblock}">${statblock}</a>` : ''
   }
 
   renderStats() {

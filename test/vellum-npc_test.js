@@ -13,6 +13,7 @@ suite('<vellum-npc>', () => {
         gender="male"
         race="elf"
         statblock="archmage"
+        statblockref="https://example.org"
         alignment="lawful neutral"
         attitude="indifferent"
         description="Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.">
@@ -54,6 +55,13 @@ suite('<vellum-npc>', () => {
     assert.include(trimAll(element.shadowRoot.textContent), 'Lyrum is a thin and pasty elf')
   })
 
+  test('links to statblock', async() => {
+    const element = await fixture(npc)
+    const statblock = element.shadowRoot.querySelector('#statblock a')
+
+    assert.dom.equal(statblock, '<a href="https://example.org" alt="archmage">archmage</a>')
+  })
+
   const npcWithoutDescription =
     html`
       <vellum-npc
@@ -88,6 +96,28 @@ suite('<vellum-npc>', () => {
   test('does not display separating comma for NPC without attitude', async() => {
     const element = await fixture(npcWithoutAttitude)
     assert.include(trimAll(element.shadowRoot.textContent), '(lawful neutral)')
+  })
+
+  const npcWithDndBeyondLinkEnabled =
+    html`
+      <vellum-npc
+        class="official"
+        name="Lyrum"
+        gender="male"
+        race="elf"
+        statblock="archmage"
+        dndbeyond="true"
+        alignment="lawful neutral"
+        attitude="indifferent"
+      >
+      </vellum-npc>
+    `
+
+  test('links to DndBeyond', async() => {
+    const element = await fixture(npcWithDndBeyondLinkEnabled)
+    const statblock = element.shadowRoot.querySelector('#statblock a')
+
+    assert.dom.equal(statblock, '<a href="https://www.dndbeyond.com/monsters/archmage" alt="archmage">archmage</a>')
   })
 
 })
