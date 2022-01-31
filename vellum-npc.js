@@ -67,7 +67,7 @@ class NonPlayerCharacter extends StatBlock {
   }
 
   renderStatblock(statblock, link) {
-    return link ? html`<a href="${link}" alt="${statblock}">${statblock}</a>` : ''
+    return link ? html`<a href="${link}" alt="${statblock}">${statblock}</a>` : statblock
   }
 
   renderStats() {

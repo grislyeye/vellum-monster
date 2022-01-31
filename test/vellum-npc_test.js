@@ -120,4 +120,21 @@ suite('<vellum-npc>', () => {
     assert.dom.equal(statblock, '<a href="https://www.dndbeyond.com/monsters/archmage" alt="archmage">archmage</a>')
   })
 
+  const npcWithoutGenderAndRace =
+    html`
+      <vellum-npc
+        class="official"
+        name="Lyrum"
+        statblock="archmage"
+        alignment="lawful neutral"
+        attitude="indifferent"
+      >
+      </vellum-npc>
+    `
+
+  test('displays NPC statblock', async() => {
+    const element = await fixture(npcWithoutGenderAndRace)
+    assert.include(trimAll(element.shadowRoot.textContent), 'Archmage')
+  })
+
 })
