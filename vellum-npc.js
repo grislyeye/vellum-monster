@@ -1,5 +1,6 @@
 import { StatBlock } from './vellum-stat-block.js'
 import { html, css } from 'lit-element'
+import { capitalise } from './lib/capitalise'
 import './vellum-stat-block-divider.js'
 import './vellum-stat.js'
 import './vellum-stat-block-ability-scores.js'
@@ -48,9 +49,9 @@ class NonPlayerCharacter extends StatBlock {
       <div id="npc-header">
         <h1>${this.name}</h1>
         <p>
-          ${this.gender}
-          ${this.race}
-          <strong>${this.statblock}</strong>
+          ${capitalise(this.gender)}
+          ${!this.gender ? capitalise(this.race) : this.race}
+          <strong>${!this.gender && !this.race ? capitalise(this.statblock) : this.statblock}</strong>
           (${paranthesis.join(', ')})</p>
       </div>`
   }

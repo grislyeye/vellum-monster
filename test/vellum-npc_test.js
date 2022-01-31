@@ -26,7 +26,7 @@ suite('<vellum-npc>', () => {
 
   test('displays NPC gender', async() => {
     const element = await fixture(npc)
-    assert.include(trimAll(element.shadowRoot.textContent), 'male')
+    assert.include(trimAll(element.shadowRoot.textContent), 'Male')
   })
 
   test('displays NPC race', async() => {
