@@ -194,6 +194,36 @@
       >
       </vellum-monster>
 
+      <vellum-monster
+        name="Queen Margaret"
+        ac="13"
+        hit-die="5d8+5"
+
+        traits='[
+          {
+            "name": "Emminence (1/day)",
+            "description": "As a bonus action, Margaret can cause a clash to deal an extra 10 (3d6) humiliation damage. This benefit lasts until the end of the turn."
+          }
+        ]'
+
+        actions='[
+          {
+            "name": "Rallying Cry (1/day)",
+            "type": "ranged-attack",
+            "bonus": "+3",
+            "range": "30ft.",
+            "target": "one target",
+            "damage": "2d8+3",
+            "damageType": "bludgeoning"
+          },
+          {
+            "name": "Knighting (1/day)",
+            "description": "Margaret knights a player. Any creature who targets the knighted creature with a clash must first make a DC 13 Wisdom saving throw. On a failed save, the creature must choose a new target or lose the attack or spell."
+          }
+        ]'
+      >
+      </vellum-monster>
+
     </section>
 
   </body>

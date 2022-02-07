@@ -221,13 +221,12 @@
       </vellum-stat-block>
 
       <vellum-stat-block
-        class="two-column"
         name="Princess Janet"
         description="Major antagonist"
       >
         <vellum-stat name="Courage">14</vellum-stat>
         <vellum-stat name="Ego"> 45 (7d8 + 14)</vellum-stat>
-        <vellum-stat name="Speed">30 ft., fly 60 ft.</vellum-stat>
+        <vellum-stat name="Speed">30 ft.</vellum-stat>
 
         <vellum-stat-block-divider></vellum-stat-block-divider>
 
@@ -263,6 +262,45 @@
         <vellum-stat-block-section name="Reactions">
 
           <vellum-stat class="trait" name="Help!">When the princess is attacked, she chooses an ally within 5 feet to become the target of the clash instead.</vellum-stat>
+
+        </vellum-stat-block-section>
+
+      </vellum-stat-block>
+
+      <vellum-stat-block
+        name="Queen Margaret"
+        description="Major ally"
+      >
+        <vellum-stat name="Courage">13</vellum-stat>
+        <vellum-stat name="Ego">27 (5d8+5)</vellum-stat>
+        <vellum-stat name="Speed">30 ft.</vellum-stat>
+
+        <vellum-stat-block-divider></vellum-stat-block-divider>
+
+        <vellum-stat-block-ability-scores
+          str="12"
+          dex="14"
+          con="11"
+          int="14"
+          wis="18"
+          cha="18"
+        >
+        </vellum-stat-block-ability-scores>
+
+        <vellum-stat-block-divider></vellum-stat-block-divider>
+
+        <vellum-stat name="Skills" values='["Insight +5", "Performance +5", "Persuasion +5"]'></vellum-stat>
+        <vellum-stat name="Senses">passive Perception 13</vellum-stat>
+
+        <vellum-stat-block-divider></vellum-stat-block-divider>
+
+        <vellum-stat class="trait" name="Emminence (1/day).">As a bonus action, Margaret can cause a clash to deal an extra 10 (3d6) humiliation damage. This benefit lasts until the end of the turn.</vellum-stat>
+
+        <vellum-stat-block-section name="Clashes">
+
+          <vellum-stat class="action" name="Rallying Cry (1/day).">A creature regains 9 (1d8+5) ego. </vellum-stat>
+
+          <vellum-stat class="trait" name="Knighhood (1/day).">Margaret knights a player. Any creature who targets the knighted creature with a clash must first make a DC 13 Wisdom saving throw. On a failed save, the creature must choose a new target or lose the clash.</vellum-stat>
 
         </vellum-stat-block-section>
 
