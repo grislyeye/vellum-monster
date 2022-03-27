@@ -43,7 +43,8 @@ class NonPlayerCharacter extends StatBlock {
       dndbeyond: Boolean,
       alignment: String,
       attitude: String,
-      gender: String
+      gender: String,
+      pronouns: String
     }
   }
 

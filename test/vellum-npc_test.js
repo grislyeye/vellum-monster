@@ -16,6 +16,7 @@ suite('<vellum-npc>', () => {
         statblockref="https://example.org"
         alignment="lawful neutral"
         attitude="indifferent"
+        pronouns="he/him"
         description="Lyrum is a thin and pasty elf with a painful-looking humped back. His black hair hangs down in long, greasy rat tails. Black marks under his rheumy eyes indicate a severe lack of sleep. His clothes, once fine, appear to have never been cleaned and are covered in dubious stains.">
       </vellum-npc>
      `
@@ -53,6 +54,11 @@ suite('<vellum-npc>', () => {
   test('displays NPC description', async() => {
     const element = await fixture(npc)
     assert.include(trimAll(element.shadowRoot.textContent), 'Lyrum is a thin and pasty elf')
+  })
+
+  test('displays NPC pronouns', async() => {
+    const element = await fixture(npc)
+    assert.include(trimAll(element.shadowRoot.textContent), 'he/him')
   })
 
   test('links to statblock', async() => {
